@@ -11,6 +11,14 @@
   max-width: 1280px;
 }
 
+.header_movie {
+  background: #202020;
+}
+
+.header_main {
+  background: #073042;
+}
+
 .header__logo {
   width: 38px;
   height: 38px;
@@ -54,4 +62,60 @@
 
 .header__signin:hover {
   opacity: 0.6;
+}
+
+
+.header__links {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  margin: auto;
+  right: calc(100% / 3 - 100px);
+}
+
+.header__link {
+  font-size: 13px;
+  line-height: 1.38;
+  transition: opacity 0.3s;
+  text-decoration: none;
+  color: white;
+}
+
+.header__link:first-of-type {
+  margin-right: 15px;
+}
+
+.header__link_active {
+  font-weight: 500;
+}
+
+.header__account {
+  display: flex;
+  align-items: center;
+  width: 100px;
+  justify-content: space-between;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.14;
+  transition: opacity 0.3s;
+}
+
+.header__link:hover {
+  opacity: 0.6;
+}
+
+.header__account:hover {
+  opacity: 0.6;
+}
+
+.header__icon {
+  background-color: #313131;
+  background-image: url('../../images/acc.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 25px;
+  height: 30px;
+  border-radius: 4px;
 }

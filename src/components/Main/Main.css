@@ -1,22 +1,16 @@
 .page {
-    box-sizing: border-box;
-    max-width: 1280px;
-    margin: auto;
-    color: white;
-  }
-
-
-.section__title {
-  line-height: 1.22;
-  margin: 0 0 23px;
-  letter-spacing: -0.04em;
-  font-weight: 400;
-  font-size: 22px;
+  box-sizing: border-box;
+  max-width: 1280px;
+  margin: auto;
+  color: white;
 }
 
-.section__line {
-  border: none;
-  height: 1px;
+.section__title {
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.22;
   margin: 0;
-  background-color: #DADADA;
+  letter-spacing: -0.04em;
+  border-bottom: 1px solid #DADADA;
+  padding-bottom: 23px;
 }
