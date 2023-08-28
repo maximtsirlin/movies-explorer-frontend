@@ -68,9 +68,9 @@
 .header__links {
   display: flex;
   justify-content: space-between;
-  position: absolute;
-  margin: auto;
-  right: calc(100% / 3 - 100px);
+  margin: 43px auto 43px;
+  margin-right: 32px;
+
 }
 
 .header__link {

@@ -10,7 +10,6 @@
 }
 
 .movies-card__about {
-  /* margin: 16px; */
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -33,7 +32,6 @@
 
 .movies-card__add {
   background-color: #313131;
-  /* background-image: url(d86bb2e….svg); */
   background-position: 50%;
   background-repeat: no-repeat;
   height: 29px;
@@ -57,7 +55,14 @@
   background-image: url('../../../images/add.svg');
 }
 
+.movies-card__add_delete {
+  background-color: #313131;
+  font-size: 0;
+  background-image: url('../../../images/delete.svg');
+}
+
 .movies-card__image {
   width: 360px;
   height: 200px;
 }
+
