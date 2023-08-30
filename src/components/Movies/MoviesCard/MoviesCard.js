@@ -16,7 +16,7 @@ function MoviesCard() {
     <>
     {location.pathname === '/movies' ? 
     <>
-      <div className='movies-card'>
+      <div className='movies-card'> 
         <div className='movies-card__about'>
           <h2 className='movies-card__title'>33 слова о дизайне</h2>
           <p className='movies-card__duration'>1ч 42м</p>

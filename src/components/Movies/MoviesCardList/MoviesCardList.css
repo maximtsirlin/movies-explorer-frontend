@@ -6,3 +6,9 @@
   margin: 0 auto;
   padding-top: 45px;
 }
+
+@media screen and (max-width: 767px) {
+  .movies-card-list {
+    margin-left: 50px;
+  }
+}

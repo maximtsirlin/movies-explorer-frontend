@@ -6,7 +6,7 @@ function Footer() {
       <div className='footer__container'>
         <h2 className='footer__title'>Учебный проект Яндекс.Практикум х BeatFilm.</h2>
         <div className='footer__block'>
-          <p className='footer__year'>&copy; 2022</p>
+          <p className='footer__year'>&copy; 2023</p>
           <ul className='footer__list'>
             <li className='footer__item'>
               <a className='footer__link' 

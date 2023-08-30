@@ -84,3 +84,32 @@
     margin-left: 12px;
   }
   
+
+  @media screen and (max-width: 1279px) {
+    .search {
+      padding: 80px 28px 40px;
+    }
+    .search__input {
+      width: 628px;
+    }
+  }
+  
+  @media screen and (max-width: 767px) {
+
+    .search__form {
+      margin: 0 4px;
+    }
+  
+    .search__button {
+      width: 70px;
+    }
+  
+    .search__input {
+      padding: 13px 16px;
+      width: 212px;
+    }
+  
+    .search__label {
+      margin: 45px auto;
+    }
+  }
