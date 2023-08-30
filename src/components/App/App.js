@@ -1,41 +1,46 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import './App.css';
 import Header from '../Header/Header';
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
-import SavedMovies from "../SavedMovies/SavedMovies";
-// import Profile from "../Profile/Profile";
-// import Login from "../Login/Login";
-// import Register from "../Register/Register";
+import SavedMovies from '../SavedMovies/SavedMovies';
 import Footer from '../Footer/Footer';
-import './App.css';
+import Profile from '../Profile/Profile';
+import Login from '../Login/Login';
+import Register from '../Register/Register';
+import Error from '../Error/Error';
 
 
 function App() {
+  const location = useLocation();
   return (
-    <>
-    <Header />
-    <Routes>
-      <Route path="/" element={
-        <Main />
-      } />
-      <Route path="/movies" element={
-        <Movies />
-      } />
-      <Route path="/saved-movies" element={
-        <SavedMovies />
-      } />
-      {/* <Route path="/profile" element={<Profile />} >
-
-      </Route>
-      <Route path="/signin" element={<Login />} >
-
-      </Route>
-      <Route path="/signup" element={<Register />} >
-
-      </Route> */}
-    </Routes>
-    <Footer />
-  </>
+    <div className='page'>
+      <Header />
+      <Routes>
+        <Route path="/" element={
+          <Main />
+        } />
+        <Route path="/movies" element={
+          <Movies />
+        } />
+        <Route path="/saved-movies" element={
+          <SavedMovies />
+        } />
+        <Route path="/profile" element={
+          <Profile />
+        } />
+        <Route path="/signin" element={
+          <Login />
+        } />
+        <Route path="/signup" element={
+          <Register />
+        } />
+        <Route path='/error' element={
+          <Error />
+        } />
+      </Routes>
+      {['/profile', '/signin', '/signup'].includes(location.pathname) ? null : <Footer />}
+    </div>
   );
 }
 

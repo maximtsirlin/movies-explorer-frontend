@@ -1,14 +1,15 @@
 .header {
   box-sizing: border-box;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  color: white;
-  justify-content: space-between;
   background: #073042;
   height: 74px;
   padding: 0 70px;
   max-width: 1280px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #202020;
+  position: relative;
 }
 
 .header_movie {
