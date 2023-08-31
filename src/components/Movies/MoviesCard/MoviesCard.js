@@ -30,7 +30,7 @@ function MoviesCard() {
           <p className='movies-card__duration'>1ч 42м</p>
         </div>
         <img src={secondMovie} alt='Киноальманах «100 лет дизайна»' className='movies-card__image' />
-        <button class="movies-card__add movies-card__add_active">Сохранить</button>
+        <button className="movies-card__add movies-card__add_active">Сохранить</button>
       </div>
       <div className='movies-card'>
         <div className='movies-card__about'>
@@ -38,7 +38,7 @@ function MoviesCard() {
           <p className='movies-card__duration'>1ч 42м</p>
         </div>
         <img src={thirdMovie} alt='В погоне за Бенкси' className='movies-card__image' />
-        <button class="movies-card__add">Сохранить</button>
+        <button className="movies-card__add">Сохранить</button>
       </div>
       <div className='movies-card'>
         <div className='movies-card__about'>
@@ -70,7 +70,7 @@ function MoviesCard() {
           <p className='movies-card__duration'>1ч 42м</p>
         </div>
         <img src={seventhMovie} alt='Когда я думаю о Германии ночью' className='movies-card__image' />
-        <button class="movies-card__add">Сохранить</button>
+        <button className="movies-card__add">Сохранить</button>
       </div>
       </>
       : 
@@ -89,7 +89,7 @@ function MoviesCard() {
               <p className='movies-card__duration'>1ч 42м</p>
             </div>
             <img src={secondMovie} alt='Киноальманах «100 лет дизайна»' className='movies-card__image' />
-            <button class="movies-card__add movies-card__add_delete">Сохранить</button>
+            <button className="movies-card__add movies-card__add_delete">Сохранить</button>
           </div>
           <div className='movies-card'>
             <div className='movies-card__about'>
@@ -97,7 +97,7 @@ function MoviesCard() {
               <p className='movies-card__duration'>1ч 42м</p>
             </div>
             <img src={thirdMovie} alt='В погоне за Бенкси' className='movies-card__image' />
-            <button class="movies-card__add movies-card__add_delete">Сохранить</button>
+            <button className="movies-card__add movies-card__add_delete">Сохранить</button>
           </div>
         </>
       }

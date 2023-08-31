@@ -1,7 +1,9 @@
 import { Link, Route, Routes } from 'react-router-dom';
 import './Header.css';
 
-function Header() {
+
+function Header(props) {
+  
   return (
     <Routes>
       <Route path='/' element={
@@ -28,7 +30,10 @@ function Header() {
                 <span>Аккаунт</span>
                 <div className='header__icon' />
               </Link>
-              <button className='header__menu' type='button' />
+              <button 
+              className='header__menu' 
+              type='button'
+              onClick={props.openMenu} />
             </div>
           </header>
         } />

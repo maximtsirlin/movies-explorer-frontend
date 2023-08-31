@@ -134,6 +134,11 @@
   border-radius: 4px;
 }
 
+.header__menu {
+  visibility: hidden;
+  position: absolute;
+}
+
 
 @media screen and (max-width: 1279px) {
   .header__container {
