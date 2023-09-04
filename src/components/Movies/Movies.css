@@ -34,11 +34,17 @@
   cursor: pointer;
   opacity: 0.6;
 }
-  
+
+
+@media screen and (max-width: 1279px) {
+  .movies__button {
+    margin: 103px auto 0;
+  }
+}
 
 @media screen and (max-width: 767px) {
   .movies__button {
-    max-width: 240px;
-    margin-top: 70px;
+    max-width: 300px;
+    margin-top: 93px;
   }
 }

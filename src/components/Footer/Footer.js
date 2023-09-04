@@ -22,13 +22,6 @@ function Footer() {
                 rel="noreferrer">Github
               </a>
             </li>
-            <li className='footer__item'>
-              <a className='footer__link'
-                href='fdd' 
-                target='_blank'
-                rel="noreferrer">Facebook
-              </a>
-            </li>
           </ul>
         </div>
       </div>

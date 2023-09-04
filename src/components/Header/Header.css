@@ -174,7 +174,7 @@
 
 @media screen and (max-width: 767px) {
   .header__container {
-    max-width: 320px;
+    /* max-width: 320px; */
     padding: 0 14px;
   }
 

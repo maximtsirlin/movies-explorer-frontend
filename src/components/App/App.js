@@ -28,7 +28,7 @@ function App() {
     <div className='page'>
       <Header openMenu={openMenu} />
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<Main />} /> 
         <Route path="/movies" element={<Movies />} />
         <Route path="/saved-movies" element={<SavedMovies />} />
         <Route path="/profile" element={<Profile />} />
