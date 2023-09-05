@@ -50,7 +50,7 @@
   width: 270px;
   height: 327px;
   background: url('/src/images/photo.jpg');
-  border-radius: 10px; 
+  border-radius: 10px;
 }
 
 .me__link {
@@ -96,7 +96,7 @@
     font-size: 12px;
     line-height: 1.5;
   }
-  
+
   .me__image {
     width: 255px;
     height: 307px;

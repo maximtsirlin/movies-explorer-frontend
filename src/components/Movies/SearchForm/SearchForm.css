@@ -99,7 +99,7 @@
   height: 20px;
   border-radius: 20px;
   background-image: url('../../../images/smalltumblr.svg');
-  transition: background 0.3s;
+  transition: 0.3s;
 }
 
 .search__visible:hover {
@@ -131,10 +131,11 @@
     width: 705px;
     margin: auto;
   }
+
   .search__input {
     width: 628px;
   }
- 
+
 
 
   .search__search {
@@ -165,5 +166,3 @@
   }
 
 }
-
-

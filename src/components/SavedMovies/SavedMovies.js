@@ -4,7 +4,6 @@ import './SavedMovies.css';
 import Footer from '../Footer/Footer';
 
 
-
 function SavedMovies() {
   return (
     <main className='saved-movies'>

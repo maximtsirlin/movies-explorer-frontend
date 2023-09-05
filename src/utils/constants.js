@@ -1,12 +1,10 @@
 
-
-
 import firstImage from '../../src/images/1st-mov.jpeg';
-import secondImage from'../../src/images/2d-mov.jpeg';
-import thirdImage from'../../src/images/3d-mov.jpeg';
-import fourthImage from'../../src/images/4th-mov.jpeg';
-import fifthImage from'../../src/images/5th-mov.jpeg';
-import sixthImage from'../../src/images/6th-mov.jpeg';
+import secondImage from '../../src/images/2d-mov.jpeg';
+import thirdImage from '../../src/images/3d-mov.jpeg';
+import fourthImage from '../../src/images/4th-mov.jpeg';
+import fifthImage from '../../src/images/5th-mov.jpeg';
+import sixthImage from '../../src/images/6th-mov.jpeg';
 
 export const moviesData = [
   {
