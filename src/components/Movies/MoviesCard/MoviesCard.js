@@ -15,7 +15,6 @@ function MoviesCard() {
           </div>
           <img src={movie.image} alt={movie.title} className='movies-card__image' />
           <button className={`movies-card__add ${movie.isSaved ? 'movies-card__add_active' : ''}`}>
-            {/* {movie.isSaved ? 'Сохранить' : 'Удалить'} */}
           </button>
         </div>
       ))}

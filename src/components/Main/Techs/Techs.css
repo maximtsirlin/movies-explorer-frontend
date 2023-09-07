@@ -8,7 +8,6 @@
   box-sizing: border-box;
   padding: 100px 70px;
   max-width: 1280px;
-
 }
 
 .techs__title {
@@ -102,7 +101,7 @@
   }
 
   .techs__container {
-    padding: 70px 18px;
+    padding: 67px 18px;
     max-width: 320px;
   }
 

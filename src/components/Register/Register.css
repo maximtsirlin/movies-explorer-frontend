@@ -5,7 +5,7 @@
 .register__container {
   margin: auto;
   max-width: 396px;
-  padding: 70px 0;
+  padding: 70px 0 50px;
 }
 
 .register__logo {
@@ -30,7 +30,7 @@
   color: #8B8B8B;
   font-size: 10px;
   line-height: 1.2;
-  margin: 0 0 10px;
+  margin: 0 0 4px;
 }
 
 .register__input {
@@ -40,6 +40,7 @@
   background: #202020;
   color: white;
   width: 100%;
+  padding-bottom: 12px;
 }
 
 .register__error {
@@ -62,7 +63,6 @@
   font-size: 14px;
   line-height: 1.21;
   height: 45px;
-  margin: 9px 0 4px;
   cursor: pointer;
   transition: opacity 0.3s;
 }
@@ -117,13 +117,13 @@
 
 @media screen and (max-width: 1279px) {
   .register__container {
-    padding: 232px 0;
+    padding: 232px 0 219px;
   }
 }
 
 @media screen and (max-width: 767px) {
   .register__container {
-    padding: 56px 30px 30px;
+    padding: 56px 30px 13px;
   }
 
   .register__logo {
@@ -157,5 +157,13 @@
 
   .register__fieldset:last-of-type {
     margin-bottom: 240px;
+  }
+  
+  .register__btn-submit {
+    font-size: 12px;
+  }
+
+  .register__subtitle {
+    font-size: 12px;
   }
 }

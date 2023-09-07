@@ -6,7 +6,7 @@
   align-items: center;
   max-width: 1280px;
   margin: auto;
-  padding: 75px 0 70px;
+  padding: 75px 0 52px;
   color: white;
 }
 
@@ -126,7 +126,7 @@
 
 @media screen and (max-width: 767px) {
   .profile {
-    padding: 69px 0 70px;
+    padding: 69px 0 20px;
   }
 
   .profile__form {

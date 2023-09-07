@@ -7,7 +7,6 @@
   background: #073042;
 }
 
-
 .header__container {
   box-sizing: border-box;
   height: 74px;
@@ -82,9 +81,8 @@
 .header__links {
   display: flex;
   justify-content: space-between;
-  margin: 43px auto 43px;
-  margin-right: 32px;
-
+  margin: 44px auto 43px;
+  margin-right: 58px;
 }
 
 .header__link {
@@ -96,7 +94,7 @@
 }
 
 .header__link:first-of-type {
-  margin-right: 15px;
+  margin-right: 25px;
 }
 
 .header__link_active {
@@ -153,7 +151,7 @@
   .header__account {
     visibility: hidden;
   }
-  
+
   .header__menu {
     visibility: visible;
     width: 44px;
@@ -174,6 +172,7 @@
 
 @media screen and (max-width: 767px) {
   .header__container {
+    max-width: 320px;
     padding: 0 14px;
   }
 

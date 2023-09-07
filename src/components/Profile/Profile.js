@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Profile.css';
 
 function Profile() {
@@ -31,9 +32,9 @@ function Profile() {
         <button className='profile__btn-edit' type='submit'>
           Редактировать
         </button>
-        <button className='profile__btn-logout' type='button'>
+        <Link to='/' className='profile__btn-logout'>
           Выйти из аккаунта
-        </button>
+        </Link>
       </form>
     </section>
   );

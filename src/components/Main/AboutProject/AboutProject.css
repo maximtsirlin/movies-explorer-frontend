@@ -105,10 +105,10 @@
   }
 
   .project__texts {
-    margin: 17px 0 60px;
+    margin: 22px 0 60px;
     grid-template-columns: 284px;
     grid-template-rows: repeat(4, minmax(min-content, max-content));
-    grid-row-gap: 16px;
+    grid-row-gap: 13px;
     font-size: 11px;
     line-height: 1.18;
   }
