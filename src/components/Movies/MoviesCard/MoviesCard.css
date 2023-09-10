@@ -22,7 +22,7 @@
   font-weight: 500;
   font-size: 15px;
   line-height: 1.22;
-  margin: 13px 0 13px;
+  margin: 13px 0 16px;
   margin-left: 13px;
 }
 
@@ -30,7 +30,7 @@
   font-size: 13px;
   line-height: 1.18;
   color: #8B8B8B;
-  margin: 11px 19px;
+  margin: 12px 23px 14px;
 }
 
 .movies-card__add {
@@ -48,10 +48,11 @@
   flex-wrap: wrap;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 22px;
+  margin-top: 20px;
   margin-bottom: 22px;
   color: white;
   transition: opacity 0.3s;
+  cursor: pointer;
 }
 
 .movies-card__add:hover {

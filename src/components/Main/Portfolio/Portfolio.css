@@ -24,18 +24,29 @@
   padding: 0;
   display: flex;
 }
-
 .portfolio__item {
   box-sizing: content-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 30px;
   line-height: 1.67;
   letter-spacing: -0.04em;
   padding: 20px 0;
   border-bottom: 1px solid #424242;
+}
+
+.portfolio__arrow {
   background-image: url('/src/images/arrow.svg');
   background-repeat: no-repeat;
-  background-position: right;
+  width: 16px;
+  height: 16px;
+  margin-right: 7px;
+  background-size: contain;
 }
+
+
+
 
 .portfolio__item:last-of-type {
   border: none;
@@ -92,7 +103,7 @@
   }
 
   .portfolio__item {
-    padding: 7px 0;
+    padding: 20px 0;
   }
 
 }

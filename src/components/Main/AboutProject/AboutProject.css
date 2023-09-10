@@ -16,7 +16,15 @@
   grid-template-rows: repeat(2, minmax(min-content, max-content));
   grid-row-gap: 26px;
   grid-column-gap: 40px;
-  margin: 70px 0 110px;
+  margin: 95px 0 110px;
+}
+
+.project__title {
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.22;
+  margin: 0 0 23px;
+  letter-spacing: -0.04em;
 }
 
 .project__subtitle {
@@ -105,13 +113,19 @@
   }
 
   .project__texts {
-    margin: 22px 0 60px;
+    margin: 53px 0 60px;
     grid-template-columns: 284px;
     grid-template-rows: repeat(4, minmax(min-content, max-content));
     grid-row-gap: 13px;
     font-size: 11px;
     line-height: 1.18;
   }
+
+  .project__title {
+    margin: 0 0 47px;
+    font-size: 18px;
+  }
+
 
   .project__subtitle {
     margin-top: 38px;

@@ -13,7 +13,7 @@
 
 .movies__button {
   height: 36px;
-  margin: 62px auto 0;
+  margin: 58px auto 0;
   border: 0px solid #424242;
   background: #2F2F2F;
   color: white;
@@ -39,7 +39,7 @@
 
 @media screen and (max-width: 1279px) {
   .movies__button {
-    margin: 25px auto 76px;
+    margin: 73px auto 76px;
     max-width: 706px;
   }
 }

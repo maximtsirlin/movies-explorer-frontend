@@ -5,7 +5,7 @@ import './Navigation.css';
 function Navigation(props) {
 
     return (
-    <div className={props.isOpen ? 'navigation navigation__open' : 'navigation navigation__hidden'}>
+    <div className={props.isOpen ? 'navigation navigation_open' : 'navigation navigation_hidden'}>
             <div className='navigation__container'>
                 <button
                     className='navigation__close'
@@ -13,7 +13,7 @@ function Navigation(props) {
                     onClick={props.closeMenu} />
                 
                 <Link className='navigation__link' to='/'>Главная</Link>
-                <Link className='navigation__link menu__link_active' to='/movies'>Фильмы</Link>
+                <Link className='navigation__link' to='/movies'>Фильмы</Link>
                 <Link className='navigation__link' to='/saved-movies'>Сохранённые фильмы</Link>
                 <Link
                     className='navigation__account'

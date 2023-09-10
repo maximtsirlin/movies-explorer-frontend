@@ -4,7 +4,7 @@ import './Profile.css';
 
 function Profile() {
   return (
-    <section className='profile'>
+    <main className='profile'>
       <h1 className='profile__title'>Привет, Виталий!</h1>
       <form className='profile__form'>
         <fieldset className='profile__fieldset'>
@@ -29,14 +29,16 @@ function Profile() {
             id='email'
           />
         </fieldset>
+        <div className='profile__links'>
         <button className='profile__btn-edit' type='submit'>
           Редактировать
         </button>
         <Link to='/' className='profile__btn-logout'>
           Выйти из аккаунта
         </Link>
+        </div>
       </form>
-    </section>
+    </main>
   );
 }
 

@@ -37,6 +37,7 @@
   line-height: 1.16;
   font-weight: 400;
   margin-bottom: 27px;
+  letter-spacing: -0.04em;
 }
 
 .techs__text {
@@ -100,13 +101,17 @@
     background: #202020;
   }
 
+  .techs__title {
+    font-size: 18px;
+  }
+
   .techs__container {
     padding: 67px 18px;
     max-width: 320px;
   }
 
   .techs__block {
-    margin-top: 60px;
+    margin-top: 86px;
   }
 
   .techs__subtitle {

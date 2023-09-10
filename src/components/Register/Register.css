@@ -5,7 +5,7 @@
 .register__container {
   margin: auto;
   max-width: 396px;
-  padding: 70px 0 50px;
+  padding: 69px 0 55px;
 }
 
 .register__logo {
@@ -15,7 +15,7 @@
 }
 
 .register__title {
-  margin: 40px 0;
+  margin: 36px 0 41px;
   font-weight: 500;
   font-size: 24px;
   line-height: 1.21;
@@ -34,13 +34,13 @@
 }
 
 .register__input {
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.23;
   border: none;
   background: #202020;
   color: white;
   width: 100%;
-  padding-bottom: 12px;
+  padding-bottom: 11px;
 }
 
 .register__error {
@@ -92,7 +92,7 @@
 
 .register__fieldset {
   border: none;
-  margin: 0 0 24px;
+  margin: 0 0 21px;
   padding: 0;
   display: flex;
   align-items: center;
@@ -102,7 +102,7 @@
 }
 
 .register__fieldset:last-of-type {
-  margin-bottom: 150px;
+  margin-bottom: 154px;
 }
 
 .register__subtitle {
@@ -112,6 +112,7 @@
   line-height: 17px;
   text-align: center;
   color: #A0A0A0;
+  margin-top: 18px;
 }
 
 
@@ -158,7 +159,7 @@
   .register__fieldset:last-of-type {
     margin-bottom: 240px;
   }
-  
+
   .register__btn-submit {
     font-size: 12px;
   }

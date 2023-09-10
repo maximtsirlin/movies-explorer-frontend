@@ -49,7 +49,7 @@
   margin: 0 30px 0 0;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  font-size: 12px;
   line-height: 1.1;
   transition: opacity 0.3s;
 }
@@ -67,7 +67,7 @@
   color: black;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  font-size: 12px;
   line-height: 1.1;
   border-radius: 3px;
   transition: opacity 0.3s;
@@ -140,7 +140,6 @@
 
 @media screen and (max-width: 1279px) {
   .header__container {
-    max-width: 768px;
     padding: 0 30px;
   }
 
@@ -172,9 +171,9 @@
 
 @media screen and (max-width: 767px) {
   .header__container {
-    max-width: 320px;
     padding: 0 14px;
   }
+
 
   .header__signin {
     width: 54px;
@@ -191,5 +190,10 @@
 
   .header__menu {
     right: 14px;
+  }
+
+
+  .header__links {
+    max-width: 85px;
   }
 }
