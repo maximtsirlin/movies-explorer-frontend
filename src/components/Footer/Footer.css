@@ -2,7 +2,7 @@
   box-sizing: border-box;
   margin: auto;
   max-width: 1280px;
-  padding: 160px 30px 20px;
+  padding: 160px 70px 21px;
   background: #202020;
   color: white;
 }
@@ -54,22 +54,33 @@
 .footer__link:hover {
   opacity: 0.6;
 }
+.footer__container {
+  box-sizing: border-box;
+  margin: auto;
+  max-width: 1280px;
+  /* padding: 79px 70px 20px; */
+} 
 
 
 @media screen and (max-width: 1279px) {
   .footer {
-    padding: 81px 30px 20px;
+    padding: 0;
+  }
+
+  .footer__container {
+    padding: 79px 30px 20px;
+    max-width: 768px;
   }
 }
 
 @media screen and (max-width: 767px) {
   .footer {
-    padding: 81px 30px 20px;
+    padding: 0 12px 8px;
   }
 
   .footer__container {
     max-width: 320px;
-    padding: 79px 10px 10px;
+    padding: 69px 10px 10px;
     font-size: 12px;
     line-height: 1.25;
     margin: auto;

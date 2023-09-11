@@ -80,3 +80,25 @@ export const moviesData = [
     isSaved: true,
   },
 ];
+
+
+export const moviesDataSave = [
+  {
+    title: '33 слова о дизайне',
+    duration: '1ч 42м',
+    image: firstImage,
+    isSaved: true,
+  },
+  {
+    title: 'Киноальманах «100 лет дизайна',
+    duration: '1ч 42м',
+    image: secondImage,
+    isSaved: true,
+  },
+  {
+    title: 'В погоне за Бенкси',
+    duration: '1ч 42м',
+    image: thirdImage,
+    isSaved: true,
+  }
+];

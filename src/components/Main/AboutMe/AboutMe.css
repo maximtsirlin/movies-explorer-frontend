@@ -21,6 +21,14 @@
   justify-content: space-between;
 }
 
+.me__title {
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.22;
+  margin: 0 0 89px;
+  letter-spacing: -0.04em;
+}
+
 .me__texts {
   max-width: 600px;
 }
@@ -110,7 +118,7 @@
 
 @media screen and (max-width: 767px) {
   .me__container {
-    padding: 70px 14px 35px;
+    padding: 73px 14px 35px;
     max-width: 320px;
   }
 
@@ -138,10 +146,14 @@
   .me__text {
     font-size: 11px;
     line-height: 1.45;
-    margin-bottom: 40px;
+    margin-bottom: 26px;
   }
 
   .me__link:first-of-type {
     margin-right: 26px;
+  }
+
+  .me__title {
+    font-size: 18px;
   }
 }

@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Profile.css';
 
 function Profile() {
   return (
-    <section className='profile'>
+    <main className='profile'>
       <h1 className='profile__title'>Привет, Виталий!</h1>
       <form className='profile__form'>
         <fieldset className='profile__fieldset'>
@@ -28,14 +29,16 @@ function Profile() {
             id='email'
           />
         </fieldset>
+        <div className='profile__links'>
         <button className='profile__btn-edit' type='submit'>
           Редактировать
         </button>
-        <button className='profile__btn-logout' type='button'>
+        <Link to='/' className='profile__btn-logout'>
           Выйти из аккаунта
-        </button>
+        </Link>
+        </div>
       </form>
-    </section>
+    </main>
   );
 }
 

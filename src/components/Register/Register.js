@@ -6,7 +6,7 @@ import logo from '../../images/logo.svg';
 
 function Register() {
   return (
-    <section className='register'>
+    <main className='register'>
       <div className='register__container'>
         <Link to='/'>
           <img className='register__logo' src={logo} alt='Логотип' />
@@ -57,7 +57,7 @@ function Register() {
           </p>
         </form>
       </div>
-    </section>
+    </main>
   );
 }
 
