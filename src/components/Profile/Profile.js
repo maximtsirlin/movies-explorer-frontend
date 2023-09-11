@@ -30,12 +30,12 @@ function Profile() {
           />
         </fieldset>
         <div className='profile__links'>
-        <button className='profile__btn-edit' type='submit'>
-          Редактировать
-        </button>
-        <Link to='/' className='profile__btn-logout'>
-          Выйти из аккаунта
-        </Link>
+          <button className='profile__btn-edit' type='submit'>
+            Редактировать
+          </button>
+          <Link to='/' className='profile__btn-logout'>
+            Выйти из аккаунта
+          </Link>
         </div>
       </form>
     </main>
