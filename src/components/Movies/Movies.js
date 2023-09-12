@@ -11,7 +11,6 @@ function Movies() {
       <MoviesCardList />
       <button className='movies__button' type='button'>Ещё</button>
       <Footer />
-
     </main>
   )
 }
