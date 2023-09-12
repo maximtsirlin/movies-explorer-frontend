@@ -32,9 +32,12 @@ function Movies() {
   };
 
   const removeFromFavorites = (movie) => {
-    const updatedFavorites = favorites.filter((item) => item._id !== movie._id);
-    setFavorites(updatedFavorites);
-    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+    const movieIndex = favorites.findIndex((item) => item._id === movie._id);
+    if (movieIndex !== -1) {
+      const updatedFavorites = [...favorites];
+      updatedFavorites.splice(movieIndex, 1);
+      setFavorites(updatedFavorites);
+    }
   };
 
   const loadMoreMovies = () => {
