@@ -2,13 +2,23 @@ import MoviesCardList from '../../components/Movies/MoviesCardList/MoviesCardLis
 import SearchForm from '../../components/Movies/SearchForm/SearchForm';
 import './SavedMovies.css';
 import Footer from '../Footer/Footer';
+import { useEffect, useState } from 'react';
 
 
 function SavedMovies() {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    setMovies(JSON.parse(localStorage.getItem('favorites')))
+  }, []);
+
+
   return (
     <main className='saved-movies'>
       <SearchForm />
-      <MoviesCardList />
+      <MoviesCardList
+        movies={movies}
+      />
       <Footer />
     </main>
   )

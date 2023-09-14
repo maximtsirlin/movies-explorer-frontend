@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './MoviesCard.css';
-import MoviesApi from '../../../utils/MoviesApi';
+import Movies from '../Movies';
+// import MoviesApi from '../../../utils/MoviesApi';
 
-function Movies() {
-  const [movies, setMovies] = useState([]);
+
+function MoviesCard({visibleMovies, movies}) {
+  // const [movies, setMovies] = useState([]);
   const [favorites, setFavorites] = useState([]);
-  const [visibleMovies, setVisibleMovies] = useState(12);
+  // const [visibleMovies, setVisibleMovies] = useState(12);
+  const [searchQuery, setSearchQuery] = useState(''); // New state for search query
   const navigate = useNavigate();
   const location = useLocation();
-
+  console.log(visibleMovies);
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
     setFavorites(storedFavorites);
@@ -19,11 +22,11 @@ function Movies() {
     localStorage.setItem('favorites', JSON.stringify(favorites));
   }, [favorites]);
 
-  useEffect(() => {
-    MoviesApi.getMovies().then(result => {
-      setMovies(result);
-    });
-  }, []);
+  // useEffect(() => {
+  //   MoviesApi.getMovies().then(result => {
+  //     setMovies(result);
+  //   });
+  // }, []);
 
   const addToFavorites = (movie) => {
     const updatedFavorites = [...favorites, movie];
@@ -40,28 +43,45 @@ function Movies() {
     }
   };
 
-  const loadMoreMovies = () => {
-    setVisibleMovies(visibleMovies + 12);
-  };
+  // const loadMoreMovies = () => {
+  //   setVisibleMovies(visibleMovies + 12);
+  // };
+
+  // Filter movies based on the search query
+  console.log(movies);
+  const filteredMovies = movies.filter((movie) => 
+    movie.nameRU.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <>
       {location.pathname === '/movies' && (
-        movies.slice(0, visibleMovies).map((movie) => (
-          <div className="movies-card" key={movie._id}>
-            <div className="movies-card__about">
-              <h2 className="movies-card__title">{movie.nameRU}</h2>
-              <p className='movies-card__duration'>{movie.duration}</p>
+        <>
+          {/* Add a search input */}
+          <input
+            type="text"
+            placeholder="Search movies..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+
+          {/* Map through filtered movies */}
+          {filteredMovies.slice(0, visibleMovies).map((movie) => (
+            <div className="movies-card" key={movie._id}>
+              <div className="movies-card__about">
+                <h2 className="movies-card__title">{movie.nameRU}</h2>
+                <p className='movies-card__duration'>{movie.duration}</p>
+              </div>
+              <img className='movies-card__image' src={'https://api.nomoreparties.co' + movie.image.url} alt={movie.nameRU} />
+              <button className='movies-card__add movies-card__add_active' onClick={() => addToFavorites(movie)}>Добавить в избранное</button>
             </div>
-            <img className='movies-card__image' src={'https://api.nomoreparties.co' + movie.image.url} alt={movie.nameRU} />
-            <button className='movies-card__add movies-card__add_active' onClick={() => addToFavorites(movie)}>Добавить в избранное</button>
-          </div>
-        ))
+          ))}
+        </>
       )}
 
-      {location.pathname === '/movies' && visibleMovies < movies.length && (
+      {/* {location.pathname === '/movies' && visibleMovies < filteredMovies.length && (
         <button onClick={loadMoreMovies}>Загрузить еще</button>
-      )}
+      )} */}
 
       {location.pathname === '/saved-movies' && (
         favorites.map((favorite) => (
@@ -79,4 +99,4 @@ function Movies() {
   );
 }
 
-export default Movies;
+export default MoviesCard;
