@@ -7,6 +7,8 @@ import { useEffect, useState } from 'react';
 
 function SavedMovies() {
   const [movies, setMovies] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+
 
   useEffect(() => {
     setMovies(JSON.parse(localStorage.getItem('favorites')))
@@ -15,7 +17,10 @@ function SavedMovies() {
 
   return (
     <main className='saved-movies'>
-      <SearchForm />
+      <SearchForm
+        setSearchQuery={setSearchQuery}
+
+      />
       <MoviesCardList
         movies={movies}
       />

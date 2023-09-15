@@ -1,18 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import './MoviesCard.css';
-import Movies from '../Movies';
-// import MoviesApi from '../../../utils/MoviesApi';
 
-
-function MoviesCard({visibleMovies, movies}) {
-  // const [movies, setMovies] = useState([]);
+function MoviesCard({ visibleMovies, movies, filteredMovies }) {
   const [favorites, setFavorites] = useState([]);
-  // const [visibleMovies, setVisibleMovies] = useState(12);
-  const [searchQuery, setSearchQuery] = useState(''); // New state for search query
-  const navigate = useNavigate();
   const location = useLocation();
-  console.log(visibleMovies);
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
     setFavorites(storedFavorites);
@@ -22,50 +14,23 @@ function MoviesCard({visibleMovies, movies}) {
     localStorage.setItem('favorites', JSON.stringify(favorites));
   }, [favorites]);
 
-  // useEffect(() => {
-  //   MoviesApi.getMovies().then(result => {
-  //     setMovies(result);
-  //   });
-  // }, []);
-
   const addToFavorites = (movie) => {
     const updatedFavorites = [...favorites, movie];
     setFavorites(updatedFavorites);
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
   };
 
-  const removeFromFavorites = (movie) => {
-    const movieIndex = favorites.findIndex((item) => item._id === movie._id);
-    if (movieIndex !== -1) {
-      const updatedFavorites = [...favorites];
-      updatedFavorites.splice(movieIndex, 1);
-      setFavorites(updatedFavorites);
-    }
+  const removeFromFavorites = (movie, index) => {
+    const updatedFavorites = [...favorites];
+    updatedFavorites.splice(index, 1);
+    setFavorites(updatedFavorites);
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
   };
-
-  // const loadMoreMovies = () => {
-  //   setVisibleMovies(visibleMovies + 12);
-  // };
-
-  // Filter movies based on the search query
-  console.log(movies);
-  const filteredMovies = movies.filter((movie) => 
-    movie.nameRU.toLowerCase().includes(searchQuery.toLowerCase())
-  );
 
   return (
     <>
       {location.pathname === '/movies' && (
         <>
-          {/* Add a search input */}
-          <input
-            type="text"
-            placeholder="Search movies..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-
-          {/* Map through filtered movies */}
           {filteredMovies.slice(0, visibleMovies).map((movie) => (
             <div className="movies-card" key={movie._id}>
               <div className="movies-card__about">
@@ -79,10 +44,6 @@ function MoviesCard({visibleMovies, movies}) {
         </>
       )}
 
-      {/* {location.pathname === '/movies' && visibleMovies < filteredMovies.length && (
-        <button onClick={loadMoreMovies}>Загрузить еще</button>
-      )} */}
-
       {location.pathname === '/saved-movies' && (
         favorites.map((favorite) => (
           <div className="movies-card" key={favorite._id}>
@@ -90,8 +51,10 @@ function MoviesCard({visibleMovies, movies}) {
               <h2 className='movies-card__title'>{favorite.nameRU}</h2>
               <p className='movies-card__duration'>{favorite.duration}</p>
             </div>
-            <img src={'https://api.nomoreparties.co' + favorite.image.url} alt={favorite.nameRU} />
-            <button className='movies-card__add movies-card__add_delete' onClick={() => removeFromFavorites(favorite)}></button>
+            <img className='movies-card__image' src={'https://api.nomoreparties.co' + favorite.image.url} alt={favorite.nameRU} />
+            <button className='movies-card__add movies-card__add_delete' onClick={() => removeFromFavorites(favorite)}>
+              Удалить из избранного
+            </button>
           </div>
         ))
       )}

@@ -24,6 +24,10 @@
   line-height: 1.22;
   margin: 13px 0 16px;
   margin-left: 13px;
+  max-width: 302px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .movies-card__duration {
@@ -73,9 +77,14 @@
 }
 
 .movies-card__image {
-  width: 356px;
-  height: 200px;
+  /* width: 356px;
+  height: 200px; */
+  cursor: pointer;
+    height: 205px;
+    -o-object-fit: cover;
+    object-fit: cover;
 }
+
 
 @media screen and (max-width: 1279px) {
   .movies-card__image {

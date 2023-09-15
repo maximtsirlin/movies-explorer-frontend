@@ -1,13 +1,17 @@
 import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css';
 
-function MoviesCardList({ visibleMovies, movies }) {
+function MoviesCardList({
+  visibleMovies,
+  movies,
+  filteredMovies }) {
 
   return (
     <ul className='movies-card-list'>
-      <MoviesCard 
+      <MoviesCard
         visibleMovies={visibleMovies}
         movies={movies}
+        filteredMovies={filteredMovies}
       />
     </ul>
   )
