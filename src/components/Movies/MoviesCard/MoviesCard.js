@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import './MoviesCard.css';
 import { logDOM } from '@testing-library/react';
 
-function MoviesCard({ visibleMovies, movies, filteredMovies=[], currentPath }) {
+function MoviesCard({ visibleMovies, movies, filteredMovies = [], currentPath }) {
   const [favorites, setFavorites] = useState([]);
   const location = useLocation();
   const [shortFilm, setShortFilm] = useState(false);
@@ -39,49 +39,33 @@ function MoviesCard({ visibleMovies, movies, filteredMovies=[], currentPath }) {
 
 
 
-console.log(filteredMovies)
+  console.log(filteredMovies)
   return (
     <>
-      {currentPath === '/movies' && (
-        <>
-          {filteredMovies
-            .filter((movie) => (!shortFilm || parseInt(movie.duration, 10) <= 40))
-            .slice(0, visibleMovies)
-            .map((movie) => (
-              <div className="movies-card" key={movie._id}>
-                <div className="movies-card__about">
-                  <h2 className="movies-card__title">{movie.nameRU}</h2>
-                  <p className='movies-card__duration'>{movie.duration}</p>
-                </div>
-                <img className='movies-card__image' src={'https://api.nomoreparties.co' + movie.image.url} alt={movie.nameRU} />
-                <button
-                  className={`movies-card__add ${favorites.map((m) => m.id).includes(movie.id) ? 'movies-card__add_active' : ''}`}
-                  onClick={() => addToFavorites(movie)}
-
-                >
-                  Сохранить
-                </button>
-              </div>
-            ))}
-        </>
-      )}
-
-      {currentPath === '/saved-movies' && (
-        filteredMovies
-          .filter((movie) => favorites.some((f) => f.id === movie.id)).map((favorite, index) => (
-            <div className="movies-card" key={favorite.id}>
-              <div className="movies-card__about">
-                <h2 className='movies-card__title'>{favorite.nameRU}</h2>
-                <p className='movies-card__duration'>{favorite.duration}</p>
-              </div>
-              <img className='movies-card__image' src={'https://api.nomoreparties.co' + favorite.image.url} alt={favorite.nameRU} />
-              <button className='movies-card__add movies-card__add_delete' onClick={() => removeFromFavorites(favorite, index)}>
-                Удалить из избранного
-              </button>
+      {filteredMovies
+        .filter((movie) => (!shortFilm || parseInt(movie.duration, 10) <= 40))
+        .slice(0, visibleMovies)
+        .map((movie) => (
+          <div className="movies-card" key={movie._id}>
+            <div className="movies-card__about">
+              <h2 className="movies-card__title">{movie.nameRU}</h2>
+              <p className='movies-card__duration'>{movie.duration}</p>
             </div>
-          ))
-      )}
+            <img className='movies-card__image' src={'https://api.nomoreparties.co' + movie.image.url} alt={movie.nameRU} />
+            <button
+              className={`movies-card__add ${favorites.map((m) => m.id).includes(movie.id) ? 'movies-card__add_active' : ''}`}
+              onClick={() => addToFavorites(movie)}
+            >
+              Сохранить
+            </button>
+            {favorites.map((m) => m.id).includes(movie.id) ? (<button className='movies-card__add movies-card__add_delete' onClick={() => removeFromFavorites(favorite, index)}>
+              Удалить из избранного
+            </button>) : null}
+
+          </div>
+        ))}
     </>
+
   );
 }
 

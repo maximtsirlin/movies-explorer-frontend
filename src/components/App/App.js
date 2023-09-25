@@ -1,4 +1,4 @@
-// App.js
+import { useNavigation } from "react-router-dom";
 import React, { useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
@@ -14,6 +14,8 @@ import Navigation from '../Navigation/Navigation';
 import MainApi from '../../utils/MainApi';
 
 function App() {
+  const [setMovies] = useState([]);
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [registeredError, setRegisteredError] = useState(false);
 
@@ -39,13 +41,20 @@ function App() {
       });
   }
 
+  useEffect(() => {
+    MoviesApi.getMovies().then((result) => {
+      setMovies(result);
+    });
+  }, [currentPath]);
+
   return (
     <div className="page">
       <Header openMenu={openMenu} />
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/movies" element={<Movies />} />
-        <Route path="/saved-movies" element={<SavedMovies />} />
+        <Route path="/saved-movies" element={<Movies />} />
+        {/* <Route path="/movies" element={<Users users={users} />} /> */}
         <Route path="/profile" element={<Profile />} />
         <Route path="/signin" element={<Login />} />
         <Route

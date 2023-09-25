@@ -19,7 +19,7 @@ function SavedMovies() {
     <main className='saved-movies'>
       <SearchForm
         setSearchQuery={setSearchQuery}
-
+        
       />
       <MoviesCardList
         movies={movies}
