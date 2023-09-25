@@ -11,3 +11,9 @@
     position: relative;
     min-height: 100%;
 }
+
+
+body {
+    margin: 0;
+    background-color: #202020;
+  }

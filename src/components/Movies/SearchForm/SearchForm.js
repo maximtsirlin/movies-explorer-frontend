@@ -1,9 +1,7 @@
+import React, { useState } from 'react';
 import './SearchForm.css';
 
-import React, { useState } from 'react';
-
-
-function SearchForm({ setSearchQuery }) {
+function SearchForm({ setSearchQuery, setShortFilm }) {
   const [inputValue, setInputValue] = useState('');
 
   const handleInputChange = (event) => {
@@ -14,8 +12,11 @@ function SearchForm({ setSearchQuery }) {
     setSearchQuery(inputValue);
   };
 
-  return (
+  const handleShortFilmChange = (event) => {
+    setShortFilm(event.target.checked);
+  };
 
+  return (
     <section className='search'>
       <div className='search__form'>
         <div className='search__search'>
@@ -24,36 +25,30 @@ function SearchForm({ setSearchQuery }) {
             placeholder='Фильм'
             value={inputValue}
             onChange={handleInputChange}
-          ></input>
+          />
           <button
             className='search__button'
             type='submit'
             onClick={handleSearch}
-          >Найти</button>
+          >
+            Найти
+          </button>
         </div>
         <label className='search__label'>
           Короткометражки
-          <input className='search__invisible'
+          <input
+            className='search__invisible'
             type='checkbox'
             name='short-films'
             id='short-films'
-            value='short-films'></input>
+            value='short-films'
+            onChange={handleShortFilmChange}
+          />
           <span className='search__visible'></span>
         </label>
       </div>
     </section>
-  )
+  );
 }
 
-
-
 export default SearchForm;
-
-
-
-
-
-
-
-
-

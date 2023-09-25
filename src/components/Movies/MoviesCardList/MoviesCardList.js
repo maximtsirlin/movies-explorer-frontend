@@ -4,7 +4,12 @@ import './MoviesCardList.css';
 function MoviesCardList({
   visibleMovies,
   movies,
-  filteredMovies }) {
+  filteredMovies,
+  currentPath,
+  favorites
+ }) {
+
+
 
   return (
     <ul className='movies-card-list'>
@@ -12,6 +17,9 @@ function MoviesCardList({
         visibleMovies={visibleMovies}
         movies={movies}
         filteredMovies={filteredMovies}
+        currentPath={currentPath}
+        favorites={favorites}
+
       />
     </ul>
   )

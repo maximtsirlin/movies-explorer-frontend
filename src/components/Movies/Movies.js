@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
-import SearchForm from '../Movies/SearchForm/SearchForm';
+import SearchForm from './SearchForm/SearchForm';
 import './Movies.css';
 import Footer from '../Footer/Footer';
 import MoviesApi from '../../utils/MoviesApi';
@@ -8,6 +8,10 @@ import MoviesApi from '../../utils/MoviesApi';
 function Movies() {
   const [movies, setMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [shortFilm, setShortFilm] = useState(false);
+
+  const [filteredMovies, setFilteredMovies] = useState(movies);
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
   const calculateVisibleMovies = () => {
     const screenWidth = window.innerWidth;
@@ -38,22 +42,56 @@ function Movies() {
   };
 
   useEffect(() => {
-    MoviesApi.getMovies().then(result => {
+    MoviesApi.getMovies().then((result) => {
       setMovies(result);
     });
+  }, [currentPath]);
+
+  useEffect(() => {
+    const handlePathChange = () => {
+      setCurrentPath(window.location.pathname);
+    };
+
+    window.addEventListener('popstate', handlePathChange);
+
+    return () => {
+      window.removeEventListener('popstate', handlePathChange);
+    };
   }, []);
 
-  const filteredMovies = movies.filter((movie) =>
-    movie.nameRU.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  useState(movies);
+
+  useEffect(() => {
+    if (searchQuery) {
+      setFilteredMovies(
+        movies.filter((movie) => movie.nameRU.toLowerCase().includes(searchQuery.toLowerCase()))
+      );
+    }
+  }, [searchQuery, movies]);
+
+  useEffect(() => {
+    if (shortFilm) {
+      setFilteredMovies(movies.filter((movie) => movie.duration < 40));
+    }
+  }, [shortFilm, movies]);
+
+  useEffect(() => {
+    if (!shortFilm && !searchQuery) {
+      setFilteredMovies(movies);
+      console.log('setFilteredMovies', movies);
+    }
+  }, [shortFilm, searchQuery, movies]);
 
   return (
     <main className='movies'>
-      <SearchForm setSearchQuery={setSearchQuery} />
+      <SearchForm setSearchQuery={setSearchQuery} setShortFilm={setShortFilm} />
       <MoviesCardList
         filteredMovies={filteredMovies}
         visibleMovies={visibleMovies}
         movies={movies}
+        shortFilm={shortFilm}
+        currentPath={currentPath}
+        // favorites={favorites}
       />
       <button onClick={loadMoreMovies} className='movies__button' type='button'>
         Ещё
