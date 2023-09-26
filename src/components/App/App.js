@@ -1,5 +1,4 @@
-import { useNavigation } from "react-router-dom";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 import Header from '../Header/Header';
@@ -12,9 +11,19 @@ import Register from '../Register/Register';
 import Error from '../Error/Error';
 import Navigation from '../Navigation/Navigation';
 import MainApi from '../../utils/MainApi';
+import MoviesApi from '../../utils/MoviesApi';
+import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 
 function App() {
-  const [setMovies] = useState([]);
+  const [movies, setMovies] = useState([]);
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const [shortFilm, setShortFilm] = useState(false);
+
+  const [filteredMovies, setFilteredMovies] = useState(movies);
+  const [visibleMovies, setVisibleMovies] = useState(calculateVisibleMovies());
+
+  const navigation = useNavigate();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [registeredError, setRegisteredError] = useState(false);
@@ -41,20 +50,91 @@ function App() {
       });
   }
 
+
+  function calculateVisibleMovies () {
+    const screenWidth = window.innerWidth;
+    if (screenWidth >= 1280) {
+      return 12;
+    } else if (screenWidth >= 768) {
+      return 8;
+    } else if (screenWidth >= 320 && screenWidth <= 480) {
+      return 5;
+    }
+    return 5;
+  };
+
+
+  useEffect(() => {
+    const handleResize = () => {
+      setVisibleMovies(calculateVisibleMovies());
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const loadMoreMovies = () => {
+    setVisibleMovies((prevVisibleMovies) => prevVisibleMovies + calculateVisibleMovies());
+  };
+
   useEffect(() => {
     MoviesApi.getMovies().then((result) => {
       setMovies(result);
     });
-  }, [currentPath]);
+  }, []);
+
+  useEffect(() => {
+
+  },);
+
+
+
+  useEffect(() => {
+    if (searchQuery) {
+      setFilteredMovies(
+        movies.filter((movie) => movie.nameRU.toLowerCase().includes(searchQuery.toLowerCase()))
+      );
+    }
+  }, [searchQuery, movies]);
+
+  useEffect(() => {
+    if (shortFilm) {
+      setFilteredMovies(movies.filter((movie) => movie.duration < 40));
+    }
+  }, [shortFilm, movies]);
+
+  useEffect(() => {
+    if (!shortFilm && !searchQuery) {
+      setFilteredMovies(movies);
+      console.log('setFilteredMovies', movies);
+    }
+  }, [shortFilm, searchQuery, movies]);
 
   return (
     <div className="page">
       <Header openMenu={openMenu} />
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/movies" element={<Movies />} />
-        <Route path="/saved-movies" element={<Movies />} />
-        {/* <Route path="/movies" element={<Users users={users} />} /> */}
+        <Route path="/movies" element={<Movies
+          setSearchQuery={setSearchQuery}
+          loadMoreMovies={loadMoreMovies}
+          setShortFilm={setShortFilm}
+        />}>
+          <Route path="all" element={<MoviesCardList
+            filteredMovies={filteredMovies}
+            visibleMovies={visibleMovies}
+            movies={movies}
+            shortFilm={shortFilm}
+          />} />
+          <Route path="saved-movies" element={<MoviesCardList
+            filteredMovies={filteredMovies}
+            visibleMovies={visibleMovies}
+            movies={movies}
+            shortFilm={shortFilm}
+          />} />
+        </Route>
+
         <Route path="/profile" element={<Profile />} />
         <Route path="/signin" element={<Login />} />
         <Route
