@@ -15,6 +15,7 @@ import MoviesApi from '../../utils/MoviesApi';
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 
 function App() {
+  const [loginError, setLoginError] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const [allMovies, setAllMovies] = useState([]);
   const [movies, setMovies] = useState([]);
@@ -47,6 +48,22 @@ function App() {
         setRegisteredError(true);
       });
   }
+
+  function handleRegister(name, email, password) {
+    MainApi.register(name, email, password)
+      .then((data) => {
+        if (data) {
+          handleLogin(email, password);
+          history.push("/signin");
+        }
+      })
+      .catch(() => {
+        setRegisteredError(true);
+      });
+  }
+
+
+
 
   function calculateVisibleMovies() {
     const screenWidth = window.innerWidth;
@@ -162,7 +179,7 @@ function App() {
         </Route>
 
         <Route path="/profile" element={<Profile />} />
-        <Route path="/signin" element={<Login />} />
+        <Route path="/signin" element={<Login handleLogin={handleLogin} loginError={loginError} />} />
         <Route
           path="/signup"
           element={<Register handleRegister={handleRegister} registeredError={registeredError} />}
