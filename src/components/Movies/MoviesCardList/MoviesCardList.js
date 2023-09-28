@@ -6,7 +6,9 @@ function MoviesCardList({
   movies,
   filteredMovies,
   currentPath,
-  favorites
+  favorites,
+  addToFavorites,
+  removeFromFavorites
  }) {
 
 
@@ -19,6 +21,8 @@ function MoviesCardList({
         filteredMovies={filteredMovies}
         currentPath={currentPath}
         favorites={favorites}
+        addToFavorites={addToFavorites}
+        removeFromFavorites={removeFromFavorites}
       />
     </ul>
   )

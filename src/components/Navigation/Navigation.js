@@ -13,8 +13,8 @@ function Navigation(props) {
                     onClick={props.closeMenu} />
                 
                 <Link className='navigation__link' to='/'>Главная</Link>
-                <Link className='navigation__link' to='/movies'>Фильмы</Link>
-                <Link className='navigation__link' to='/saved-movies'>Сохранённые фильмы</Link>
+                <Link className='navigation__link' to='/movies/all'>Фильмы</Link>
+                <Link className='navigation__link' to='/movies/saved-movies'>Сохранённые фильмы</Link>
                 <Link
                     className='navigation__account'
                     to='/profile'

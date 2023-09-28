@@ -60,6 +60,19 @@ function App() {
     return 5;
   }
 
+  function addToFavorites(movie) {
+    const updatedFavorites = [...favorites, movie];
+    setFavorites(updatedFavorites)
+  }
+
+
+  function removeFromFavorites(movie) {
+    const updatedFavorites = favorites.filter((favMovie) => favMovie.id !== movie.id);
+    setFavorites(updatedFavorites)
+  }
+
+
+
   useEffect(() => {
     // Handle route changes using useEffect
     if (location.pathname === '/movies/all') {
@@ -117,6 +130,7 @@ function App() {
     }
   }, [shortFilm, searchQuery, movies]);
 
+
   return (
     <div className="page">
       <Header openMenu={openMenu} />
@@ -133,6 +147,8 @@ function App() {
             movies={allMovies}
             shortFilm={shortFilm}
             favorites={favorites}
+            addToFavorites={addToFavorites}
+            removeFromFavorites={removeFromFavorites}
           />} />
           <Route path="saved-movies" element={<MoviesCardList
             filteredMovies={filteredMovies}
@@ -140,6 +156,8 @@ function App() {
             movies={allMovies}
             shortFilm={shortFilm}
             favorites={favorites}
+            addToFavorites={addToFavorites}
+            removeFromFavorites={removeFromFavorites}
           />} />
         </Route>
 
