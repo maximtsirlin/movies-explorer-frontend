@@ -19,7 +19,6 @@ function MoviesCardList({
         filteredMovies={filteredMovies}
         currentPath={currentPath}
         favorites={favorites}
-
       />
     </ul>
   )
