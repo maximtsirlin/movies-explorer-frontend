@@ -3,10 +3,10 @@ services:
   # Сервис Create React App
   react-app:
     build:
-      context: .  # Путь к директории с Dockerfile для вашего приложения
+      context: . # Путь к директории с Dockerfile для вашего приложения
     container_name: react-app
 
-   # Сервис Nginx
+  # Сервис Nginx
   nginx:
     image: nginx:latest
     container_name: nginx
