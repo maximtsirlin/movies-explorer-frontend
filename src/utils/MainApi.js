@@ -116,9 +116,8 @@ class Api {
   }
   
   const mainApi = new Api({
-    // baseUrl: "https://api.movies-ivlev.nomoredomains.club",
-    baseUrl: "http://localhost:3000",
-    // baseUrl: "https://api.deploy-diploma.nomoreparties.co/",
+    // baseUrl: "http://localhost:3000",
+    baseUrl: "http://158.160.17.243:8080",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${localStorage.getItem("jwt")}`,

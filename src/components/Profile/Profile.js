@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Profile.css';
+import { useCurrentUser } from '../../utils/CurrentUserContext';
 
 function Profile() {
+  const { currentUser } = useCurrentUser();
+
   return (
     <main className='profile'>
-      <h1 className='profile__title'>Привет, Виталий!</h1>
+      <h1 className='profile__title'>Привет, {currentUser?.name}!</h1>
       <form className='profile__form'>
         <fieldset className='profile__fieldset'>
           <label className='profile__label' htmlFor='name'>
