@@ -1,15 +1,36 @@
-import { Link } from "react-router-dom";
-import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import "./Register.css";
 import Form from "../Form/Form";
 import logo from "../../images/logo.svg";
 import CallbackValidation from "../../utils/CallbackValidation";
+import MainApi from "../../utils/MainApi";
+import useLogin from "../../hooks/useLogin";
 
-function Register({ handleRegister, registeredError }) {
+function Register() {
   const formCallbackValidation = CallbackValidation();
+  const { login } = useLogin();
+  const [error, setError] = useState(false);
   const { email, password, name } = formCallbackValidation.values;
   const { values, onFocus, handleChange, isFocused, errors } =
     formCallbackValidation;
+
+  const navigate = useNavigate();
+
+  async function handleRegister(name, email, password) {
+    try {
+      console.log('name', name);
+      console.log('email', email);
+      console.log('password', password);
+      await MainApi.register(name, email, password);
+      await login(email, password);
+      navigate("/signin");
+    }
+    catch (e) {
+      setError(e.message);
+      console.error(e);
+    }
+  }
 
   const submitHandle = (evt) => {
     evt.preventDefault();
@@ -31,7 +52,7 @@ function Register({ handleRegister, registeredError }) {
             route: "/signin",
             linkText: "Войти",
           }}
-          registeredError={registeredError}
+          registeredError={error}
           validation={formCallbackValidation}
           submitHandle={submitHandle}
           formName="register"

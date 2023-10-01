@@ -31,19 +31,24 @@ class Api {
     register(name, email, password) {
       return fetch(`${this._baseUrl}/signup`, {
         method: "POST",
-        headers: this._headers,
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
           name,
           email,
           password,
         }),
-      }).then((res) => this._addResult(res));
+      }).then((res) => this._addResult(res))
+      .catch(e => console.error(e));
     }
   
     login(email, password) {
       return fetch(`${this._baseUrl}/signin`, {
         method: "POST",
-        headers: this._headers,
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({ email, password }),
       }).then((res) => this._addResult(res));
     }
@@ -102,6 +107,7 @@ class Api {
     }
   
     _addResult(res) {
+      console.log('res', res);
       if (res.ok) {
         return res.json();
       }

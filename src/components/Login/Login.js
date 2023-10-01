@@ -1,18 +1,21 @@
 import React from "react";
 import "./Login.css";
-
 import CallbackValidation from "../../utils/CallbackValidation";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../images/logo.svg";
 import Form from "../Form/Form";
+import { useCurrentUser } from "../../utils/CurrentUserContext";
 
-function Login({ handleLogin, loginError }) {
+function Login() {
   const formCallbackValidation = CallbackValidation();
+  const { login, error } = useCurrentUser();
+  const navigate = useNavigate();
   const { email, password } = formCallbackValidation.values;
-
-  const submitHandle = (evt) => {
+  
+  const submitHandle = async (evt) => {
     evt.preventDefault();
-    handleLogin(email, password);
+    await login(email, password);
+    navigate("/movies/all");
     formCallbackValidation.resetForm();
   };
 
@@ -33,7 +36,7 @@ function Login({ handleLogin, loginError }) {
           submitHandle={submitHandle}
           validation={formCallbackValidation}
           formName="login"
-          loginError={loginError}
+          loginError={error}
         />
       </div>
     </section>
