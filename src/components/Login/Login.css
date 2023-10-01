@@ -3,9 +3,9 @@
 }
 
 .login__container {
-  margin: auto;
-  max-width: 396px;
-  padding: 70px 0 55px;
+    margin: auto;
+    max-width: 396px;
+    padding: 70px 0 128px;
 }
 
 .login__logo {
@@ -124,7 +124,7 @@
 
 @media screen and (max-width: 767px) {
   .login__container {
-    padding: 54px 30px 0px;
+    padding: 54px 30px 86px;
   }
 
   .login__logo {

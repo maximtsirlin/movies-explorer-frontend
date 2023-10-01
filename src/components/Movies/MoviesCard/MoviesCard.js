@@ -1,44 +1,50 @@
-import { useLocation } from 'react-router-dom';
+import React, { Component } from 'react';
+import { useLocation } from 'react-router-dom'; //Он импортирует необходимые модули и файлы CSS, включая React, Componentиз React, useLocationиз «react-router-dom» и файл CSS с именем «MoviesCard.css».
 import './MoviesCard.css';
-import { moviesData, moviesDataSave } from "../../../utils/constants";
 
-function MoviesCard() {
+
+const MoviesCard = ({ visibleMovies, favorites, filteredMovies = [], addToFavorites, removeFromFavorites }) => {
   const location = useLocation();
 
-
-  return (
-    <>
-      {location.pathname === '/movies' ? (
-        moviesData.map((movie, index) => (
-          <div key={index} className='movies-card'>
-            <div className='movies-card__about'>
-              <h2 className='movies-card__title'>{movie.title}</h2>
-              <p className='movies-card__duration'>{movie.duration}</p>
-              {movie.activeLike && <button className='movies-card__like movies-card__like_active' />}
+    console.trace('filtredMovies', filteredMovies);
+    return (
+      <>
+        {filteredMovies
+          .slice(0, visibleMovies)
+          .map((movie) => (
+            <div className="movies-card" key={movie._id}>
+              <div className="movies-card__about">
+                <h2 className="movies-card__title">{movie.nameRU}</h2>
+                <p className="movies-card__duration">{movie.duration}</p>
+              </div>
+              <img
+                className="movies-card__image"
+                src={'https://api.nomoreparties.co' + movie.image.url}
+                alt={movie.nameRU}
+              />
+              {location.pathname === '/movies' && <button 
+                className={`movies-card__add ${
+                  favorites.some((favMovie) => favMovie.id === movie.id)
+                    ? 'movies-card__add_active'
+                    : ''
+                }`}
+                onClick={() => addToFavorites(movie)}
+              >
+                Сохранить
+              </button>}
+              
+              {location.pathname === '/saved-movies' && favorites.some((favMovie) => favMovie.id === movie.id) ? (
+                <button
+                  className="movies-card__add movies-card__add_delete"
+                  onClick={() => removeFromFavorites(movie)}
+                >
+                  Удалить из избранного
+                </button>
+              ) : null}
             </div>
-            <img src={movie.image} alt={movie.title} className='movies-card__image' />
-            <button className={`movies-card__add ${movie.isSaved ? 'movies-card__add_active' : ''}`}>
-              {/* {movie.isSaved ? 'Сохранить' : 'Удалить'} */}
-            </button>
-          </div>
-        ))
-      ) : (
-        moviesDataSave.map((movie, index) => (
-          <div key={index} className='movies-card'>
-            <div className='movies-card__about'>
-              <h2 className='movies-card__title'>{movie.title}</h2>
-              <p className='movies-card__duration'>{movie.duration}</p>
-              {movie.deleteButton && <button className='movies-card__delete' />}
-            </div>
-            <img src={movie.image} alt={movie.title} className='movies-card__image' />
-            <button className={`movies-card__add ${movie.isSaved ? 'movies-card__add_delete' : ''}`}>
-              {/* {movie.isSaved ? 'Сохранить' : 'Удалить'} */}
-            </button>
-          </div>
-        ))
-      )}
-    </>
-  );
+          ))}
+      </>
+    );
 }
 
 export default MoviesCard;
