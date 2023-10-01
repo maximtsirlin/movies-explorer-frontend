@@ -1,3 +1,4 @@
+
 # Используем официальный образ Node.js
 FROM node:18
 
@@ -14,4 +15,4 @@ RUN npm install
 COPY . .
 
 # Команда для сборки приложения (это может быть npm run build)
-CMD ["npm", "start"]
+CMD ["npm", "run", "build"]
