@@ -48,6 +48,8 @@
   border-radius: 3px;
   transition: opacity 0.3s;
   box-sizing: border-box;
+  background-color: #67671400;
+
 }
 
 .promo__link:hover {
