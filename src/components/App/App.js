@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, useLocation, Outlet } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -145,8 +145,12 @@ function App() {
                     favorites={favorites}
                     addToFavorites={addToFavorites}
                     removeFromFavorites={removeFromFavorites}
-                    loadMoreMovies={loadMoreMovies}
                   />
+                  {filteredMovies.length > visibleMovies && (
+                    <button onClick={loadMoreMovies} className="load-more-button">
+                      Load More
+                    </button>
+                  )}
                   <Footer />
                 </>
               </ProtectedRoute>
@@ -159,6 +163,7 @@ function App() {
                 <>
                   <Movies
                     setSearchQuery={setSearchQuery}
+                    loadMoreMovies={loadMoreMovies}
                     setShortFilm={setShortFilm}
                   />
                   <MoviesCardList
@@ -169,12 +174,7 @@ function App() {
                     favorites={favorites}
                     addToFavorites={addToFavorites}
                     removeFromFavorites={removeFromFavorites}
-                    loadMoreMovies={loadMoreMovies}
                   />
-                  <Outlet />
-                  <button onClick={loadMoreMovies} className='movies__button' type='button'>
-                    Ещё
-                  </button>
                   <Footer />
                 </>
               </ProtectedRoute>
