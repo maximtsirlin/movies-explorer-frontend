@@ -128,13 +128,13 @@ function App() {
         <Header openMenu={openMenu} />
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/movies" element={<Movies
+          {/* <Route path="/movies" element={<Movies
             setSearchQuery={setSearchQuery}
             loadMoreMovies={loadMoreMovies}
             setShortFilm={setShortFilm}
-          />}>
+          />}> */}
             <Route
-              path="all"
+              path="/movies"
               element={
                 <ProtectedRoute loggedIn={!!token}>
                   <MoviesCardList
@@ -150,7 +150,7 @@ function App() {
               }
             />
             <Route
-              path="saved-movies"
+              path="/saved-movies"
               element={
                 <ProtectedRoute loggedIn={!!token}>
                   <MoviesCardList
@@ -165,7 +165,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
-          </Route>
+          {/* </Route> */}
 
           <Route path="/profile" element={<Profile />} />
           <Route path="/signin" element={<Login />} />

@@ -16,7 +16,7 @@ function Register() {
     formCallbackValidation;
 
   const navigate = useNavigate();
-
+  
   async function handleRegister(name, email, password) {
     try {
       console.log('name', name);

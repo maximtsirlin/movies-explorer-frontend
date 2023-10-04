@@ -23,7 +23,7 @@ export function CurrentUserProvider({ children }) {
             localStorage.setItem('jwt', resp.token); // Сохраняем токен в localStorage
             setToken(resp.token);
             console.log('token', resp.token);
-            navigate('/movies/all');
+            navigate('/movies');
         } catch (e) {
             console.error(e);
             setError(e.message);

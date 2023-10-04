@@ -76,7 +76,22 @@
 }
 
 
-.form__submit:hover {
+.form__submit:disabled {
+  width: 100%;
+  margin: 0 auto;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ffffff;
+  background: #717781;
+  border-radius: 3px;
+  border: none;
+  padding: 13px 0;
+  transition: none;
+}
+
+
+.form__submit:not(:disabled):hover {
   opacity: 0.6;
   text-decoration: underline;
 }
