@@ -128,32 +128,29 @@ function App() {
         <Header openMenu={openMenu} />
         <Routes>
           <Route path="/" element={<Main />} />
-          {/* <Route path="/movies" element={<Movies
-            setSearchQuery={setSearchQuery}
-            loadMoreMovies={loadMoreMovies}
-            setShortFilm={setShortFilm}
-          />}> */}
           <Route
             path="/movies"
             element={
               <ProtectedRoute loggedIn={!!token}>
-              <>
-                <Movies
-                  setSearchQuery={setSearchQuery}
-                  loadMoreMovies={loadMoreMovies}
-                  setShortFilm={setShortFilm}
-                />
-                <MoviesCardList
-                  filteredMovies={filteredMovies}
-                  visibleMovies={visibleMovies}
-                  movies={allMovies}
-                  shortFilm={shortFilm}
-                  favorites={favorites}
-                  addToFavorites={addToFavorites}
-                  removeFromFavorites={removeFromFavorites}
-                />
-                <Footer />
-              </>
+                <>
+                  <Movies
+                    setSearchQuery={setSearchQuery}
+                    setShortFilm={setShortFilm}
+                  />
+                  <MoviesCardList
+                    filteredMovies={filteredMovies}
+                    visibleMovies={visibleMovies}
+                    movies={allMovies}
+                    shortFilm={shortFilm}
+                    favorites={favorites}
+                    addToFavorites={addToFavorites}
+                    removeFromFavorites={removeFromFavorites}
+                  />
+                  <Movies
+                    loadMoreMovies={loadMoreMovies}
+                  />
+                  <Footer />
+                </>
               </ProtectedRoute>
             }
           />
@@ -161,23 +158,25 @@ function App() {
             path="/saved-movies"
             element={
               <ProtectedRoute loggedIn={!!token}>
-               <>
-                <Movies
-                  setSearchQuery={setSearchQuery}
-                  loadMoreMovies={loadMoreMovies}
-                  setShortFilm={setShortFilm}
-                />
-                <MoviesCardList
-                  filteredMovies={filteredMovies}
-                  visibleMovies={visibleMovies}
-                  movies={allMovies}
-                  shortFilm={shortFilm}
-                  favorites={favorites}
-                  addToFavorites={addToFavorites}
-                  removeFromFavorites={removeFromFavorites}
-                />
-                <Footer />
-            </>
+                <>
+                  <Movies
+                    setSearchQuery={setSearchQuery}
+                    setShortFilm={setShortFilm}
+                  />
+                  <MoviesCardList
+                    filteredMovies={filteredMovies}
+                    visibleMovies={visibleMovies}
+                    movies={allMovies}
+                    shortFilm={shortFilm}
+                    favorites={favorites}
+                    addToFavorites={addToFavorites}
+                    removeFromFavorites={removeFromFavorites}
+                  />
+                    <Movies
+                    loadMoreMovies={loadMoreMovies}
+                  />
+                  <Footer />
+                </>
               </ProtectedRoute>
             }
           />
