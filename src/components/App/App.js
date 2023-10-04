@@ -133,38 +133,48 @@ function App() {
             loadMoreMovies={loadMoreMovies}
             setShortFilm={setShortFilm}
           />}> */}
-            <Route
-              path="/movies"
-              element={
-                <ProtectedRoute loggedIn={!!token}>
-                  <MoviesCardList
-                    filteredMovies={filteredMovies}
-                    visibleMovies={visibleMovies}
-                    movies={allMovies}
-                    shortFilm={shortFilm}
-                    favorites={favorites}
-                    addToFavorites={addToFavorites}
-                    removeFromFavorites={removeFromFavorites}
-                  />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/saved-movies"
-              element={
-                <ProtectedRoute loggedIn={!!token}>
-                  <MoviesCardList
-                    filteredMovies={filteredMovies}
-                    visibleMovies={visibleMovies}
-                    movies={allMovies}
-                    shortFilm={shortFilm}
-                    favorites={favorites}
-                    addToFavorites={addToFavorites}
-                    removeFromFavorites={removeFromFavorites}
-                  />
-                </ProtectedRoute>
-              }
-            />
+          <Route
+            path="/movies"
+            element={
+              <ProtectedRoute loggedIn={!!token}>
+                <Movies
+                  setSearchQuery={setSearchQuery}
+                  loadMoreMovies={loadMoreMovies}
+                  setShortFilm={setShortFilm}
+                />
+                <MoviesCardList
+                  filteredMovies={filteredMovies}
+                  visibleMovies={visibleMovies}
+                  movies={allMovies}
+                  shortFilm={shortFilm}
+                  favorites={favorites}
+                  addToFavorites={addToFavorites}
+                  removeFromFavorites={removeFromFavorites}
+                />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/saved-movies"
+            element={
+              <ProtectedRoute loggedIn={!!token}>
+                <Movies
+                  setSearchQuery={setSearchQuery}
+                  loadMoreMovies={loadMoreMovies}
+                  setShortFilm={setShortFilm}
+                />
+                <MoviesCardList
+                  filteredMovies={filteredMovies}
+                  visibleMovies={visibleMovies}
+                  movies={allMovies}
+                  shortFilm={shortFilm}
+                  favorites={favorites}
+                  addToFavorites={addToFavorites}
+                  removeFromFavorites={removeFromFavorites}
+                />
+              </ProtectedRoute>
+            }
+          />
           {/* </Route> */}
 
           <Route path="/profile" element={<Profile />} />
