@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation, Outlet } from 'react-router-dom';
 import './App.css';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -171,6 +171,7 @@ function App() {
                     removeFromFavorites={removeFromFavorites}
                     loadMoreMovies={loadMoreMovies}
                   />
+                  <Outlet />
                   <button onClick={loadMoreMovies} className='movies__button' type='button'>
                     Ещё
                   </button>
