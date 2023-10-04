@@ -11,8 +11,8 @@ function Header(props) {
         <nav className='header__container'>
           <Link className='header__logo' to='/'></Link>
           <ul className='header__links'>
-            <Link className='header__link header__link_active' to='/movies/all'>Фильмы</Link>
-            <Link className='header__link' to='/movies/saved-movies'>Сохранённые фильмы</Link>
+            <Link className='header__link header__link_active' to='/movies'>Фильмы</Link>
+            <Link className='header__link' to='/saved-movies'>Сохранённые фильмы</Link>
           </ul>
           <Link className='header__account' to='/profile'>
             <span>Аккаунт</span>
@@ -38,7 +38,7 @@ function Header(props) {
       </nav>
     </header>
   )
-  
+
   // return (
   //   <Routes>
   //     <Route path='/' element={
@@ -52,14 +52,14 @@ function Header(props) {
   //         </nav>
   //       </header>
   //     } />
-  //     {['/movies/all', '/movies/saved-movies', '/profile',].map(path =>
+  //     {['/movies', '/saved-movies', '/profile',].map(path =>
   //       <Route path={path} key={path} element={
   //         <header className='header'>
   //           <nav className='header__container'>
   //           <Link className='header__logo' to='/'></Link>
   //             <ul className='header__links'>
-  //               <Link className='header__link header__link_active' to='/movies/all'>Фильмы</Link>
-  //               <Link className='header__link' to='/movies/saved-movies'>Сохранённые фильмы</Link>
+  //               <Link className='header__link header__link_active' to='/movies'>Фильмы</Link>
+  //               <Link className='header__link' to='/saved-movies'>Сохранённые фильмы</Link>
   //             </ul>
   //             <Link className='header__account' to='/profile'>
   //               <span>Аккаунт</span>

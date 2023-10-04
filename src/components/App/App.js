@@ -64,7 +64,7 @@ function App() {
 
   useEffect(() => {
     // Handle route changes using useEffect
-    if (location.pathname === '/movies/all') {
+    if (location.pathname === '/movies') {
       setMovies(allMovies);
       console.log('allMovies');
     } else {

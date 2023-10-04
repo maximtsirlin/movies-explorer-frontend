@@ -22,7 +22,7 @@ const MoviesCard = ({ visibleMovies, favorites, filteredMovies = [], addToFavori
                 src={'https://api.nomoreparties.co' + movie.image.url}
                 alt={movie.nameRU}
               />
-              {location.pathname === '/movies/all' && <button 
+              {location.pathname === '/movies' && <button 
                 className={`movies-card__add ${
                   favorites.some((favMovie) => favMovie.id === movie.id)
                     ? 'movies-card__add_active'
@@ -33,7 +33,7 @@ const MoviesCard = ({ visibleMovies, favorites, filteredMovies = [], addToFavori
                 Сохранить
               </button>}
               
-              {location.pathname === '/movies/saved-movies' && favorites.some((favMovie) => favMovie.id === movie.id) ? (
+              {location.pathname === '/saved-movies' && favorites.some((favMovie) => favMovie.id === movie.id) ? (
                 <button
                   className="movies-card__add movies-card__add_delete"
                   onClick={() => removeFromFavorites(movie)}

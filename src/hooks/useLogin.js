@@ -37,7 +37,7 @@ export default function useLogin() {
                 console.log(err);
             });
         setToken(localStorage.jwt);
-        navigate("/movies/all");
+        navigate("/movies");
     }, []);
 
     return {

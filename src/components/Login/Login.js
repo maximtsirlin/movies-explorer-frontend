@@ -15,7 +15,7 @@ function Login() {
   const submitHandle = async (evt) => {
     evt.preventDefault();
     await login(email, password);
-    navigate("/movies/all");
+    navigate("/movies");
     formCallbackValidation.resetForm();
   };
 
