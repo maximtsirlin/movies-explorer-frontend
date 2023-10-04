@@ -118,7 +118,6 @@ function App() {
   useEffect(() => {
     if (!shortFilm && !searchQuery) {
       setFilteredMovies(movies);
-      // console.log('setFilteredMovies', movies);
     }
   }, [shortFilm, searchQuery, movies]);
 
@@ -128,15 +127,11 @@ function App() {
         <Header openMenu={openMenu} />
         <Routes>
           <Route path="/" element={<Main />} />
-          {/* <Route path="/movies" element={<Movies
-            setSearchQuery={setSearchQuery}
-            loadMoreMovies={loadMoreMovies}
-            setShortFilm={setShortFilm}
-          />}> */}
           <Route
             path="/movies"
             element={
               <ProtectedRoute loggedIn={!!token}>
+              <>
                 <Movies
                   setSearchQuery={setSearchQuery}
                   loadMoreMovies={loadMoreMovies}
@@ -151,6 +146,7 @@ function App() {
                   addToFavorites={addToFavorites}
                   removeFromFavorites={removeFromFavorites}
                 />
+              </>
               </ProtectedRoute>
             }
           />
@@ -158,6 +154,7 @@ function App() {
             path="/saved-movies"
             element={
               <ProtectedRoute loggedIn={!!token}>
+               <>
                 <Movies
                   setSearchQuery={setSearchQuery}
                   loadMoreMovies={loadMoreMovies}
@@ -172,6 +169,7 @@ function App() {
                   addToFavorites={addToFavorites}
                   removeFromFavorites={removeFromFavorites}
                 />
+            </>
               </ProtectedRoute>
             }
           />
