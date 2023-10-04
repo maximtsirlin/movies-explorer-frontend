@@ -145,8 +145,6 @@ function App() {
                     favorites={favorites}
                     addToFavorites={addToFavorites}
                     removeFromFavorites={removeFromFavorites}
-                  />
-                  <Movies
                     loadMoreMovies={loadMoreMovies}
                   />
                   <Footer />
@@ -171,8 +169,6 @@ function App() {
                     favorites={favorites}
                     addToFavorites={addToFavorites}
                     removeFromFavorites={removeFromFavorites}
-                  />
-                    <Movies
                     loadMoreMovies={loadMoreMovies}
                   />
                   <Footer />
