@@ -127,6 +127,11 @@ function App() {
         <Header openMenu={openMenu} />
         <Routes>
           <Route path="/" element={<Main />} />
+          {/* <Route path="/movies" element={<Movies
+            setSearchQuery={setSearchQuery}
+            loadMoreMovies={loadMoreMovies}
+            setShortFilm={setShortFilm}
+          />}> */}
           <Route
             path="/movies"
             element={
@@ -146,6 +151,7 @@ function App() {
                   addToFavorites={addToFavorites}
                   removeFromFavorites={removeFromFavorites}
                 />
+                <Footer />
               </>
               </ProtectedRoute>
             }
@@ -169,6 +175,7 @@ function App() {
                   addToFavorites={addToFavorites}
                   removeFromFavorites={removeFromFavorites}
                 />
+                <Footer />
             </>
               </ProtectedRoute>
             }

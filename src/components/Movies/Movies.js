@@ -18,7 +18,6 @@ function Movies({ setSearchQuery, loadMoreMovies, setShortFilm }) {
       <button onClick={loadMoreMovies} className='movies__button' type='button'>
         Ещё
       </button>
-      <Footer />
     </main>
   );
 }
