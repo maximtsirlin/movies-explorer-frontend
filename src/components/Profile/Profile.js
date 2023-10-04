@@ -3,8 +3,11 @@ import { Link } from 'react-router-dom';
 import './Profile.css';
 import { useCurrentUser } from '../../utils/CurrentUserContext';
 
+
+
+
 function Profile() {
-  const { currentUser } = useCurrentUser();
+  const { currentUser, logout } = useCurrentUser();
 
   return (
     <main className='profile'>
@@ -36,9 +39,9 @@ function Profile() {
         <button className='profile__btn-edit' type='submit'>
           Редактировать
         </button>
-        <Link to='/' className='profile__btn-logout'>
+        <button onClick={logout} className='profile__btn-logout'>
           Выйти из аккаунта
-        </Link>
+        </button>
         </div>
       </form>
     </main>
