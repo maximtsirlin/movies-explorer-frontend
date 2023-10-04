@@ -15,6 +15,7 @@ import MoviesApi from '../../utils/MoviesApi';
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 import { useCurrentUser } from '../../utils/CurrentUserContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import Footer from '../Footer/Footer';
 
 function App() {
   const { currentUser, token } = useCurrentUser();

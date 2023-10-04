@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
 import SearchForm from './SearchForm/SearchForm';
 import './Movies.css';
-import Footer from '../Footer/Footer';
+// import Footer from '../Footer/Footer';
 import MoviesApi from '../../utils/MoviesApi';
 
 function Movies({ setSearchQuery, loadMoreMovies, setShortFilm }) {
