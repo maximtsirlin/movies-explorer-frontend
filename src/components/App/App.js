@@ -64,13 +64,11 @@ function App() {
   }
 
   useEffect(() => {
-    // Handle route changes using useEffect
     if (location.pathname === '/movies') {
       setMovies(allMovies);
       console.log('allMovies');
     } else {
       setMovies(favorites);
-      // console.log('favorites', favorites);
     }
   }, [location.pathname, allMovies, favorites]);
 
@@ -78,7 +76,6 @@ function App() {
     if (localStorage.favorites) {
       setFavorites(JSON.parse(localStorage.favorites));
     }
-    // console.log('favorites', localStorage.favorites);
   }, []);
 
   useEffect(() => {
@@ -148,7 +145,7 @@ function App() {
                   />
                   {filteredMovies.length > visibleMovies && (
                     <button onClick={loadMoreMovies} className="page__button">
-                      Load More
+                      Ещё
                     </button>
                   )}
                   <Footer />
@@ -163,7 +160,6 @@ function App() {
                 <>
                   <Movies
                     setSearchQuery={setSearchQuery}
-                    loadMoreMovies={loadMoreMovies}
                     setShortFilm={setShortFilm}
                   />
                   <MoviesCardList
@@ -180,7 +176,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          {/* </Route> */}
+
 
           <Route path="/profile" element={<Profile />} />
           <Route path="/signin" element={<Login />} />
