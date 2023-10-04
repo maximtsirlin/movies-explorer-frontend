@@ -1,10 +1,12 @@
 import { Link, Route, Routes } from 'react-router-dom';
 import './Header.css';
 import { useCurrentUser } from '../../utils/CurrentUserContext';
-
+import { useLocation } from 'react-router-dom'; 
 
 function Header(props) {
   const { currentUser } = useCurrentUser();
+  const location = useLocation();
+
   if(location.pathname === '/signin' || location.pathname === '/signup') {
     return null
   }
