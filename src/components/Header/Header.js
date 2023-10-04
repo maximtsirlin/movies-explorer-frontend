@@ -5,6 +5,9 @@ import { useCurrentUser } from '../../utils/CurrentUserContext';
 
 function Header(props) {
   const { currentUser } = useCurrentUser();
+  if(location.pathname === '/signin' || location.pathname === '/signup') {
+    return null
+  }
   if (currentUser) {
     return (
       <header className='header'>
