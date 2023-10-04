@@ -171,6 +171,9 @@ function App() {
                     removeFromFavorites={removeFromFavorites}
                     loadMoreMovies={loadMoreMovies}
                   />
+                  <button onClick={loadMoreMovies} className='movies__button' type='button'>
+                    Ещё
+                  </button>
                   <Footer />
                 </>
               </ProtectedRoute>

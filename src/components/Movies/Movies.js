@@ -15,9 +15,9 @@ function Movies({ setSearchQuery, loadMoreMovies, setShortFilm }) {
         setShortFilm={setShortFilm} />
 
       <Outlet />
-      <button onClick={loadMoreMovies} className='movies__button' type='button'>
+      {/* <button onClick={loadMoreMovies} className='movies__button' type='button'>
         Ещё
-      </button>
+      </button> */}
     </main>
   );
 }
