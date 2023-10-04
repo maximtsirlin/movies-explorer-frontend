@@ -147,7 +147,7 @@ function App() {
                     removeFromFavorites={removeFromFavorites}
                   />
                   {filteredMovies.length > visibleMovies && (
-                    <button onClick={loadMoreMovies} className="load-more-button">
+                    <button onClick={loadMoreMovies} className="page__button">
                       Load More
                     </button>
                   )}
