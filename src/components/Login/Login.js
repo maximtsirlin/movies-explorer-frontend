@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.css";
 import CallbackValidation from "../../utils/CallbackValidation";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,8 +12,30 @@ function Login() {
   const navigate = useNavigate();
   const { email, password } = formCallbackValidation.values;
 
+  const [validationErrors, setValidationErrors] = useState({});
+
   const submitHandle = async (evt) => {
     evt.preventDefault();
+
+    const errors = {};
+
+    if (!email) {
+      errors.email = "Требуется email";
+    }
+
+    if (!password) {
+      errors.password = "Необходим пароль";
+    }
+
+    if (email && !isEmail(email)) {
+      errors.email = "Некорректный email";
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setValidationErrors(errors);
+      return;
+    }
+
     await login(email, password);
     navigate("/movies");
     formCallbackValidation.resetForm();
@@ -37,6 +59,7 @@ function Login() {
           validation={formCallbackValidation}
           formName="login"
           loginError={error}
+          validationErrors={validationErrors} 
         />
       </div>
     </section>

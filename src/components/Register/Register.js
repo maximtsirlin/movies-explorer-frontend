@@ -1,5 +1,5 @@
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
 import "./Register.css";
 import Form from "../Form/Form";
 import logo from "../../images/logo.svg";
@@ -10,23 +10,22 @@ import useLogin from "../../hooks/useLogin";
 function Register() {
   const formCallbackValidation = CallbackValidation();
   const { login } = useLogin();
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("");
   const { email, password, name } = formCallbackValidation.values;
   const { values, onFocus, handleChange, isFocused, errors } =
     formCallbackValidation;
 
   const navigate = useNavigate();
-  
+
   async function handleRegister(name, email, password) {
     try {
-      console.log('name', name);
-      console.log('email', email);
-      console.log('password', password);
+      console.log("name", name);
+      console.log("email", email);
+      console.log("password", password);
       await MainApi.register(name, email, password);
       await login(email, password);
       navigate("/signin");
-    }
-    catch (e) {
+    } catch (e) {
       setError(e.message);
       console.error(e);
     }
@@ -34,8 +33,13 @@ function Register() {
 
   const submitHandle = (evt) => {
     evt.preventDefault();
-    handleRegister(name, email, password);
-    formCallbackValidation.resetForm();
+
+    if (formCallbackValidation.isValid()) {
+      handleRegister(name, email, password);
+      formCallbackValidation.resetForm();
+    } else {
+      setError("Please fill in all required fields and provide a valid email.");
+    }
   };
 
   return (
@@ -73,9 +77,30 @@ function Register() {
               value={values.name || ""}
               onFocus={onFocus}
               onChange={handleChange}
+              required
             />
             <span className="form__input-error">
               {isFocused && errors.name}
+            </span>
+          </fieldset>
+
+          <fieldset className="register__fieldset">
+            <label className="register__label" htmlFor="email">
+              Email
+            </label>
+            <input
+              type="email"
+              placeholder="Введите email"
+              id="email"
+              name="email"
+              className={`form__input ${errors.email && "form__input-invalid"}`}
+              value={values.email || ""}
+              onFocus={onFocus}
+              onChange={handleChange}
+              required
+            />
+            <span className="form__input-error">
+              {isFocused && errors.email}
             </span>
           </fieldset>
         </Form>
