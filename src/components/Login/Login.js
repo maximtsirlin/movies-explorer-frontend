@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../../images/logo.svg";
 import Form from "../Form/Form";
 import { useCurrentUser } from "../../utils/CurrentUserContext";
+import { isEmail } from "validator";
 
 function Login() {
   const formCallbackValidation = CallbackValidation();
@@ -20,15 +21,15 @@ function Login() {
     const errors = {};
 
     if (!email) {
-      errors.email = "Требуется email";
+      errors.email = "Email is required.";
     }
 
     if (!password) {
-      errors.password = "Необходим пароль";
+      errors.password = "Password is required.";
     }
 
     if (email && !isEmail(email)) {
-      errors.email = "Некорректный email";
+      errors.email = "Invalid email format.";
     }
 
     if (Object.keys(errors).length > 0) {
@@ -59,7 +60,7 @@ function Login() {
           validation={formCallbackValidation}
           formName="login"
           loginError={error}
-          validationErrors={validationErrors} 
+          validationErrors={validationErrors}
         />
       </div>
     </section>
