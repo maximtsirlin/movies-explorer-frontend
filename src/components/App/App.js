@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, Navigate, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
 import './App.css';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -15,10 +15,6 @@ import MoviesApi from '../../utils/MoviesApi';
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 import { useCurrentUser } from '../../utils/CurrentUserContext';
 import Footer from '../Footer/Footer';
-
-function ProtectedRoute({ children, loggedIn }) {
-  return loggedIn ? children : <Navigate to="/landing" replace />;
-}
 
 function App() {
   const { currentUser, token } = useCurrentUser();
@@ -57,12 +53,12 @@ function App() {
 
   function addToFavorites(movie) {
     const updatedFavorites = [...favorites, movie];
-    setFavorites(updatedFavorites)
+    setFavorites(updatedFavorites);
   }
 
   function removeFromFavorites(movie) {
     const updatedFavorites = favorites.filter((favMovie) => favMovie.id !== movie.id);
-    setFavorites(updatedFavorites)
+    setFavorites(updatedFavorites);
   }
 
   useEffect(() => {
@@ -125,7 +121,19 @@ function App() {
       <div className="page">
         <Header openMenu={openMenu} />
         <Routes>
-          <Route path="/landing" element={<Main />} />
+          <Route path="/" element={<Main />} />
+          <Route
+            path="/signin"
+            element={token ? <Navigate to="/" /> : <Login />}
+          />
+          <Route
+            path="/signup"
+            element={token ? <Navigate to="/" /> : <Register />}
+          />
+          <Route
+            path="/error"
+            element={<Error />}
+          />
           <Route
             path="/movies"
             element={
@@ -165,10 +173,16 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/signin" element={<Login />} />
-          <Route path="/signup" element={<Register />} />
-          <Route path="/error" element={<Error />} />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute loggedIn={!!token}>
+                <>
+                  <Profile />
+                </>
+              </ProtectedRoute>
+            }
+          />
         </Routes>
         <Navigation isOpen={isMenuOpen} closeMenu={closeMenu} />
       </div>
