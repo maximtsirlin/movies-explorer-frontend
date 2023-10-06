@@ -17,7 +17,7 @@ import { useCurrentUser } from '../../utils/CurrentUserContext';
 import Footer from '../Footer/Footer';
 
 function ProtectedRoute({ children, loggedIn }) {
-  return loggedIn ? children : <Navigate to="/" replace />;
+  return loggedIn ? children : <Navigate to="/landing" replace />;
 }
 
 function App() {
