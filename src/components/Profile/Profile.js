@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Profile.css';
 import { useCurrentUser } from '../../utils/CurrentUserContext';
@@ -12,8 +12,14 @@ function Profile() {
   const [name, setName] = useState(currentUser?.name);
   const [email, setEmail] = useState(currentUser?.email);
 
+  useEffect(() => {
+    setName(currentUser?.name)
+    setEmail(currentUser?.email)
+  }, [currentUser])
+
   async function saveInfo(e) {
     e.preventDefault()
+    console.log('save');
     await MainApi.setInfo(name, email, token)
   }
 
