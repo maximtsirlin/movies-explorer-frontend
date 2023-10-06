@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import './App.css';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -14,8 +14,11 @@ import MainApi from '../../utils/MainApi';
 import MoviesApi from '../../utils/MoviesApi';
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 import { useCurrentUser } from '../../utils/CurrentUserContext';
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Footer from '../Footer/Footer';
+
+function ProtectedRoute({ children, loggedIn }) {
+  return loggedIn ? children : <Navigate to="/" />;
+}
 
 function App() {
   const { currentUser, token } = useCurrentUser();
@@ -57,7 +60,6 @@ function App() {
     setFavorites(updatedFavorites)
   }
 
-
   function removeFromFavorites(movie) {
     const updatedFavorites = favorites.filter((favMovie) => favMovie.id !== movie.id);
     setFavorites(updatedFavorites)
@@ -91,7 +93,6 @@ function App() {
   const loadMoreMovies = () => {
     setVisibleMovies((prevVisibleMovies) => prevVisibleMovies + calculateVisibleMovies());
   };
-
 
   useEffect(() => {
     MoviesApi.getMovies().then((result) => {
@@ -158,32 +159,15 @@ function App() {
             element={
               <ProtectedRoute loggedIn={!!token}>
                 <>
-                  <Movies
-                    setSearchQuery={setSearchQuery}
-                    setShortFilm={setShortFilm}
-                  />
-                  <MoviesCardList
-                    filteredMovies={filteredMovies}
-                    visibleMovies={visibleMovies}
-                    movies={allMovies}
-                    shortFilm={shortFilm}
-                    favorites={favorites}
-                    addToFavorites={addToFavorites}
-                    removeFromFavorites={removeFromFavorites}
-                  />
+                  <SavedMovies />
                   <Footer />
                 </>
               </ProtectedRoute>
             }
           />
-
-
           <Route path="/profile" element={<Profile />} />
           <Route path="/signin" element={<Login />} />
-          <Route
-            path="/signup"
-            element={<Register />}
-          />
+          <Route path="/signup" element={<Register />} />
           <Route path="/error" element={<Error />} />
         </Routes>
         <Navigation isOpen={isMenuOpen} closeMenu={closeMenu} />
