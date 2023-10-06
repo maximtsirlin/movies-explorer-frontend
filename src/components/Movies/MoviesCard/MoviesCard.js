@@ -1,24 +1,22 @@
-import React from 'react';
+import React, { Component, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import './MoviesCard.css';
 
-const MoviesCard = ({
-  visibleMovies,
-  favorites,
-  filteredMovies = [],
-  addToFavorites,
-  removeFromFavorites,
-}) => {
+const MoviesCard = ({ visibleMovies, favorites, filteredMovies = [], addToFavorites, removeFromFavorites }) => {
   const location = useLocation();
+  const [clickedMovies, setClickedMovies] = useState([]);
 
-  const handleAddToFavorites = (movie) => {
-    addToFavorites(movie);
+  const handleCheckboxClick = (movie) => {
+    if (!clickedMovies.includes(movie.id)) {
+      addToFavorites(movie);
+      setClickedMovies([...clickedMovies, movie.id]);
+    } else {
+      removeFromFavorites(movie);
+      setClickedMovies(clickedMovies.filter((id) => id !== movie.id));
+    }
   };
 
-  const handleRemoveFromFavorites = (movie) => {
-    removeFromFavorites(movie);
-  };
-
+  console.trace('filteredMovies', filteredMovies);
   return (
     <>
       {filteredMovies
@@ -41,20 +39,20 @@ const MoviesCard = ({
                     ? 'movies-card__add_active'
                     : ''
                 }`}
-                onClick={() => handleAddToFavorites(movie)}
+                onClick={() => handleCheckboxClick(movie)}
               >
                 Сохранить
               </button>
             )}
 
-            {location.pathname === '/saved-movies' && (
+            {location.pathname === '/saved-movies' && favorites.some((favMovie) => favMovie.id === movie.id) ? (
               <button
                 className="movies-card__add movies-card__add_delete"
-                onClick={() => handleRemoveFromFavorites(movie)}
+                onClick={() => removeFromFavorites(movie)}
               >
                 Удалить из избранного
               </button>
-            )}
+            ) : null}
           </div>
         ))}
     </>
