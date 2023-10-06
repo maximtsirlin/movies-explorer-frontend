@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
 import './MoviesCard.css';
 
@@ -10,18 +10,13 @@ const MoviesCard = ({
   removeFromFavorites,
 }) => {
   const location = useLocation();
-  const [isClicked, setIsClicked] = useState(false); // State to track if the button has been clicked
 
   const handleAddToFavorites = (movie) => {
-    if (!isClicked) {
-      addToFavorites(movie);
-      setIsClicked(true); // Set the state to true after the first click
-    }
+    addToFavorites(movie);
   };
 
   const handleRemoveFromFavorites = (movie) => {
     removeFromFavorites(movie);
-    setIsClicked(false); // Allow the button to be clicked again when removing from favorites
   };
 
   return (
@@ -46,7 +41,7 @@ const MoviesCard = ({
                     ? 'movies-card__add_active'
                     : ''
                 }`}
-                onClick={() => handleAddToFavorites(movie)} // Use the new click handler
+                onClick={() => handleAddToFavorites(movie)}
               >
                 Сохранить
               </button>
@@ -55,7 +50,7 @@ const MoviesCard = ({
             {location.pathname === '/saved-movies' && (
               <button
                 className="movies-card__add movies-card__add_delete"
-                onClick={() => handleRemoveFromFavorites(movie)} // Use the new click handler
+                onClick={() => handleRemoveFromFavorites(movie)}
               >
                 Удалить из избранного
               </button>
