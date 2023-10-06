@@ -8,7 +8,7 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
-import Error from '../Error/Error';
+import Error from '../Error/Error'; // Импортируем компонент Error
 import Navigation from '../Navigation/Navigation';
 import MainApi from '../../utils/MainApi';
 import MoviesApi from '../../utils/MoviesApi';
@@ -16,7 +16,6 @@ import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 import { useCurrentUser } from '../../utils/CurrentUserContext';
 import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-
 
 function App() {
   const { currentUser, token } = useCurrentUser();
@@ -134,7 +133,7 @@ function App() {
           />
           <Route
             path="/error"
-            element={<Error />}
+            element={<Error />} // Добавляем маршрут для страницы с ошибкой 404
           />
           <Route
             path="/movies"
