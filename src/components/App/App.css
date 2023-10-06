@@ -22,24 +22,25 @@ body {
 
 
 .page__button {
-    height: 36px;
-    margin: 58px auto 0;
-    border: 0px solid #424242;
-    background: #2F2F2F;
-    color: white;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 1.25;
-    border-radius: 6px;
-    transition: opacity 0.3s;
-    width: 90%;
-    max-width: 1280px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
     align-content: space-between;
     align-items: center;
+    background: #2f2f2f;
+    border: 0 solid #424242;
+    border-radius: 6px;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    font-weight: 500;
+    height: 36px;
+    justify-content: space-evenly;
+    line-height: 1.25;
+    margin: 51px auto 0;
+    max-width: 1280px;
+    transition: opacity .3s;
+    width: 90%;
 }
+
 
 .page__button:hover {
     cursor: pointer;

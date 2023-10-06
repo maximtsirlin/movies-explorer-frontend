@@ -6,21 +6,29 @@ function CallbackValidation() {
   const [errors, setErrors] = React.useState({});
   const [isValid, setIsValid] = React.useState(false);
   const [isFocused, setIsFocused] = React.useState(false);
-
+console.log(errors);
   const onFocus = () => {
     setIsFocused(true);
   };
 
   const handleChange = (event) => {
     const { target } = event;
-    const { name } = target;
-    const { value } = target;
+    const { name, value } = target;
     const error = validation(name, value);
-    setErrors(validation(name, value));
+   
+    if (error) {
+      console.log('-', error);
+      setErrors({...errors, ...error})
+    } else {
+      const tmp = errors;
+      delete errors[name]
+      setErrors(tmp)
+    }
+    setErrors(error);
     setValues({ ...values, [name]: value });
     if (Object.keys(error).length === 0) {
       setIsValid(target.closest("form").checkValidity());
-    }
+    } else {setIsValid(false)}
   };
 
   const resetForm = React.useCallback(
