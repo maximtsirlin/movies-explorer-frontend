@@ -1,10 +1,10 @@
 .movies-card-list {
   grid-gap: 32px 13px;
   display: grid;
-  gap: 29px 12px;
+  gap: 33px 12px;
   grid-template-columns: repeat(auto-fit,377px);
   justify-content: center;
-  margin: 75px auto 0px;
+  margin: 75px auto 0;
   padding: initial;
 }
 
