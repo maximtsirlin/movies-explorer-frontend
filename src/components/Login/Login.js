@@ -1,42 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Login.css";
 import CallbackValidation from "../../utils/CallbackValidation";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../images/logo.svg";
 import Form from "../Form/Form";
 import { useCurrentUser } from "../../utils/CurrentUserContext";
-import { isEmail } from "validator";
 
 function Login() {
   const formCallbackValidation = CallbackValidation();
   const { login, error } = useCurrentUser();
   const navigate = useNavigate();
   const { email, password } = formCallbackValidation.values;
-
-  const [validationErrors, setValidationErrors] = useState({});
-
+  
   const submitHandle = async (evt) => {
     evt.preventDefault();
-
-    const errors = {};
-
-    if (!email) {
-      errors.email = "Email is required.";
-    }
-
-    if (!password) {
-      errors.password = "Password is required.";
-    }
-
-    if (email && !isEmail(email)) {
-      errors.email = "Invalid email format.";
-    }
-
-    if (Object.keys(errors).length > 0) {
-      setValidationErrors(errors);
-      return;
-    }
-
     await login(email, password);
     navigate("/movies");
     formCallbackValidation.resetForm();
@@ -60,7 +37,6 @@ function Login() {
           validation={formCallbackValidation}
           formName="login"
           loginError={error}
-          validationErrors={validationErrors}
         />
       </div>
     </section>
