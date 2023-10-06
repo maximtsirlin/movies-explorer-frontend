@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Profile.css';
 import { useCurrentUser } from '../../utils/CurrentUserContext';
-import { MainApi } from '../../utils/MainApi';
+import MainApi from '../../utils/MainApi';
 
 
 
