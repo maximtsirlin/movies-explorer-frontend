@@ -25,7 +25,7 @@ function Profile() {
 
   return (
     <main className='profile'>
-      <h1 className='profile__title'>Привет, {currentUser?.name}!</h1>
+      <h1 className='profile__title'>Привет, {name}!</h1>
       <form
         className='profile__form'
         onSubmit={saveInfo}
