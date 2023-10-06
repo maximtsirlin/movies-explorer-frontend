@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
 import './App.css';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -180,10 +180,13 @@ function App() {
           <Route path="*" element={<Error />} />
 
           <Route path="/profile" element={<Profile />} />
-          <Route path="/signin" element={<Login />} />
+          <Route
+            path="/signin"
+            element={token ? <Navigate to="/" /> : <Login />}
+          />
           <Route
             path="/signup"
-            element={<Register />}
+            element={token ? <Navigate to="/" /> : <Register />}
           />
         </Routes>
         <Navigation isOpen={isMenuOpen} closeMenu={closeMenu} />
