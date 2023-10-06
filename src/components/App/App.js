@@ -17,7 +17,7 @@ import { useCurrentUser } from '../../utils/CurrentUserContext';
 import Footer from '../Footer/Footer';
 
 function ProtectedRoute({ children, loggedIn }) {
-  return loggedIn ? children : <Navigate to="/" />;
+  return loggedIn ? children : <Navigate to="/" replace />;
 }
 
 function App() {
@@ -125,7 +125,7 @@ function App() {
       <div className="page">
         <Header openMenu={openMenu} />
         <Routes>
-          <Route path="/" element={<Main />} />
+          <Route path="/landing" element={<Main />} />
           <Route
             path="/movies"
             element={
