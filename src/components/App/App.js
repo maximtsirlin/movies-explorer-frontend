@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -8,14 +8,14 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
-import Error from '../Error/Error'; // Импортируем компонент Error
+import Error from '../Error/Error';
 import Navigation from '../Navigation/Navigation';
 import MainApi from '../../utils/MainApi';
 import MoviesApi from '../../utils/MoviesApi';
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 import { useCurrentUser } from '../../utils/CurrentUserContext';
-import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import Footer from '../Footer/Footer';
 
 function App() {
   const { currentUser, token } = useCurrentUser();
@@ -54,12 +54,13 @@ function App() {
 
   function addToFavorites(movie) {
     const updatedFavorites = [...favorites, movie];
-    setFavorites(updatedFavorites);
+    setFavorites(updatedFavorites)
   }
+
 
   function removeFromFavorites(movie) {
     const updatedFavorites = favorites.filter((favMovie) => favMovie.id !== movie.id);
-    setFavorites(updatedFavorites);
+    setFavorites(updatedFavorites)
   }
 
   useEffect(() => {
@@ -90,6 +91,7 @@ function App() {
   const loadMoreMovies = () => {
     setVisibleMovies((prevVisibleMovies) => prevVisibleMovies + calculateVisibleMovies());
   };
+
 
   useEffect(() => {
     MoviesApi.getMovies().then((result) => {
@@ -124,19 +126,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route
-            path="/signin"
-            element={token ? <Navigate to="/" /> : <Login />}
-          />
-          <Route
-            path="/signup"
-            element={token ? <Navigate to="/" /> : <Register />}
-          />
-          {/* <Route
-            path="/error"
-            element={<Error />} // Добавляем маршрут для страницы с ошибкой 404
-          /> */}
-           <Route path="*" element={<Error />} /> 
-          <Route
             path="/movies"
             element={
               <ProtectedRoute loggedIn={!!token}>
@@ -169,21 +158,32 @@ function App() {
             element={
               <ProtectedRoute loggedIn={!!token}>
                 <>
-                  <SavedMovies />
+                  <Movies
+                    setSearchQuery={setSearchQuery}
+                    setShortFilm={setShortFilm}
+                  />
+                  <MoviesCardList
+                    filteredMovies={filteredMovies}
+                    visibleMovies={visibleMovies}
+                    movies={allMovies}
+                    shortFilm={shortFilm}
+                    favorites={favorites}
+                    addToFavorites={addToFavorites}
+                    removeFromFavorites={removeFromFavorites}
+                  />
                   <Footer />
                 </>
               </ProtectedRoute>
             }
           />
+
+          <Route path="*" element={<Error />} />
+
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/signin" element={<Login />} />
           <Route
-            path="/profile"
-            element={
-              <ProtectedRoute loggedIn={!!token}>
-                <>
-                  <Profile />
-                </>
-              </ProtectedRoute>
-            }
+            path="/signup"
+            element={<Register />}
           />
         </Routes>
         <Navigation isOpen={isMenuOpen} closeMenu={closeMenu} />
