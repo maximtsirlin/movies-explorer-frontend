@@ -1,8 +1,14 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import './MoviesCard.css';
 
-const MoviesCard = ({ visibleMovies, favorites, filteredMovies = [], addToFavorites, removeFromFavorites }) => {
+const MoviesCard = ({
+  visibleMovies,
+  favorites,
+  filteredMovies = [],
+  addToFavorites,
+  removeFromFavorites,
+}) => {
   const location = useLocation();
   const [isClicked, setIsClicked] = useState(false); // State to track if the button has been clicked
 
@@ -24,7 +30,15 @@ const MoviesCard = ({ visibleMovies, favorites, filteredMovies = [], addToFavori
         .slice(0, visibleMovies)
         .map((movie) => (
           <div className="movies-card" key={movie._id}>
-            {/* ... Other movie card content */}
+            <div className="movies-card__about">
+              <h2 className="movies-card__title">{movie.nameRU}</h2>
+              <p className="movies-card__duration">{movie.duration}</p>
+            </div>
+            <img
+              className="movies-card__image"
+              src={'https://api.nomoreparties.co' + movie.image.url}
+              alt={movie.nameRU}
+            />
             {location.pathname === '/movies' && (
               <button
                 className={`movies-card__add ${
