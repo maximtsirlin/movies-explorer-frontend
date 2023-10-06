@@ -131,10 +131,11 @@ function App() {
             path="/signup"
             element={token ? <Navigate to="/" /> : <Register />}
           />
-          <Route
+          {/* <Route
             path="/error"
             element={<Error />} // Добавляем маршрут для страницы с ошибкой 404
-          />
+          /> */}
+           <Route path="*" element={<Error />} /> 
           <Route
             path="/movies"
             element={
