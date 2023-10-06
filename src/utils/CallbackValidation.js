@@ -15,20 +15,21 @@ console.log(errors);
     const { target } = event;
     const { name, value } = target;
     const error = validation(name, value);
-   
-    if (error) {
-      console.log('-', error);
-      setErrors({...errors, ...error})
+
+    let updatedErrors = { ...errors };
+    if (Object.keys(error).length > 0) {
+      updatedErrors[name] = error[name];
     } else {
-      const tmp = errors;
-      delete errors[name]
-      setErrors(tmp)
+      delete updatedErrors[name];
     }
-    setErrors(error);
-    setValues({ ...values, [name]: value });
-    if (Object.keys(error).length === 0) {
+    setErrors(updatedErrors);
+    setValues(prevValues => ({ ...prevValues, [name]: value }));
+
+    if (Object.keys(updatedErrors).length === 0) {
       setIsValid(target.closest("form").checkValidity());
-    } else {setIsValid(false)}
+    } else {
+      setIsValid(false);
+    }
   };
 
   const resetForm = React.useCallback(
