@@ -84,7 +84,7 @@ class Api {
         year: movie.year,
         description: movie.description,
         image: `https://api.nomoreparties.co${movie.image.url}`,
-        trailer: movie.trailerLink,
+        trailerLink: movie.trailerLink,
         movieId: movie.id.toString(),
         nameRU: movie.nameRU,
         nameEN: movie.nameEN,
