@@ -57,7 +57,6 @@ function App() {
     setFavorites(updatedFavorites)
   }
 
-
   function removeFromFavorites(movie) {
     const updatedFavorites = favorites.filter((favMovie) => favMovie.id !== movie.id);
     setFavorites(updatedFavorites)
@@ -92,7 +91,6 @@ function App() {
     setVisibleMovies((prevVisibleMovies) => prevVisibleMovies + calculateVisibleMovies());
   };
 
-
   useEffect(() => {
     MoviesApi.getMovies().then((result) => {
       setAllMovies(result);
@@ -121,76 +119,83 @@ function App() {
 
   return (
     <>
-      <div className="page">
-        <Header openMenu={openMenu} />
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route
-            path="/movies"
-            element={
-              <ProtectedRoute loggedIn={!!token}>
-                <>
-                  <Movies
-                    setSearchQuery={setSearchQuery}
-                    setShortFilm={setShortFilm}
-                  />
-                  <MoviesCardList
-                    filteredMovies={filteredMovies}
-                    visibleMovies={visibleMovies}
-                    movies={allMovies}
-                    shortFilm={shortFilm}
-                    favorites={favorites}
-                    addToFavorites={addToFavorites}
-                    removeFromFavorites={removeFromFavorites}
-                  />
-                  {filteredMovies.length > visibleMovies && (
-                    <button onClick={loadMoreMovies} className="page__button">
-                      Ещё
-                    </button>
-                  )}
-                  <Footer />
-                </>
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/saved-movies"
-            element={
-              <ProtectedRoute loggedIn={!!token}>
-                <>
-                  <Movies
-                    setSearchQuery={setSearchQuery}
-                    setShortFilm={setShortFilm}
-                  />
-                  <MoviesCardList
-                    filteredMovies={filteredMovies}
-                    visibleMovies={visibleMovies}
-                    movies={allMovies}
-                    shortFilm={shortFilm}
-                    favorites={favorites}
-                    addToFavorites={addToFavorites}
-                    removeFromFavorites={removeFromFavorites}
-                  />
-                  <Footer />
-                </>
-              </ProtectedRoute>
-            }
-          />
+      {location.pathname !== '*' && (
+        <div className="page">
+          <Header openMenu={openMenu} />
+        </div>
+      )}
 
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route
+          path="/movies"
+          element={
+            <ProtectedRoute loggedIn={!!token}>
+              <>
+                <Movies
+                  setSearchQuery={setSearchQuery}
+                  setShortFilm={setShortFilm}
+                />
+                <MoviesCardList
+                  filteredMovies={filteredMovies}
+                  visibleMovies={visibleMovies}
+                  movies={allMovies}
+                  shortFilm={shortFilm}
+                  favorites={favorites}
+                  addToFavorites={addToFavorites}
+                  removeFromFavorites={removeFromFavorites}
+                />
+                {filteredMovies.length > visibleMovies && (
+                  <button onClick={loadMoreMovies} className="page__button">
+                    Ещё
+                  </button>
+                )}
+                <Footer />
+              </>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/saved-movies"
+          element={
+            <ProtectedRoute loggedIn={!!token}>
+              <>
+                <Movies
+                  setSearchQuery={setSearchQuery}
+                  setShortFilm={setShortFilm}
+                />
+                <MoviesCardList
+                  filteredMovies={filteredMovies}
+                  visibleMovies={visibleMovies}
+                  movies={allMovies}
+                  shortFilm={shortFilm}
+                  favorites={favorites}
+                  addToFavorites={addToFavorites}
+                  removeFromFavorites={removeFromFavorites}
+                />
+                <Footer />
+              </>
+            </ProtectedRoute>
+          }
+        />
+
+        {location.pathname === '*' ? (
           <Route path="*" element={<Error />} />
+        ) : (
+          <Route path="*" element={<Navigate to="/" />} />
+        )}
 
-          <Route path="/profile" element={<Profile />} />
-          <Route
-            path="/signin"
-            element={token ? <Navigate to="/" /> : <Login />}
-          />
-          <Route
-            path="/signup"
-            element={token ? <Navigate to="/" /> : <Register />}
-          />
-        </Routes>
-        <Navigation isOpen={isMenuOpen} closeMenu={closeMenu} />
-      </div>
+        <Route path="/profile" element={<Profile />} />
+        <Route
+          path="/signin"
+          element={token ? <Navigate to="/" /> : <Login />}
+        />
+        <Route
+          path="/signup"
+          element={token ? <Navigate to="/" /> : <Register />}
+        />
+      </Routes>
+      <Navigation isOpen={isMenuOpen} closeMenu={closeMenu} />
     </>
   );
 }
