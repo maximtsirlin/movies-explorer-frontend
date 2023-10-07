@@ -8,7 +8,7 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
       headers: {
-        "content-type": "application/json",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${jwt}`,
       },
     }).then((res) => this._addResult(res));
@@ -18,7 +18,7 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: {
-        "content-type": "application/json",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${jwt}`,
       },
       body: JSON.stringify({
@@ -63,17 +63,18 @@ class Api {
   getSavedMovies(jwt) {
     return fetch(`${this._baseUrl}/movies`, {
       headers: {
-        "content-type": "application/json",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${jwt}`,
       },
     }).then((res) => this._addResult(res));
   }
 
   postMovie(movie, jwt) {
+    console.log(movie);
     return fetch(`${this._baseUrl}/movies`, {
       method: "POST",
       headers: {
-        "content-type": "application/json",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${jwt}`,
       },
       body: JSON.stringify({
@@ -96,7 +97,7 @@ class Api {
     return fetch(`${this._baseUrl}/movies/${movieId}`, {
       method: "DELETE",
       headers: {
-        "content-type": "application/json",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${jwt}`,
       },
     }).then((res) => this._addResult(res));
