@@ -1,18 +1,25 @@
 import React, { Component, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import './MoviesCard.css';
+import MainApi from '../../../utils/MainApi';
+import { useCurrentUser } from '../../../utils/CurrentUserContext';
+
 
 const MoviesCard = ({ visibleMovies, favorites, filteredMovies = [], addToFavorites, removeFromFavorites }) => {
   const location = useLocation();
-  const [clickedMovies, setClickedMovies] = useState([]);
+  const {token} = useCurrentUser();
+  // const [clickedMovies, setClickedMovies] = useState([]);
 
-  const handleCheckboxClick = (movie) => {
-    if (!clickedMovies.includes(movie.id)) {
+  const handleCheckboxClick = async (movie) => {
+    console.log(movie, favorites);
+    if (!favorites.includes(movie)) {
+      await MainApi.postMovie(movie, token).then((result) => {console.log(result)})
       addToFavorites(movie);
-      setClickedMovies([...clickedMovies, movie.id]);
+      // setClickedMovies([...clickedMovies, movie.id]);
     } else {
+      await MainApi.removeMovie(movie.id, token).then((result) => {console.log(result)})
       removeFromFavorites(movie);
-      setClickedMovies(clickedMovies.filter((id) => id !== movie.id));
+      // setClickedMovies(clickedMovies.filter((id) => id !== movie.id));
     }
   };
 

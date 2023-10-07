@@ -16,6 +16,7 @@ import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 import { useCurrentUser } from '../../utils/CurrentUserContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Footer from '../Footer/Footer';
+import mainApi from '../../utils/MainApi';
 
 function App() {
   const { currentUser, token } = useCurrentUser();
@@ -97,6 +98,7 @@ function App() {
     MoviesApi.getMovies().then((result) => {
       setAllMovies(result);
     });
+    mainApi.getSavedMovies(token).then((result) => {setFavorites(result)})
   }, []);
 
   useEffect(() => {
