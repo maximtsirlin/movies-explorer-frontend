@@ -18,7 +18,7 @@ const MoviesCard = ({ visibleMovies, favorites, filteredMovies = [], addToFavori
       addToFavorites(movie);
       // setClickedMovies([...clickedMovies, movie.movieId]);
     } else {
-      console.log(removeMovie);
+      console.log('removeMovie');
       await MainApi.removeMovie(movie.movieId, token).then((result) => {console.log(result)})
       removeFromFavorites(movie);
       // setClickedMovies(clickedMovies.filter((id) => id !== movie.movieId));
