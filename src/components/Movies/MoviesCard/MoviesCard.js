@@ -13,10 +13,12 @@ const MoviesCard = ({ visibleMovies, favorites, filteredMovies = [], addToFavori
   const handleCheckboxClick = async (movie) => {
     console.log(movie, favorites);
     if (!favorites.some((favMovie) => favMovie.movieId === movie.movieId)) {
+      console.log('addMovie');
       await MainApi.postMovie(movie, token).then((result) => {console.log(result)})
       addToFavorites(movie);
       // setClickedMovies([...clickedMovies, movie.movieId]);
     } else {
+      console.log(removeMovie);
       await MainApi.removeMovie(movie.movieId, token).then((result) => {console.log(result)})
       removeFromFavorites(movie);
       // setClickedMovies(clickedMovies.filter((id) => id !== movie.movieId));
@@ -61,7 +63,7 @@ const MoviesCard = ({ visibleMovies, favorites, filteredMovies = [], addToFavori
                   }) ? (
               <button
                 className="movies-card__add movies-card__add_delete"
-                onClick={() => removeFromFavorites(movie)}
+                onClick={() => handleCheckboxClick(movie)}
               >
                 Удалить из избранного
               </button>
