@@ -54,16 +54,16 @@ function App() {
   }
 
   function addToFavorites(movie) {
-    const tmp = movie.id;
-    delete movie['id'];
-    movie['movieId'] = tmp;
+    // const tmp = movie.movieId;
+    // delete movie['id'];
+    // movie['movieId'] = tmp;
     const updatedFavorites = [...favorites, movie];
     setFavorites(updatedFavorites)
   }
 
 
   function removeFromFavorites(movie) {
-    const updatedFavorites = favorites.filter((favMovie) => favMovie.movieId !== movie.id);
+    const updatedFavorites = favorites.filter((favMovie) => favMovie.movieId !== movie.movieId);
     setFavorites(updatedFavorites)
   }
 
@@ -99,6 +99,12 @@ function App() {
 
   useEffect(() => {
     MoviesApi.getMovies().then((result) => {
+      result = result.map(el => {
+        const tmp = el.id;
+        delete el['id'];
+        el['movieId'] = tmp;
+        return el
+      });
       setAllMovies(result);
     });
     mainApi.getSavedMovies(token).then((result) => {setFavorites(result)})

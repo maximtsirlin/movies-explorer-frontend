@@ -12,14 +12,14 @@ const MoviesCard = ({ visibleMovies, favorites, filteredMovies = [], addToFavori
 
   const handleCheckboxClick = async (movie) => {
     console.log(movie, favorites);
-    if (!favorites.some((favMovie) => favMovie.movieId === movie.id)) {
+    if (!favorites.some((favMovie) => favMovie.movieId === movie.movieId)) {
       await MainApi.postMovie(movie, token).then((result) => {console.log(result)})
       addToFavorites(movie);
-      // setClickedMovies([...clickedMovies, movie.id]);
+      // setClickedMovies([...clickedMovies, movie.movieId]);
     } else {
-      await MainApi.removeMovie(movie.id, token).then((result) => {console.log(result)})
+      await MainApi.removeMovie(movie.movieId, token).then((result) => {console.log(result)})
       removeFromFavorites(movie);
-      // setClickedMovies(clickedMovies.filter((id) => id !== movie.id));
+      // setClickedMovies(clickedMovies.filter((id) => id !== movie.movieId));
     }
   };
 
@@ -43,8 +43,8 @@ const MoviesCard = ({ visibleMovies, favorites, filteredMovies = [], addToFavori
               <button
                 className={`movies-card__add ${
                   favorites.some((favMovie) => {
-                    // console.log(favMovie.id, movie.id, favMovie.id === movie.id );
-                   return favMovie.movieId === movie.id 
+                    // console.log(favMovie.id, movie.movieId, favMovie.id === movie.movieId );
+                   return favMovie.movieId === movie.movieId 
                   })
                     ? 'movies-card__add_active'
                     : ''
@@ -56,7 +56,7 @@ const MoviesCard = ({ visibleMovies, favorites, filteredMovies = [], addToFavori
             )}
 
             {location.pathname === '/saved-movies' && favorites.some((favMovie) => {
-                    console.log(favMovie.movieId, movie.id, favMovie.id === movie.id, movie.movieId );
+                    console.log(favMovie.movieId, movie.movieId, favMovie.id === movie.movieId, movie.movieId );
                    return favMovie.movieId === movie.movieId 
                   }) ? (
               <button
