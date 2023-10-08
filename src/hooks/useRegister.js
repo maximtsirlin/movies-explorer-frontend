@@ -1,4 +1,4 @@
-export default function register() {
+export default function useRegister() {
     const [status, setStatus] = useState(null);
 
     return {
