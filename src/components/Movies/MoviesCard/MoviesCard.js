@@ -46,7 +46,7 @@ const MoviesCard = ({ visibleMovies, favorites, filteredMovies = [], addToFavori
             </div>
             <img
               className="movies-card__image"
-              src={'https://api.nomoreparties.co' + movie.image.url}
+              src={movie.image.url ? 'https://api.nomoreparties.co' + movie.image.url : movie.image}
               alt={movie.nameRU}
             />
             {location.pathname === '/movies' && (
