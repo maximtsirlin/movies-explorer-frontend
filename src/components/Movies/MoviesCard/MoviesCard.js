@@ -42,7 +42,10 @@ const MoviesCard = ({ visibleMovies, favorites, filteredMovies = [], addToFavori
             {location.pathname === '/movies' && (
               <button
                 className={`movies-card__add ${
-                  favorites.some((favMovie) => favMovie.id === movie.id)
+                  favorites.some((favMovie) => {
+                    console.log(favMovie.id, movie.id, favMovie.id === movie.id );
+                   return favMovie.id === movie.id 
+                  })
                     ? 'movies-card__add_active'
                     : ''
                 }`}
