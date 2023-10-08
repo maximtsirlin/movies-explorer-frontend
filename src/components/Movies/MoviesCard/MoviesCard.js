@@ -43,7 +43,7 @@ const MoviesCard = ({ visibleMovies, favorites, filteredMovies = [], addToFavori
               <button
                 className={`movies-card__add ${
                   favorites.some((favMovie) => {
-                    console.log(favMovie.id, movie.id, favMovie.id === movie.id );
+                    // console.log(favMovie.id, movie.id, favMovie.id === movie.id );
                    return favMovie.movieId === movie.id 
                   })
                     ? 'movies-card__add_active'
@@ -55,7 +55,10 @@ const MoviesCard = ({ visibleMovies, favorites, filteredMovies = [], addToFavori
               </button>
             )}
 
-            {location.pathname === '/saved-movies' && favorites.some((favMovie) => favMovie.movieId === movie.id) ? (
+            {location.pathname === '/saved-movies' && favorites.some((favMovie) => {
+                    console.log(favMovie.movieId, movie.id, favMovie.id === movie.id, movie.movieId );
+                   return favMovie.movieId === movie.id 
+                  }) ? (
               <button
                 className="movies-card__add movies-card__add_delete"
                 onClick={() => removeFromFavorites(movie)}
