@@ -54,13 +54,16 @@ function App() {
   }
 
   function addToFavorites(movie) {
+    const tmp = movie.id;
+    delete movie['id'];
+    movie['movieId'] = tmp;
     const updatedFavorites = [...favorites, movie];
     setFavorites(updatedFavorites)
   }
 
 
   function removeFromFavorites(movie) {
-    const updatedFavorites = favorites.filter((favMovie) => favMovie.id !== movie.id);
+    const updatedFavorites = favorites.filter((favMovie) => favMovie.movieId !== movie.id);
     setFavorites(updatedFavorites)
   }
 
