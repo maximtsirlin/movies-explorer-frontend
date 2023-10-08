@@ -7,20 +7,28 @@ import { useCurrentUser } from '../../../utils/CurrentUserContext';
 
 const MoviesCard = ({ visibleMovies, favorites, filteredMovies = [], addToFavorites, removeFromFavorites }) => {
   const location = useLocation();
-  const {token} = useCurrentUser();
+  const { token } = useCurrentUser();
   // const [clickedMovies, setClickedMovies] = useState([]);
 
   const handleCheckboxClick = async (movie) => {
     console.log(movie, favorites);
     if (!favorites.some((favMovie) => favMovie.movieId === movie.movieId)) {
       console.log('addMovie');
-      await MainApi.postMovie(movie, token).then((result) => {console.log(result)})
-      addToFavorites(movie);
+      await MainApi.postMovie(movie, token).then((result) => {
+        console.log(result)
+        addToFavorites(result);
+      }
+
+      )
       // setClickedMovies([...clickedMovies, movie.movieId]);
     } else {
       console.log('removeMovie');
-      await MainApi.removeMovie(movie.movieId, token).then((result) => {console.log(result)})
-      removeFromFavorites(movie);
+      const removeMovie = favorites.find(el => el.movieId === movie.movieId)
+      await MainApi.removeMovie(removeMovie._id, token).then((result) => {
+        console.log(result)
+        removeFromFavorites(result);
+
+      })
       // setClickedMovies(clickedMovies.filter((id) => id !== movie.movieId));
     }
   };
@@ -43,14 +51,13 @@ const MoviesCard = ({ visibleMovies, favorites, filteredMovies = [], addToFavori
             />
             {location.pathname === '/movies' && (
               <button
-                className={`movies-card__add ${
-                  favorites.some((favMovie) => {
-                    // console.log(favMovie.id, movie.movieId, favMovie.id === movie.movieId );
-                   return favMovie.movieId === movie.movieId 
-                  })
+                className={`movies-card__add ${favorites.some((favMovie) => {
+                  // console.log(favMovie.id, movie.movieId, favMovie.id === movie.movieId );
+                  return favMovie.movieId === movie.movieId
+                })
                     ? 'movies-card__add_active'
                     : ''
-                }`}
+                  }`}
                 onClick={() => handleCheckboxClick(movie)}
               >
                 Сохранить
@@ -58,9 +65,9 @@ const MoviesCard = ({ visibleMovies, favorites, filteredMovies = [], addToFavori
             )}
 
             {location.pathname === '/saved-movies' && favorites.some((favMovie) => {
-                    console.log(favMovie.movieId, movie.movieId, favMovie.id === movie.movieId, movie.movieId );
-                   return favMovie.movieId === movie.movieId 
-                  }) ? (
+              console.log(favMovie.movieId, movie.movieId, favMovie.id === movie.movieId, movie.movieId);
+              return favMovie.movieId === movie.movieId
+            }) ? (
               <button
                 className="movies-card__add movies-card__add_delete"
                 onClick={() => handleCheckboxClick(movie)}
