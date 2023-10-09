@@ -9,23 +9,25 @@ function MoviesCardList({
   favorites,
   addToFavorites,
   removeFromFavorites
- }) {
+}) {
 
-
+  console.trace('filteredMovies', filteredMovies);
 
   return (
-    <ul className='movies-card-list'>
-      <MoviesCard
-        visibleMovies={visibleMovies}
-        movies={movies}
-        filteredMovies={filteredMovies}
-        currentPath={currentPath}
-        favorites={favorites}
-        addToFavorites={addToFavorites}
-        removeFromFavorites={removeFromFavorites}
-      />
-    </ul>
-  )
+    <>
+      {filteredMovies
+        .slice(0, visibleMovies)
+        .map((movie) => (
+          <MoviesCard
+            favorites={favorites}
+            addToFavorites={addToFavorites}
+            removeFromFavorites={removeFromFavorites}
+            movie={movie}
+          />
+        ))}
+    </>
+  );
+
 }
 
 export default MoviesCardList;

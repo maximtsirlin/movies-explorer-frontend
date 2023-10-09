@@ -7,13 +7,13 @@ function Header(props) {
   const { currentUser } = useCurrentUser();
   const location = useLocation();
 
-  if (location.pathname === '/signin' || location.pathname === '/signup' || location.pathname === '*') {
-    return null;
+  if (location.pathname === '/signin' || location.pathname === '/signup') {
+    return null
   }
   // if (location.pathname !== '*' ) {
   //   return null
   // }
-
+  
   if (currentUser) {
     return (
       <header className='header'>
