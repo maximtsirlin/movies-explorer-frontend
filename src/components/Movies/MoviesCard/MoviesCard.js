@@ -28,6 +28,9 @@ const MoviesCard = ({ favorites, addToFavorites, removeFromFavorites, movie }) =
 
       })
     }
+  };
+
+  
 
 
   return (
