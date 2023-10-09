@@ -14,7 +14,7 @@ function MoviesCardList({
   console.trace('filteredMovies', filteredMovies);
 
   return (
-    <>
+    <ul className='movies-card-list'>
       {filteredMovies
         .slice(0, visibleMovies)
         .map((movie) => (
@@ -25,7 +25,7 @@ function MoviesCardList({
             movie={movie}
           />
         ))}
-    </>
+    </ul>
   );
 
 }
