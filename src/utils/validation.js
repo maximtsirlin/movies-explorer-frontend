@@ -15,7 +15,7 @@ function validation(name, value) {
       if(name === 'name'){
         if(!value) {
           errors = ({[name]: 'Укажите имя'})
-        } else if(!/^([А-Я]?[а-яё]{1,23}|[A-Z]?[a-z]{1,23})$/gm.test(value)) {
+        } else if (!/^([А-Я]?[а-яё\s]{1,23}|[A-Z]?[a-z\s]{1,23})$/gm.test(value)) {
           errors =({[name]: 'Укажите корректное имя'});
         } else if(value.length<1) {
           errors = ({[name]: "Укажите имя не короче 2 символов"})
