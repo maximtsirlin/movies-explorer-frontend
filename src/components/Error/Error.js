@@ -1,9 +1,6 @@
-import { Link, useLocation } from 'react-router-dom';
-import './Error.css';
+import React from 'react';
 
 function Error() {
-  const location = useLocation();
-
   const goBack = () => {
     window.history.back();
   }
@@ -11,9 +8,10 @@ function Error() {
   return (
     <main className='error'>
       <h2 className='error__title'>404</h2>
-      <p className='error__text'>Page not found</p>
-      <button className='error__link' onClick={goBack}>Go back</button>
-      <Link className='error__link' to={location.pathname}>Reload</Link>
+      <p className='error__text'>Страница не найдена</p>
+      <button className='error__link' onClick={goBack}>Назад</button>
     </main>
   )
 }
+
+export default Error;
