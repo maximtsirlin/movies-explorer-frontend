@@ -33,6 +33,12 @@ function App() {
 
   console.log('loggedIn', token);
 
+  useEffect(()=>{
+    const shortFilm = localStorage.getItem('shortFilms');
+    setShortFilm(shortFilm);
+  },[])
+
+
   const openMenu = () => {
     setIsMenuOpen(true);
   };
@@ -51,6 +57,12 @@ function App() {
       return 5;
     }
     return 5;
+  }
+
+
+  const handleShortFilm = (value) => {
+    localStorage.setItem('shortFilms', value);
+    setShortFilm(value);
   }
 
   function addToFavorites(movie) {
@@ -143,7 +155,7 @@ function App() {
                 <>
                   <Movies
                     setSearchQuery={setSearchQuery}
-                    setShortFilm={setShortFilm}
+                    setShortFilm={handleShortFilm}
                   />
                   <MoviesCardList
                     filteredMovies={filteredMovies}
