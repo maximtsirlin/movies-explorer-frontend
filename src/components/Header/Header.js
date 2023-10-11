@@ -10,8 +10,7 @@ function Header(props) {
   if (location.pathname === '/signin' || location.pathname === '/signup') {
     return null
   }
-  if (location.pathname !== '/' && location.pathname !== '/movies' && location.pathname !== '/saved-movies') {
-
+  if (location.pathname !== '/' && location.pathname !== '/movies' && location.pathname !== '/saved-movies' && location.pathname !== '/profile') {s
     return null
   }
   
