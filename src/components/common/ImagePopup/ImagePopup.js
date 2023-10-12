@@ -14,7 +14,7 @@ function ImagePopup({ card, onClose }) {
 					className='popup__close popup__close_theme_position'
 					onClick={onClose}
 				/>
-				<figure>
+				<figure className={'popup__center'}>
 					<img className='popup__img'
 					     src={card.link}
 					     alt={card.name} />

@@ -121,7 +121,7 @@ class Api {
 }
 
 const mainApi = new Api({
-  // baseUrl: "http://localhost:8080",
+  //baseUrl: "http://localhost:8080",
   baseUrl: "https://api.deploy-diploma.nomoreparties.co",
   headers: {
     "Content-Type": "application/json",
