@@ -1,4 +1,3 @@
-
 import firstImage from '../../src/images/1st-mov.jpeg';
 import secondImage from '../../src/images/2d-mov.jpeg';
 import thirdImage from '../../src/images/3d-mov.jpeg';

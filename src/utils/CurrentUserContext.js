@@ -22,11 +22,16 @@ export function CurrentUserProvider({children}) {
 				}
 				localStorage.setItem('jwt', resp.token); // Сохраняем токен в localStorage
 				setToken(resp.token);
+			})
+			.catch(() => {
+				throw new Error("Неправильный логин или пароль!");
 			});
 	};
 
 	const logout = () => {
 		localStorage.removeItem('jwt');
+		localStorage.removeItem('shortFilms');
+		localStorage.removeItem('searchQuery');
 		setToken(null);
 		setCurrentUser(null);
 		navigate('/');

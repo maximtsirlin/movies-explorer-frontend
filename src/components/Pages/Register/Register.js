@@ -6,7 +6,9 @@ import logo from "../../../images/logo.svg";
 import CallbackValidation from "../../../utils/CallbackValidation";
 import MainApi from "../../../utils/MainApi";
 import {useCurrentUser} from "../../../utils/CurrentUserContext";
-import Modal from "../../common/Modal/Modal";
+import ImagePopup from "../../common/ImagePopup/ImagePopup";
+import errorIcon from '../../../assets/img/icon-error.svg';
+import successIcon from '../../../assets/img/icon-success.svg';
 
 function Register() {
 	const formCallbackValidation = CallbackValidation();
@@ -19,30 +21,49 @@ function Register() {
 	const navigate = useNavigate();
 
 	const [isOpen, setIsOpen] = useState(false);
-	const [errorMsg, setErrorMsg] = useState("");
+	const [modalData, setModalData] = useState({
+		name: "",
+		link: "",
+		callback: undefined,
+	});
 	const [disabled, setDisabled] = useState(false);
 
 	const submitHandle = (e) => {
 		e.preventDefault();
 		setDisabled(true);
 		if (!name || !email || !password) {
-			setErrorMsg("Не все поля заполнены");
+			setModalData({
+				name: "Не все поля заполнены",
+				link: errorIcon,
+				callback: undefined,
+			});
 			setIsOpen(true);
 			return;
 		}
 		MainApi.register(name, email, password)
 			.then(() => {
-				login(email, password).then(() => {
-					formCallbackValidation.resetForm();
-					navigate("/movies");
+				setModalData({
+					name: "Пользователь успешно создан",
+					link: successIcon,
+					callback: () => {
+						login(email, password).then(() => {
+							formCallbackValidation.resetForm();
+							navigate("/movies");
+						});
+					}
 				});
+				setIsOpen(true);
 			})
 			.catch((e) => {
-				setErrorMsg(e.message);
+				setModalData({
+					name: e.message,
+					link: errorIcon,
+					callback: undefined,
+				});
 				setIsOpen(true);
 			})
 			.finally(() => {
-					setDisabled(false);
+				setDisabled(false);
 			});
 	};
 
@@ -88,8 +109,8 @@ function Register() {
             </span>
 					</fieldset>
 				</Form>
-				{isOpen && <Modal setIsOpen={setIsOpen} title={"Ошибка"} text={errorMsg}/>}
 			</div>
+			{isOpen && <ImagePopup card={modalData} onClose={() => {setIsOpen(false); modalData.callback && modalData.callback()}}/>}
 		</section>
 	);
 }

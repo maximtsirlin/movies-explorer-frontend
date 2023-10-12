@@ -6,16 +6,20 @@ import logo from "../../../images/logo.svg";
 import Form from "../../Form/Form";
 import { useCurrentUser } from "../../../utils/CurrentUserContext";
 import Modal from "../../common/Modal/Modal";
-
+import ImagePopup from "../../common/ImagePopup/ImagePopup";
+import errorIcon from '../../../assets/img/icon-error.svg';
 function Login() {
   const formCallbackValidation = CallbackValidation();
   const { login, error } = useCurrentUser();
   const navigate = useNavigate();
   const { email, password } = formCallbackValidation.values;
 
-  const [isOpen, setIsOpen] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
   const [disabled, setDisabled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [modalData, setModalData] = useState({
+    name: "",
+    link: "",
+  });
 
   const submitHandle = async (evt) => {
     evt.preventDefault();
@@ -26,7 +30,10 @@ function Login() {
         formCallbackValidation.resetForm();
       })
       .catch((e) => {
-        setErrorMsg(e.message);
+        setModalData({
+          name: e.message,
+          link: errorIcon,
+        });
         setIsOpen(true);
       })
       .finally(() => {
@@ -54,7 +61,8 @@ function Login() {
           formName="login"
           loginError={error}
         />
-        {isOpen && <Modal setIsOpen={setIsOpen} title={"Ошибка"} text={errorMsg}/>}
+        {/*{isOpen && <Modal setIsOpen={setIsOpen} title={"Ошибка"} text={errorMsg}/>}*/}
+        {isOpen && <ImagePopup card={modalData} onClose={() => setIsOpen(false)}/>}
       </div>
     </section>
   );
