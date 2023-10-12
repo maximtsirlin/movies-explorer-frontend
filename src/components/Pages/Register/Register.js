@@ -3,15 +3,15 @@ import React, {useState} from "react";
 import "./Register.css";
 import Form from "../../Form/Form";
 import logo from "../../../images/logo.svg";
-import CallbackValidation from "../../../utils/CallbackValidation";
 import MainApi from "../../../utils/MainApi";
-import {useCurrentUser} from "../../../utils/CurrentUserContext";
+import {useCurrentUser} from "../../../utils/UseCurrentUserContext";
 import ImagePopup from "../../common/ImagePopup/ImagePopup";
 import errorIcon from '../../../assets/img/icon-error.svg';
 import successIcon from '../../../assets/img/icon-success.svg';
+import UseCallbackValidation from "../../../utils/UseCallbackValidation";
 
 function Register() {
-	const formCallbackValidation = CallbackValidation();
+	const formCallbackValidation = UseCallbackValidation();
 	const {login} = useCurrentUser();
 	const [error, setError] = useState(false);
 	const {email, password, name} = formCallbackValidation.values;
@@ -35,7 +35,9 @@ function Register() {
 			setModalData({
 				name: "Не все поля заполнены",
 				link: errorIcon,
-				callback: undefined,
+				callback: () => {
+					setDisabled(false);
+				},
 			});
 			setIsOpen(true);
 			return;

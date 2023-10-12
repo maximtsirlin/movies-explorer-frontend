@@ -1,6 +1,6 @@
 import { Link, Route, Routes } from 'react-router-dom';
 import './Header.css';
-import { useCurrentUser } from '../../utils/CurrentUserContext';
+import { useCurrentUser } from '../../utils/UseCurrentUserContext';
 import { useLocation } from 'react-router-dom';
 
 function Header(props) {
@@ -13,7 +13,7 @@ function Header(props) {
   if (location.pathname !== '/' && location.pathname !== '/movies' && location.pathname !== '/saved-movies' && location.pathname !== '/profile') {
     return null
   }
-  
+
   if (currentUser) {
     return (
       <header className='header'>

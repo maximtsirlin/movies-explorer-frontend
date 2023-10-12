@@ -1,7 +1,7 @@
 import React from "react";
 import validation from "./validation";
 
-function CallbackValidation() {
+function UseCallbackValidation() {
   const [values, setValues] = React.useState({});
   const [errors, setErrors] = React.useState({});
   const [isValid, setIsValid] = React.useState(false);
@@ -52,4 +52,4 @@ console.log(errors);
   };
 }
 
-export default CallbackValidation;
+export default UseCallbackValidation;

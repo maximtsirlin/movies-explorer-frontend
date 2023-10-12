@@ -1,15 +1,15 @@
 import React, {useState} from "react";
 import "./Login.css";
-import CallbackValidation from "../../../utils/CallbackValidation";
+import UseCallbackValidation from "../../../utils/UseCallbackValidation";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../images/logo.svg";
 import Form from "../../Form/Form";
-import { useCurrentUser } from "../../../utils/CurrentUserContext";
-import Modal from "../../common/Modal/Modal";
+import { useCurrentUser } from "../../../utils/UseCurrentUserContext";
 import ImagePopup from "../../common/ImagePopup/ImagePopup";
 import errorIcon from '../../../assets/img/icon-error.svg';
+
 function Login() {
-  const formCallbackValidation = CallbackValidation();
+  const formCallbackValidation = UseCallbackValidation();
   const { login, error } = useCurrentUser();
   const navigate = useNavigate();
   const { email, password } = formCallbackValidation.values;

@@ -101,3 +101,35 @@ export const moviesDataSave = [
     isSaved: true,
   }
 ];
+
+
+export const LOCAL_STORAGE_KEYS = {
+  JWT: 'jwt',
+  SHORT_FILM: 'shortFilms',
+  SHORT_FILM_F: 'shortFilms',
+  SEARCH_QUERY: 'searchQuery',
+  SEARCH_QUERY_F: 'searchQueryF',
+};
+
+export const SCREEN_SIZE = {
+  DESKTOP: 1280,
+  TABLE: 768,
+  MOBILE: 320,
+  MOBILE_R: 480,
+}
+
+export const COL = {
+  DESKTOP: 12,
+  TABLE: 8,
+  MOBILE: 5,
+}
+
+export const ERROR = {
+  LOGIN: "Неправильный логин или пароль!",
+  REGISTER: "Такой пользователь уже существует!",
+  EDIT: "Не смогли обновить данные!",
+};
+
+export const SUCCESS = {
+  EDIT: "Данные успешно обновлены!",
+};

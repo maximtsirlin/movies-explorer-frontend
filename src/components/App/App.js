@@ -11,11 +11,12 @@ import Error from '../Error/Error';
 import Navigation from '../Navigation/Navigation';
 import MoviesApi from '../../utils/MoviesApi';
 import MoviesCardList from '../Pages/Movies/MoviesCardList/MoviesCardList';
-import {useCurrentUser} from '../../utils/CurrentUserContext';
+import {useCurrentUser} from '../../utils/UseCurrentUserContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Footer from '../Footer/Footer';
 import mainApi from '../../utils/MainApi';
 import MainApi from "../../utils/MainApi";
+import {COL, LOCAL_STORAGE_KEYS, SCREEN_SIZE} from "../../utils/constants";
 
 function App() {
 	const {currentUser, token} = useCurrentUser();
@@ -24,6 +25,8 @@ function App() {
 	const [movies, setMovies] = useState([]);
 	const [searchQuery, setSearchQuery] = useState('');
 	const [shortFilm, setShortFilm] = useState(false);
+	const [searchQueryF, setSearchQueryF] = useState('');
+	const [shortFilmF, setShortFilmF] = useState(false);
 	const [filteredMovies, setFilteredMovies] = useState(allMovies);
 	const [visibleMovies, setVisibleMovies] = useState(calculateVisibleMovies());
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -31,11 +34,15 @@ function App() {
 	const location = useLocation();
 
 	useEffect(() => {
-		const shortFilms = localStorage.getItem('shortFilms');
-		const searchQuery = localStorage.getItem('searchQuery') || '';
-		console.log("searchQuery", searchQuery);
+		const shortFilms = localStorage.getItem(LOCAL_STORAGE_KEYS.SHORT_FILM);
+		const searchQuery = localStorage.getItem(LOCAL_STORAGE_KEYS.SEARCH_QUERY) || '';
 		setSearchQuery(searchQuery === "undefined" ? "" : searchQuery);
 		setShortFilm(shortFilms === "true");
+
+		const shortFilmsF = localStorage.getItem(LOCAL_STORAGE_KEYS.SHORT_FILM_F);
+		const searchQueryF = localStorage.getItem(LOCAL_STORAGE_KEYS.SEARCH_QUERY_F) || '';
+		setSearchQueryF(searchQueryF === "undefined" ? "" : searchQueryF);
+		setShortFilmF(shortFilmsF === "true");
 	}, [])
 
 
@@ -49,24 +56,34 @@ function App() {
 
 	function calculateVisibleMovies() {
 		const screenWidth = window.innerWidth;
-		if (screenWidth >= 1280) {
-			return 12;
-		} else if (screenWidth >= 768) {
-			return 8;
-		} else if (screenWidth >= 320 && screenWidth <= 480) {
-			return 5;
+		if (screenWidth >= SCREEN_SIZE.DESKTOP) {
+			return COL.DESKTOP;
+		} else if (screenWidth >= SCREEN_SIZE.TABLE) {
+			return COL.TABLE;
+		} else if (screenWidth >= SCREEN_SIZE.MOBILE && screenWidth <= SCREEN_SIZE.MOBILE_R) {
+			return COL.MOBILE;
 		}
-		return 5;
+		return COL.MOBILE;
 	}
 
 	const handleShortFilm = (value) => {
-		localStorage.setItem('shortFilms', value);
+		localStorage.setItem(LOCAL_STORAGE_KEYS.SHORT_FILM, value);
 		setShortFilm(value);
 	}
 
+	const handleShortFFilm = (value) => {
+		localStorage.setItem(LOCAL_STORAGE_KEYS.SHORT_FILM_F, value);
+		setShortFilmF(value);
+	}
+
 	const handleSearchInputFilm = (value) => {
-		localStorage.setItem('searchQuery', value);
+		localStorage.setItem(LOCAL_STORAGE_KEYS.SEARCH_QUERY, value);
 		setSearchQuery(value);
+	}
+
+	const handleSearchFInputFilm = (value) => {
+		localStorage.setItem(LOCAL_STORAGE_KEYS.SEARCH_QUERY_F, value);
+		setSearchQueryF(value);
 	}
 
 	function removeFromFavorites(movie) {
@@ -87,8 +104,11 @@ function App() {
 	useEffect(() => {
 		if (location.pathname === '/movies') {
 			setMovies(allMovies);
-			console.log('allMovies');
+			setShortFilmF(false);
+			setSearchQueryF('');
 		} else {
+			setShortFilm(false);
+			setSearchQuery('');
 			setMovies(favorites);
 		}
 	}, [location.pathname, allMovies, favorites]);
@@ -134,7 +154,7 @@ function App() {
 	}, [token]);
 
 	useEffect(() => {
-		if (searchQuery) {
+		if (location.pathname === '/movies' && searchQuery) {
 			setFilteredMovies(
 				movies.filter((movie) => movie.nameRU.toLowerCase().includes(searchQuery.toLowerCase()))
 			);
@@ -142,16 +162,36 @@ function App() {
 	}, [searchQuery, movies]);
 
 	useEffect(() => {
-		if (shortFilm) {
+		if (location.pathname === '/movies' && shortFilm) {
 			setFilteredMovies(movies.filter((movie) => movie.duration < 40));
 		}
 	}, [shortFilm, movies]);
 
 	useEffect(() => {
-		if (!shortFilm && !searchQuery) {
+		if (location.pathname === '/movies' && !shortFilm && !searchQuery) {
 			setFilteredMovies(movies);
 		}
-	}, [shortFilm, searchQuery, movies]);
+	}, [shortFilm, searchQuery, movies, location.pathname]);
+
+	useEffect(() => {
+		if (location.pathname !== '/movies' && searchQueryF) {
+			setFilteredMovies(
+				favorites.filter((movie) => movie.nameRU.toLowerCase().includes(searchQuery.toLowerCase()))
+			);
+		}
+	}, [searchQueryF, favorites, location.pathname]);
+
+	useEffect(() => {
+		if (location.pathname !== '/movies' && shortFilmF) {
+			setFilteredMovies(favorites.filter((movie) => movie.duration < 40));
+		}
+	}, [shortFilmF, favorites, location.pathname]);
+
+	useEffect(() => {
+		if (location.pathname !== '/movies' && !shortFilmF && !searchQueryF) {
+			setFilteredMovies(favorites);
+		}
+	}, [shortFilmF, searchQueryF, favorites, location.pathname]);
 
 	return (
 		<>
@@ -198,17 +238,17 @@ function App() {
 								<>
 									<Movies
 										initValues={{
-											shortFilm,
-											searchQuery,
+											shortFilm: shortFilmF,
+											searchQuery: searchQueryF,
 										}}
-										setSearchQuery={handleSearchInputFilm}
-										setShortFilm={handleShortFilm}
+										setSearchQuery={handleSearchFInputFilm}
+										setShortFilm={handleShortFFilm}
 									/>
 									<MoviesCardList
 										filteredMovies={filteredMovies}
 										visibleMovies={visibleMovies}
 										movies={allMovies}
-										shortFilm={shortFilm}
+										shortFilm={shortFilmF}
 										favorites={favorites}
 										addToFavorites={addToFavorites}
 										removeFromFavorites={removeFromFavorites}

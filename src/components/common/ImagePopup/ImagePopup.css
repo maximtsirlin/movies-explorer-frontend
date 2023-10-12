@@ -115,7 +115,12 @@
     max-height: 75vh;
     padding: 0;
     background-size: cover;
-    background-color: transparent;
+    background: #f2f2f2;
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #f4f4f4;
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .popup_image {

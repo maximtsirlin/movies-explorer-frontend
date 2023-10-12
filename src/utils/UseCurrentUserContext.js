@@ -1,16 +1,17 @@
 import {createContext, useContext, useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import MainApi from '../utils/MainApi';
+import {ERROR, LOCAL_STORAGE_KEYS} from "./constants";
 
-const CurrentUserContext = createContext();
+const UseCurrentUserContext = createContext();
 
 export function useCurrentUser() {
-	return useContext(CurrentUserContext);
+	return useContext(UseCurrentUserContext);
 }
 
 export function CurrentUserProvider({children}) {
 	const [error, setError] = useState('');
-	const [token, setToken] = useState(localStorage.getItem('jwt') || null);
+	const [token, setToken] = useState(localStorage.getItem(LOCAL_STORAGE_KEYS.JWT) || null);
 	const [currentUser, setCurrentUser] = useState(null);
 	const navigate = useNavigate();
 
@@ -20,18 +21,21 @@ export function CurrentUserProvider({children}) {
 				if (!resp.token) {
 					return Promise.reject()
 				}
-				localStorage.setItem('jwt', resp.token); // Сохраняем токен в localStorage
+				localStorage.setItem(LOCAL_STORAGE_KEYS.JWT, resp.token); // Сохраняем токен в localStorage
 				setToken(resp.token);
 			})
 			.catch(() => {
-				throw new Error("Неправильный логин или пароль!");
+				throw new Error(ERROR.LOGIN);
 			});
 	};
 
-	const logout = () => {
-		localStorage.removeItem('jwt');
-		localStorage.removeItem('shortFilms');
-		localStorage.removeItem('searchQuery');
+	const
+		logout = () => {
+		localStorage.removeItem(LOCAL_STORAGE_KEYS.JWT);
+		localStorage.removeItem(LOCAL_STORAGE_KEYS.SHORT_FILM);
+		localStorage.removeItem(LOCAL_STORAGE_KEYS.SEARCH_QUERY);
+		localStorage.removeItem(LOCAL_STORAGE_KEYS.SHORT_FILM_F);
+		localStorage.removeItem(LOCAL_STORAGE_KEYS.SEARCH_QUERY_F);
 		setToken(null);
 		setCurrentUser(null);
 		navigate('/');
@@ -55,8 +59,8 @@ export function CurrentUserProvider({children}) {
 	}, [token]);
 
 	return (
-		<CurrentUserContext.Provider value={{token, login, logout, currentUser, error}}>
+		<UseCurrentUserContext.Provider value={{token, login, logout, currentUser, error}}>
 			{children}
-		</CurrentUserContext.Provider>
+		</UseCurrentUserContext.Provider>
 	);
 }

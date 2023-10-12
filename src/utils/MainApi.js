@@ -1,3 +1,5 @@
+import {ERROR, LOCAL_STORAGE_KEYS} from "./constants";
+
 class Api {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
@@ -41,7 +43,7 @@ class Api {
       }),
     }).then((res) => this._addResult(res))
       .catch(() => {
-          throw new Error("Такой пользователь уже существует!");
+          throw new Error(ERROR.REGISTER);
       });
   }
 
@@ -119,11 +121,11 @@ class Api {
 }
 
 const mainApi = new Api({
-  //baseUrl: "http://localhost:8080",
-  baseUrl: "https://api.deploy-diploma.nomoreparties.co",
+  baseUrl: "http://localhost:8080",
+  //baseUrl: "https://api.deploy-diploma.nomoreparties.co",
   headers: {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    Authorization: `Bearer ${localStorage.getItem(LOCAL_STORAGE_KEYS.JWT)}`,
   },
 });
 

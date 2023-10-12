@@ -38,7 +38,6 @@ const MoviesCard = ({ favorites, addToFavorites, removeFromFavorites, movie }) =
         <button
           className="movies-card__add movies-card__add_delete"
           onClick={() => {
-            console.log("MOVEI", movie);
             removeFromFavorites(movie)
           }}
         >

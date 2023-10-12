@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './Profile.css';
-import { useCurrentUser } from '../../../utils/CurrentUserContext';
+import { useCurrentUser } from '../../../utils/UseCurrentUserContext';
 import MainApi from '../../../utils/MainApi';
 import errorIcon from '../../../assets/img/icon-error.svg';
 import successIcon from '../../../assets/img/icon-success.svg';
 import ImagePopup from "../../common/ImagePopup/ImagePopup";
+import {ERROR, SUCCESS} from "../../../utils/constants";
 
 function Profile() {
   const { currentUser, logout, token } = useCurrentUser();
@@ -36,14 +37,14 @@ function Profile() {
     MainApi.setInfo(name, email, token)
       .then(() => {
         setModalData({
-          name: "Данные успешно обновлены!",
+          name: SUCCESS.EDIT,
           link: successIcon,
         });
         setIsOpen(true);
       })
       .catch((e) => {
         setModalData({
-          name: "Не смогли обновить данные!",
+          name: ERROR.EDIT,
           link: errorIcon,
         });
         setIsOpen(true);
