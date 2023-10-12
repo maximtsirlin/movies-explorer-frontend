@@ -11,10 +11,10 @@
 @media screen and (max-width: 1279px) {
   .movies-card-list {
     margin-top: 0;
-    margin-bottom: 159px;
+    margin-bottom: 78px;
     padding-top: 46px;
     grid-template-columns: repeat(auto-fit, 351px);
-    gap: 32px 13px;
+    gap: 37px 13px;
   }
 }
 
@@ -23,7 +23,7 @@
   .movies-card-list {
     padding-top: 23px;
     padding-left: initial;
-    gap: 8px 13px;
+    gap: 12px 26px;
     width: auto;
   }
 }

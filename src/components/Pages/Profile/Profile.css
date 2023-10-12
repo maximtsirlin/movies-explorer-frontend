@@ -11,7 +11,7 @@
 }
 
 .disabled {
-  color: #2c3e50 !important;
+  color: rgba(66, 133, 244, 1) !important;
   cursor: not-allowed !important;
 }
 
