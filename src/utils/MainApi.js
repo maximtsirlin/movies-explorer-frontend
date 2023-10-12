@@ -119,8 +119,8 @@ class Api {
 }
 
 const mainApi = new Api({
-  baseUrl: "http://localhost:8080",
-  //baseUrl: "https://api.deploy-diploma.nomoreparties.co",
+  //baseUrl: "http://localhost:8080",
+  baseUrl: "https://api.deploy-diploma.nomoreparties.co",
   headers: {
     "Content-Type": "application/json",
     Authorization: `Bearer ${localStorage.getItem("jwt")}`,
