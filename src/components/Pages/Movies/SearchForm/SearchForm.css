@@ -90,14 +90,14 @@
 }
 
 .search__invisible:checked+.search__visible {
-  background-image: url('../../../images/smalltumb.svg');
+  background-image: url('../../../../images/smalltumb.svg');
 }
 
 .search__visible {
   width: 36px;
   height: 20px;
   border-radius: 20px;
-  background-image: url('../../../images/smalltumblr.svg');
+  background-image: url('../../../../images/smalltumblr.svg');
   transition: 0.3s;
 }
 

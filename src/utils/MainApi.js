@@ -39,8 +39,7 @@ class Api {
         email,
         password,
       }),
-    }).then((res) => this._addResult(res))
-      .catch(e => console.error(e));
+    }).then((res) => this._addResult(res));
   }
 
   login(email, password) {
@@ -112,12 +111,12 @@ class Api {
     if (res.ok) {
       return res.json();
     }
-    return Promise.reject(`Ошибка: ${res.status}`);
+    return res.text().then(text => { throw new Error(text.match(/"message":"(.+)"/)[1]) })
   }
 }
 
 const mainApi = new Api({
-  // baseUrl: "http://localhost:8080",
+   //baseUrl: "http://localhost:8080",
   baseUrl: "https://api.deploy-diploma.nomoreparties.co",
   headers: {
     "Content-Type": "application/json",

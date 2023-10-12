@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './SearchForm.css';
 
-function SearchForm({ setSearchQuery, setShortFilm }) {
+function SearchForm({ initValues, setSearchQuery, setShortFilm }) {
   const [inputValue, setInputValue] = useState('');
+
+  useEffect(() => {
+      setInputValue(initValues.searchQuery);
+  }, [initValues]);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -41,7 +45,7 @@ function SearchForm({ setSearchQuery, setShortFilm }) {
             type='checkbox'
             name='short-films'
             id='short-films'
-            value='short-films'
+            checked={initValues.shortFilm}
             onChange={handleShortFilmChange}
           />
           <span className='search__visible'></span>

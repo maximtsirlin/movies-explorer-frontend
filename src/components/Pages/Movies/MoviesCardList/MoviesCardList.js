@@ -3,15 +3,11 @@ import './MoviesCardList.css';
 
 function MoviesCardList({
   visibleMovies,
-  movies,
   filteredMovies,
-  currentPath,
   favorites,
   addToFavorites,
   removeFromFavorites
 }) {
-
-  console.trace('filteredMovies', filteredMovies);
 
   return (
     <ul className='movies-card-list'>
@@ -19,6 +15,7 @@ function MoviesCardList({
         .slice(0, visibleMovies)
         .map((movie) => (
           <MoviesCard
+            key={movie.movieId}
             favorites={favorites}
             addToFavorites={addToFavorites}
             removeFromFavorites={removeFromFavorites}

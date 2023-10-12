@@ -1,7 +1,7 @@
-import MoviesCardList from '../../components/Movies/MoviesCardList/MoviesCardList';
-import SearchForm from '../../components/Movies/SearchForm/SearchForm';
+import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
+import SearchForm from '../Movies/SearchForm/SearchForm';
 import './SavedMovies.css';
-import Footer from '../Footer/Footer';
+import Footer from '../../Footer/Footer';
 import { useEffect, useState } from 'react';
 
 
@@ -19,7 +19,7 @@ function SavedMovies() {
     <main className='saved-movies'>
       <SearchForm
         setSearchQuery={setSearchQuery}
-        
+
       />
       <MoviesCardList
         movies={movies}

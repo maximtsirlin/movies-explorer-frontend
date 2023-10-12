@@ -1,37 +1,10 @@
-import React, { Component, useState } from 'react';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
 import './MoviesCard.css';
-import MainApi from '../../../utils/MainApi';
-import { useCurrentUser } from '../../../utils/CurrentUserContext';
 
 
 const MoviesCard = ({ favorites, addToFavorites, removeFromFavorites, movie }) => {
   const location = useLocation();
-  const { token } = useCurrentUser();
-
-  const handleCheckboxClick = async (movie) => {
-    console.log(movie, favorites);
-    if (!favorites.some((favMovie) => favMovie.movieId === movie.movieId)) {
-      console.log('addMovie');
-      await MainApi.postMovie(movie, token).then((result) => {
-        console.log(result)
-        addToFavorites(result);
-      }
-
-      )
-    } else {
-      console.log('removeMovie');
-      const removeMovie = favorites.find(el => el.movieId === movie.movieId)
-      await MainApi.removeMovie(removeMovie._id, token).then((result) => {
-        console.log(result)
-        removeFromFavorites(result);
-
-      })
-    }
-  };
-
-  
-
 
   return (
     <div className="movies-card" key={movie._id}>
@@ -52,7 +25,7 @@ const MoviesCard = ({ favorites, addToFavorites, removeFromFavorites, movie }) =
             ? 'movies-card__add_active'
             : ''
             }`}
-          onClick={() => handleCheckboxClick(movie)}
+          onClick={() => addToFavorites(movie)}
         >
           Сохранить
         </button>
@@ -64,7 +37,10 @@ const MoviesCard = ({ favorites, addToFavorites, removeFromFavorites, movie }) =
       }) ? (
         <button
           className="movies-card__add movies-card__add_delete"
-          onClick={() => handleCheckboxClick(movie)}
+          onClick={() => {
+            console.log("MOVEI", movie);
+            removeFromFavorites(movie)
+          }}
         >
           Удалить из избранного
         </button>

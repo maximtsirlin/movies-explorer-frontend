@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Form.css";
 
 function Form({
+  disabled,
   formName,
   submitText,
   children,
@@ -59,7 +60,7 @@ function Form({
       {registeredError && (
         <p className="form__input-error">Произошла ошибка при регистрации</p>
       )}
-      <button className="form__submit" type="submit" disabled={!isValid}>
+      <button className="form__submit" type="submit" disabled={!isValid || disabled}>
         {submitText.buttonText}
       </button>
       <p className="form__subtitle">
