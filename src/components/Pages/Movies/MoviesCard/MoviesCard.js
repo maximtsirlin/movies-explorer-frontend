@@ -10,7 +10,7 @@ const MoviesCard = ({ favorites, addToFavorites, removeFromFavorites, movie }) =
     <div className="movies-card" key={movie._id}>
       <div className="movies-card__about">
         <h2 className="movies-card__title">{movie.nameRU}</h2>
-        <p className="movies-card__duration">{movie.duration}</p>
+        <p className="movies-card__duration">{movie.duration} минут</p>
       </div>
       <img
         className="movies-card__image"

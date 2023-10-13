@@ -17,6 +17,7 @@ function Profile() {
     name: "",
     link: "",
   });
+  const [errors, setErrors] = useState();
 
   useEffect(() => {
       if (currentUser.name !== name || currentUser.email !== email) {
@@ -30,6 +31,19 @@ function Profile() {
     setName(currentUser?.name)
     setEmail(currentUser?.email)
   }, [currentUser])
+
+
+  useEffect(() => {
+    setDisabled(errors?.email);
+  }, [errors]);
+
+
+  const handleEmailChange = (e) => {
+    const value = e.target.value;
+    const errors = validation('email', value);
+    setErrors(errors);
+    setEmail(value);
+  };
 
   async function saveInfo(e) {
     e.preventDefault()
@@ -86,8 +100,9 @@ function Profile() {
             placeholder='email'
             id='email'
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e) => handleEmailChange(e)}
           />
+          <span className="profile__input_validation">{errors?.email}</span>
         </fieldset>
         <div className='profile__links'>
           <button className={`profile__btn-edit ${disabled && "disabled"}`} type='submit' disabled={disabled}>
