@@ -95,6 +95,11 @@ function App() {
 	}
 
 	function addToFavorites(movie) {
+		const exist = favorites.find(el => el.movieId === movie.movieId);
+
+		if (exist) {
+		  return;
+		}
 		MainApi.postMovie(movie, token).then((result) => {
 			const updatedFavorites = [...favorites, result];
 			setFavorites(updatedFavorites)
