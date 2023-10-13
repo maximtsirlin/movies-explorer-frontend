@@ -6,6 +6,7 @@ import errorIcon from '../../../assets/img/icon-error.svg';
 import successIcon from '../../../assets/img/icon-success.svg';
 import ImagePopup from "../../common/ImagePopup/ImagePopup";
 import {ERROR, SUCCESS} from "../../../utils/constants";
+import validation from "../../../utils/validation";
 
 function Profile() {
   const { currentUser, logout, token } = useCurrentUser();

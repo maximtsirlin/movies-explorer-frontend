@@ -69,6 +69,13 @@
   border: none;
 }
 
+.profile__input_validation {
+  position: absolute;
+  bottom: 315px;
+  font-size: 12px;
+  color: red
+}
+
 .profile__input::placeholder {
   font-family: Inter, sans-serif;
   font-style: normal;
