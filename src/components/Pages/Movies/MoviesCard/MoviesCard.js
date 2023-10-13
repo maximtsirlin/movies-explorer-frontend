@@ -6,6 +6,18 @@ import './MoviesCard.css';
 const MoviesCard = ({ favorites, addToFavorites, removeFromFavorites, movie }) => {
   const location = useLocation();
 
+
+
+  const handleClick = (movie) => {
+    if (favorites.some((favMovie) => { return favMovie.movieId === movie.movieId })) {
+      removeFromFavorites(movie);
+    } else {
+      addToFavorites(movie);
+    }
+  }
+
+
+
   return (
     <div className="movies-card" key={movie._id}>
       <div className="movies-card__about">
@@ -25,7 +37,7 @@ const MoviesCard = ({ favorites, addToFavorites, removeFromFavorites, movie }) =
             ? 'movies-card__add_active'
             : ''
             }`}
-          onClick={() => addToFavorites(movie)}
+          onClick={() => handleClick(movie)}
         >
           Сохранить
         </button>
