@@ -115,5 +115,14 @@
 
   .movies-card__title {
     font-size: 12px;
+    max-width: 184px;
   }
+
+  .movies-card__duration {
+    font-size: 11px;
+    margin: 15px 16px 14px;
+  }
+
 }
+
+

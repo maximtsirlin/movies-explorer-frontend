@@ -119,9 +119,12 @@
   }
 
   .search__search {
-    width: 686px;
+    width: 114px;
   }
 
+  .search__button {
+    width: 686px;
+  }
 
   .search__label {
     margin-bottom: 54px;
@@ -135,8 +138,6 @@
   .search__input {
     width: 628px;
   }
-
-
 
   .search__search {
     padding: 0;

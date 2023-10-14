@@ -35,7 +35,7 @@ function SearchForm({ initValues, setSearchQuery, setShortFilm }) {
             type='submit'
             onClick={handleSearch}
           >
-            Найти
+            Поиск
           </button>
         </div>
         <label className='search__label'>

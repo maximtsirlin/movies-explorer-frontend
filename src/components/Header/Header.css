@@ -140,7 +140,8 @@
 
 @media screen and (max-width: 1279px) {
   .header__container {
-    padding: 0 30px;
+    padding: 0 40px;
+    width: 785px;
   }
 
   .header__links {
