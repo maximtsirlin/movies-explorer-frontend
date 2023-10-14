@@ -1,8 +1,8 @@
 export default function useRegister() {
-    const [status, setStatus] = useState(null);
+	const [status, setStatus] = useState(null);
 
-    return {
-        status,
-        setStatus
-    };
+	return {
+		status,
+		setStatus
+	};
 }

@@ -112,7 +112,10 @@ function Register() {
 					</fieldset>
 				</Form>
 			</div>
-			{isOpen && <ImagePopup card={modalData} onClose={() => {setIsOpen(false); modalData.callback && modalData.callback()}}/>}
+			{isOpen && <ImagePopup card={modalData} onClose={() => {
+				setIsOpen(false);
+				modalData.callback && modalData.callback()
+			}}/>}
 		</section>
 	);
 }

@@ -98,7 +98,7 @@ function App() {
 		const exist = favorites.find(el => el.movieId === movie.movieId);
 
 		if (exist) {
-		  return;
+			return;
 		}
 		MainApi.postMovie(movie, token).then((result) => {
 			const updatedFavorites = [...favorites, result];
@@ -112,8 +112,6 @@ function App() {
 			setShortFilmF(false);
 			setSearchQueryF('');
 		} else {
-			setShortFilm(false);
-			setSearchQuery('');
 			setMovies(favorites);
 		}
 	}, [location.pathname, allMovies, favorites]);
@@ -181,7 +179,7 @@ function App() {
 	useEffect(() => {
 		if (location.pathname !== '/movies' && searchQueryF) {
 			setFilteredMovies(
-				favorites.filter((movie) => movie.nameRU.toLowerCase().includes(searchQuery.toLowerCase()))
+				favorites.filter((movie) => movie.nameRU.toLowerCase().includes(searchQueryF.toLowerCase()))
 			);
 		}
 	}, [searchQueryF, favorites, location.pathname]);
