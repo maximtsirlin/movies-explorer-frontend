@@ -157,42 +157,32 @@ function App() {
 	}, [token]);
 
 	useEffect(() => {
-		if (location.pathname === '/movies' && searchQuery) {
-			setFilteredMovies(
-				movies.filter((movie) => movie.nameRU.toLowerCase().includes(searchQuery.toLowerCase()))
-			);
-		}
-	}, [searchQuery, movies]);
-
-	useEffect(() => {
-		if (location.pathname === '/movies' && shortFilm) {
-			setFilteredMovies(movies.filter((movie) => movie.duration < 40));
-		}
-	}, [shortFilm, movies]);
-
-	useEffect(() => {
-		if (location.pathname === '/movies' && !shortFilm && !searchQuery) {
-			setFilteredMovies(movies);
+		if (location?.pathname === '/movies' && movies.length > 0) {
+			const result = movies.filter((el) => {
+				const hasQueryResult = searchQuery ? el.nameRU.toLowerCase().includes(searchQuery.toLowerCase()) : true;
+				if (shortFilm) {
+					return hasQueryResult && el.duration < 40;
+				} else {
+					return hasQueryResult;
+				}
+			});
+			setFilteredMovies(result);
 		}
 	}, [shortFilm, searchQuery, movies, location.pathname]);
 
 	useEffect(() => {
-		if (location.pathname !== '/movies' && searchQueryF) {
-			setFilteredMovies(
-				favorites.filter((movie) => movie.nameRU.toLowerCase().includes(searchQueryF.toLowerCase()))
-			);
-		}
-	}, [searchQueryF, favorites, location.pathname]);
-
-	useEffect(() => {
-		if (location.pathname !== '/movies' && shortFilmF) {
-			setFilteredMovies(favorites.filter((movie) => movie.duration < 40));
-		}
-	}, [shortFilmF, favorites, location.pathname]);
-
-	useEffect(() => {
-		if (location.pathname !== '/movies' && !shortFilmF && !searchQueryF) {
-			setFilteredMovies(favorites);
+		if (location?.pathname !== '/movies' && favorites.length > 0) {
+			const result = favorites.filter((el) => {
+				const hasQueryResult = searchQueryF ? el.nameRU.toLowerCase().includes(searchQueryF.toLowerCase()) : true;
+				console.log(hasQueryResult, shortFilmF, searchQueryF);
+				if (shortFilmF) {
+					console.log(shortFilmF, el.duration < 40, hasQueryResult && el.duration < 40);
+					return hasQueryResult && el.duration < 40;
+				} else {
+					return hasQueryResult;
+				}
+			});
+			setFilteredMovies(result);
 		}
 	}, [shortFilmF, searchQueryF, favorites, location.pathname]);
 
