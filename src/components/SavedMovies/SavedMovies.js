@@ -1,7 +1,7 @@
-import MoviesCardList from '../../common/MoviesCardList/MoviesCardList';
-import SearchForm from '../../common/SearchForm/SearchForm';
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import SearchForm from '../SearchForm/SearchForm';
 import './SavedMovies.css';
-import Footer from '../../common/Footer/Footer';
+import Footer from '../Footer/Footer';
 import {useEffect, useState} from 'react';
 
 function SavedMovies() {

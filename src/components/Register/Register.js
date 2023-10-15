@@ -1,14 +1,14 @@
 import {Link, useNavigate} from "react-router-dom";
 import React, {useState} from "react";
 import "./Register.css";
-import Form from "../../common/Form/Form";
-import logo from "../../../images/logo.svg";
-import MainApi from "../../../utils/MainApi";
-import {useCurrentUser} from "../../../utils/UseCurrentUserContext";
-import ImagePopup from "../../common/ImagePopup/ImagePopup";
-import errorIcon from '../../../assets/img/icon-error.svg';
-import successIcon from '../../../assets/img/icon-success.svg';
-import UseCallbackValidation from "../../../utils/UseCallbackValidation";
+import Form from "../Form/Form";
+import logo from "../../images/logo.svg";
+import MainApi from "../../utils/MainApi";
+import {useCurrentUser} from "../../utils/UseCurrentUserContext";
+import ImagePopup from "../ImagePopup/ImagePopup";
+import errorIcon from '../../assets/img/icon-error.svg';
+import successIcon from '../../assets/img/icon-success.svg';
+import UseCallbackValidation from "../../utils/UseCallbackValidation";
 
 function Register() {
 	const formCallbackValidation = UseCallbackValidation();

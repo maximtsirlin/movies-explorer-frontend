@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import "./Login.css";
-import UseCallbackValidation from "../../../utils/UseCallbackValidation";
+import UseCallbackValidation from "../../utils/UseCallbackValidation";
 import {Link, useNavigate} from "react-router-dom";
-import logo from "../../../images/logo.svg";
-import Form from "../../common/Form/Form";
-import {useCurrentUser} from "../../../utils/UseCurrentUserContext";
-import ImagePopup from "../../common/ImagePopup/ImagePopup";
-import errorIcon from '../../../assets/img/icon-error.svg';
+import logo from "../../images/logo.svg";
+import Form from "../Form/Form";
+import {useCurrentUser} from "../../utils/UseCurrentUserContext";
+import ImagePopup from "../ImagePopup/ImagePopup";
+import errorIcon from '../../assets/img/icon-error.svg';
 
 function Login() {
 	const formCallbackValidation = UseCallbackValidation();

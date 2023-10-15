@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import './Profile.css';
-import {useCurrentUser} from '../../../utils/UseCurrentUserContext';
-import MainApi from '../../../utils/MainApi';
-import errorIcon from '../../../assets/img/icon-error.svg';
-import successIcon from '../../../assets/img/icon-success.svg';
-import ImagePopup from "../../common/ImagePopup/ImagePopup";
-import {ERROR, SUCCESS} from "../../../utils/constants";
-import validation from "../../../utils/validation";
+import {useCurrentUser} from '../../utils/UseCurrentUserContext';
+import MainApi from '../../utils/MainApi';
+import errorIcon from '../../assets/img/icon-error.svg';
+import successIcon from '../../assets/img/icon-success.svg';
+import ImagePopup from "../ImagePopup/ImagePopup";
+import {ERROR, SUCCESS} from "../../utils/constants";
+import validation from "../../utils/validation";
 
 function Profile() {
 	const {currentUser, logout, token, setCurrentUser} = useCurrentUser();

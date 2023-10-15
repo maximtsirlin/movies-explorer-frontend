@@ -1,22 +1,22 @@
 import React, {useState, useEffect} from 'react';
 import {Route, Routes, useLocation, Navigate} from 'react-router-dom';
 import './App.css';
-import Header from '../common/Header/Header';
+import Header from '../Header/Header';
 import Main from '../Main/Main';
-import Movies from '../Pages/Movies/Movies';
-import Profile from '../Pages/Profile/Profile';
-import Login from '../Pages/Login/Login';
-import Register from '../Pages/Register/Register';
+import Movies from '../Movies/Movies';
+import Profile from '../Profile/Profile';
+import Login from '../Login/Login';
+import Register from '../Register/Register';
 import Error from '../Error/Error';
-import Navigation from '../common/Navigation/Navigation';
+import Navigation from '../Navigation/Navigation';
 import MoviesApi from '../../utils/MoviesApi';
-import MoviesCardList from '../common/MoviesCardList/MoviesCardList';
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import {useCurrentUser} from '../../utils/UseCurrentUserContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Footer from '../Footer/Footer';
 import mainApi from '../../utils/MainApi';
 import {COL, LOCAL_STORAGE_KEYS, SCREEN_SIZE} from "../../utils/constants";
-import Loader from '../common/Loader/Loader';
+import Loader from '../Loader/Loader';
 
 function App() {
 	const {currentUser, token} = useCurrentUser();
