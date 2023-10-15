@@ -1,7 +1,6 @@
 import {Link} from 'react-router-dom';
 import './Navigation.css';
 
-
 function Navigation(props) {
 	return (
 		<div className={props.isOpen ? 'navigation navigation_open' : 'navigation navigation_hidden'}>

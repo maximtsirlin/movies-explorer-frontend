@@ -74,7 +74,6 @@ class Api {
 	}
 
 	postMovie(movie, jwt) {
-		console.log(movie);
 		return fetch(`${this._baseUrl}/movies`, {
 			method: "POST",
 			headers: {
@@ -107,12 +106,7 @@ class Api {
 		}).then((res) => this._addResult(res));
 	}
 
-	errorHandler(err) {
-		console.log(err);
-	}
-
 	_addResult(res) {
-		console.log('res', res);
 		if (res.ok) {
 			return res.json();
 		}

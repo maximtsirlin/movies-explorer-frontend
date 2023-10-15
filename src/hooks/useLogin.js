@@ -16,7 +16,6 @@ export default function useLogin() {
 			}
 			localStorage.jwt = resp.token;
 			setToken(resp.token);
-			console.log('token', resp.token);
 		} catch (e) {
 			console.error(e);
 			setError(e.message);
@@ -34,7 +33,7 @@ export default function useLogin() {
 				}
 			})
 			.catch((err) => {
-				console.log(err);
+				console.error(err);
 			});
 		setToken(localStorage.jwt);
 		navigate("/movies");

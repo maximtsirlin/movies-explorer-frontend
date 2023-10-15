@@ -1,6 +1,6 @@
-import {Link, Route, Routes} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import './Header.css';
-import {useCurrentUser} from '../../utils/UseCurrentUserContext';
+import {useCurrentUser} from '../../../utils/UseCurrentUserContext';
 import {useLocation} from 'react-router-dom';
 
 function Header(props) {

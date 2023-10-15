@@ -3,7 +3,7 @@ import "./Login.css";
 import UseCallbackValidation from "../../../utils/UseCallbackValidation";
 import {Link, useNavigate} from "react-router-dom";
 import logo from "../../../images/logo.svg";
-import Form from "../../Form/Form";
+import Form from "../../common/Form/Form";
 import {useCurrentUser} from "../../../utils/UseCurrentUserContext";
 import ImagePopup from "../../common/ImagePopup/ImagePopup";
 import errorIcon from '../../../assets/img/icon-error.svg';

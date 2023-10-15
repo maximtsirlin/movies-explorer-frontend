@@ -45,16 +45,14 @@ export function CurrentUserProvider({children}) {
 		if (!token) {
 			return;
 		}
-		console.log('token', token);
 		MainApi.getInfo(token)
 			.then((userInfo) => {
-				console.log('userInfo', userInfo)
 				if (userInfo) {
 					setCurrentUser(userInfo);
 				}
 			})
 			.catch((err) => {
-				console.log(err);
+				console.error(err);
 			});
 	}, [token]);
 

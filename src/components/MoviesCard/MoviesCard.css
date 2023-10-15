@@ -67,14 +67,14 @@
 .movies-card__add_active {
     background-color: #EE3465;
     font-size: 0;
-    background-image: url('../../../../images/add.svg');
+    background-image: url('../../../images/add.svg');
 }
 
 
 .movies-card__add_delete {
     background-color: #313131;
     font-size: 0;
-    background-image: url('../../../../images/delete.svg');
+    background-image: url('../../../images/delete.svg');
 }
 
 .movies-card__image {

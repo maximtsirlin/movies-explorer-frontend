@@ -1,9 +1,8 @@
-import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
-import SearchForm from '../Movies/SearchForm/SearchForm';
+import MoviesCardList from '../../common/MoviesCardList/MoviesCardList';
+import SearchForm from '../../common/SearchForm/SearchForm';
 import './SavedMovies.css';
-import Footer from '../../Footer/Footer';
+import Footer from '../../common/Footer/Footer';
 import {useEffect, useState} from 'react';
-
 
 function SavedMovies() {
 	const [movies, setMovies] = useState([]);

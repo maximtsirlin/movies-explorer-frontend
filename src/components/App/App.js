@@ -1,21 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import {Route, Routes, useLocation, Navigate} from 'react-router-dom';
 import './App.css';
-import Header from '../Header/Header';
+import Header from '../common/Header/Header';
 import Main from '../Main/Main';
 import Movies from '../Pages/Movies/Movies';
 import Profile from '../Pages/Profile/Profile';
 import Login from '../Pages/Login/Login';
 import Register from '../Pages/Register/Register';
 import Error from '../Error/Error';
-import Navigation from '../Navigation/Navigation';
+import Navigation from '../common/Navigation/Navigation';
 import MoviesApi from '../../utils/MoviesApi';
-import MoviesCardList from '../Pages/Movies/MoviesCardList/MoviesCardList';
+import MoviesCardList from '../common/MoviesCardList/MoviesCardList';
 import {useCurrentUser} from '../../utils/UseCurrentUserContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Footer from '../Footer/Footer';
 import mainApi from '../../utils/MainApi';
-import MainApi from "../../utils/MainApi";
 import {COL, LOCAL_STORAGE_KEYS, SCREEN_SIZE} from "../../utils/constants";
 import Loader from '../common/Loader/Loader';
 
@@ -90,7 +89,7 @@ function App() {
 
 	function removeFromFavorites(movie) {
 		const removedMovie = favorites.find(el => el.movieId === movie.movieId);
-		MainApi.removeMovie(removedMovie._id, token).then((result) => {
+		mainApi.removeMovie(removedMovie._id, token).then((result) => {
 			const updatedFavorites = favorites.filter((favMovie) => favMovie.movieId !== movie.movieId);
 			setFavorites(updatedFavorites)
 		})
@@ -102,7 +101,7 @@ function App() {
 		if (exist) {
 			return;
 		}
-		MainApi.postMovie(movie, token).then((result) => {
+		mainApi.postMovie(movie, token).then((result) => {
 			const updatedFavorites = [...favorites, result];
 			setFavorites(updatedFavorites)
 		});
@@ -187,9 +186,7 @@ function App() {
 		if (location?.pathname !== '/movies' && favorites.length > 0) {
 			const result = favorites.filter((el) => {
 				const hasQueryResult = searchQueryF ? el.nameRU.toLowerCase().includes(searchQueryF.toLowerCase()) : true;
-				console.log(hasQueryResult, shortFilmF, searchQueryF);
 				if (shortFilmF) {
-					console.log(shortFilmF, el.duration < 40, hasQueryResult && el.duration < 40);
 					return hasQueryResult && el.duration < 40;
 				} else {
 					return hasQueryResult;

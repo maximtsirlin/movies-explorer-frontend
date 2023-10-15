@@ -29,7 +29,7 @@
     width: 31px;
     height: 31px;
     background-color: #202020;
-    background-image: url('../../images/close.svg');
+    background-image: url('../../../images/close.svg');
     position: absolute;
     top: 22px;
     right: 22px;
@@ -87,7 +87,7 @@
 
 .navigation__icon {
     background-color: #313131;
-    background-image: url('../../images/acc.svg');
+    background-image: url('../../../images/acc.svg');
     background-repeat: no-repeat;
     background-position: center;
     width: 26px;

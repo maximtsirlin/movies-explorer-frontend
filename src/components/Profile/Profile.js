@@ -21,12 +21,10 @@ function Profile() {
 	const [errors, setErrors] = useState();
 
 	const isSameProfileData = () => {
-		console.log(currentUser, name, email);
 		return currentUser?.name === name && currentUser?.email === email;
 	};
 
 	useEffect(() => {
-		console.log("trigger");
 		setDisabled(isSameProfileData());
 	}, [name, email, currentUser]);
 

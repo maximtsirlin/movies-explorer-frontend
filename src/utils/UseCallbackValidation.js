@@ -6,7 +6,6 @@ function UseCallbackValidation() {
 	const [errors, setErrors] = React.useState({});
 	const [isValid, setIsValid] = React.useState(false);
 	const [isFocused, setIsFocused] = React.useState(false);
-	console.log(errors);
 	const onFocus = () => {
 		setIsFocused(true);
 	};
