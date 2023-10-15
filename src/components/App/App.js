@@ -31,7 +31,7 @@ function App() {
 	const [filteredMovies, setFilteredMovies] = useState(allMovies);
 	const [visibleMovies, setVisibleMovies] = useState(calculateVisibleMovies());
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	const [isLoading, setIsLoading] = useState(true);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const location = useLocation();
 
@@ -109,10 +109,13 @@ function App() {
 	}
 
 	useEffect(() => {
-		if (location.pathname === '/movies') {
-			setMovies(allMovies);
+		if (location.pathname !== '/saved-movies') {
 			setShortFilmF(false);
 			setSearchQueryF('');
+		}
+
+		if (location.pathname === '/movies') {
+			setMovies(allMovies);
 		} else {
 			setMovies(favorites);
 		}
@@ -144,6 +147,7 @@ function App() {
 			return;
 		}
 
+		setIsLoading(true);
 		Promise.all([
 			MoviesApi.getMovies().then((result) => {
 				result = result.map(el => {
