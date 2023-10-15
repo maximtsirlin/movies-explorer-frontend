@@ -17,6 +17,7 @@ import Footer from '../Footer/Footer';
 import mainApi from '../../utils/MainApi';
 import MainApi from "../../utils/MainApi";
 import {COL, LOCAL_STORAGE_KEYS, SCREEN_SIZE} from "../../utils/constants";
+import Loader from '../common/Loader/Loader';
 
 function App() {
 	const {currentUser, token} = useCurrentUser();
@@ -30,6 +31,7 @@ function App() {
 	const [filteredMovies, setFilteredMovies] = useState(allMovies);
 	const [visibleMovies, setVisibleMovies] = useState(calculateVisibleMovies());
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
 
 	const location = useLocation();
 
@@ -142,18 +144,25 @@ function App() {
 			return;
 		}
 
-		MoviesApi.getMovies().then((result) => {
-			result = result.map(el => {
-				const tmp = el.id;
-				delete el['id'];
-				el['movieId'] = tmp;
-				return el
-			});
-			setAllMovies(result);
+		Promise.all([
+			MoviesApi.getMovies().then((result) => {
+				result = result.map(el => {
+					const tmp = el.id;
+					delete el['id'];
+					el['movieId'] = tmp;
+					return el
+				});
+				setAllMovies(result);
+				return true;
+			}),
+			mainApi.getSavedMovies(token).then((result) => {
+				setFavorites(result);
+				return true;
+			})
+		]).then(() => {
+			setIsLoading(false);
 		});
-		mainApi.getSavedMovies(token).then((result) => {
-			setFavorites(result)
-		})
+
 	}, [token]);
 
 	useEffect(() => {
@@ -185,6 +194,10 @@ function App() {
 			setFilteredMovies(result);
 		}
 	}, [shortFilmF, searchQueryF, favorites, location.pathname]);
+
+	if (isLoading) {
+		return <Loader/>
+	}
 
 	return (
 		<>

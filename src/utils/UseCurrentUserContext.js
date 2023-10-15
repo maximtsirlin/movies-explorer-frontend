@@ -59,7 +59,7 @@ export function CurrentUserProvider({children}) {
 	}, [token]);
 
 	return (
-		<UseCurrentUserContext.Provider value={{token, login, logout, currentUser, error}}>
+		<UseCurrentUserContext.Provider value={{token, login, logout, currentUser, error, setCurrentUser}}>
 			{children}
 		</UseCurrentUserContext.Provider>
 	);

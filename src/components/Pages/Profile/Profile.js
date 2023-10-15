@@ -9,7 +9,7 @@ import {ERROR, SUCCESS} from "../../../utils/constants";
 import validation from "../../../utils/validation";
 
 function Profile() {
-	const {currentUser, logout, token} = useCurrentUser();
+	const {currentUser, logout, token, setCurrentUser} = useCurrentUser();
 	const [name, setName] = useState(currentUser?.name);
 	const [email, setEmail] = useState(currentUser?.email);
 	const [disabled, setDisabled] = useState(true);
@@ -21,10 +21,12 @@ function Profile() {
 	const [errors, setErrors] = useState();
 
 	const isSameProfileData = () => {
-		return currentUser?.name === name || currentUser?.email === email;
-	}
+		console.log(currentUser, name, email);
+		return currentUser?.name === name && currentUser?.email === email;
+	};
 
 	useEffect(() => {
+		console.log("trigger");
 		setDisabled(isSameProfileData());
 	}, [name, email, currentUser]);
 
@@ -56,6 +58,11 @@ function Profile() {
 				setModalData({
 					name: SUCCESS.EDIT,
 					link: successIcon,
+				});
+				setCurrentUser({
+					...currentUser,
+					email: email,
+					name: name
 				});
 				setIsOpen(true);
 			})

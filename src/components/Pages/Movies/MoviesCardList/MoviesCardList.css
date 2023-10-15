@@ -8,6 +8,26 @@
     padding: initial;
 }
 
+.movies-card-list__block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+
+@media screen and (max-width: 1279px) {
+    .movies-card-list__block {
+        height: 150px;
+    }
+}
+
+
+@media screen and (max-width: 767px) {
+    .movies-card-list__block {
+        height: 100px;
+    }
+}
+
 @media screen and (max-width: 1279px) {
     .movies-card-list {
         margin-top: 0;

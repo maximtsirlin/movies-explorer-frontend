@@ -8,6 +8,16 @@ function MoviesCardList({
   addToFavorites,
   removeFromFavorites
 }) {
+	
+  if (filteredMovies.length === 0) {
+    return (
+      <div className={'movies-card-list__block'}>
+	      <h3>
+	        Ничего не найдено!!!
+	      </h3>
+      </div>
+    )
+  }
 
   return (
     <ul className='movies-card-list'>

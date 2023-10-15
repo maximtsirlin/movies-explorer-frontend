@@ -22,11 +22,13 @@ const MoviesCard = ({favorites, addToFavorites, removeFromFavorites, movie}) => 
 				<h2 className="movies-card__title">{movie.nameRU}</h2>
 				<p className="movies-card__duration">{movie.duration} минут</p>
 			</div>
-			<img
-				className="movies-card__image"
-				src={movie.image.url ? 'https://api.nomoreparties.co' + movie.image.url : movie.image}
-				alt={movie.nameRU}
-			/>
+			<a href={movie.trailerLink} className="movies-card__link">
+				<img
+					className="movies-card__image"
+					src={movie.image.url ? 'https://api.nomoreparties.co' + movie.image.url : movie.image}
+					alt={movie.nameRU}
+				/>
+			</a>
 			{location.pathname === '/movies' && (
 				<button
 					className={`movies-card__add ${favorites.some((favMovie) => {
@@ -42,7 +44,6 @@ const MoviesCard = ({favorites, addToFavorites, removeFromFavorites, movie}) => 
 			)}
 
 			{location.pathname === '/saved-movies' && favorites.some((favMovie) => {
-				console.log(favMovie.movieId, movie.movieId, favMovie.id === movie.movieId, movie.movieId);
 				return favMovie.movieId === movie.movieId
 			}) ? (
 				<button
