@@ -9,7 +9,7 @@ function MoviesCardList({
   removeFromFavorites
 }) {
 
-  if (!filteredMovies && filteredMovies?.length === 0) {
+  if (!filteredMovies || filteredMovies?.length === 0) {
     return (
       <div className={'movies-card-list__block'}>
         <h3>
