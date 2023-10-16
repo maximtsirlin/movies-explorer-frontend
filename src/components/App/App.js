@@ -44,7 +44,7 @@ function App() {
 		const searchQueryF = localStorage.getItem(LOCAL_STORAGE_KEYS.SEARCH_QUERY_F) || '';
 		setSearchQueryF(searchQueryF === "undefined" ? "" : searchQueryF);
 		setShortFilmF(shortFilmsF === "true");
-	}, [])
+	}, [token])
 
 
 	const openMenu = () => {
