@@ -2,7 +2,7 @@ import {createContext, useContext, useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import MainApi from '../utils/MainApi';
 import {ERROR, LOCAL_STORAGE_KEYS} from "./constants";
-
+import {cleanStorage} from "./helpers";
 const UseCurrentUserContext = createContext();
 
 export function useCurrentUser() {
@@ -32,10 +32,7 @@ export function CurrentUserProvider({children}) {
 	const
 		logout = () => {
 			localStorage.removeItem(LOCAL_STORAGE_KEYS.JWT);
-			localStorage.removeItem(LOCAL_STORAGE_KEYS.SHORT_FILM);
-			localStorage.removeItem(LOCAL_STORAGE_KEYS.SEARCH_QUERY);
-			localStorage.removeItem(LOCAL_STORAGE_KEYS.SHORT_FILM_F);
-			localStorage.removeItem(LOCAL_STORAGE_KEYS.SEARCH_QUERY_F);
+			cleanStorage();
 			setToken(null);
 			setCurrentUser(null);
 			navigate('/');

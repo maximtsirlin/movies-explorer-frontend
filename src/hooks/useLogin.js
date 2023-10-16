@@ -1,6 +1,7 @@
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import MainApi from "../utils/MainApi";
+import { cleanStorage } from "../utils/helpers";
 
 export default function useLogin() {
 	const [error, setError] = useState('');
@@ -14,6 +15,7 @@ export default function useLogin() {
 			if (!resp.token) {
 				throw new Error('No token received');
 			}
+			cleanStorage();
 			localStorage.jwt = resp.token;
 			setToken(resp.token);
 		} catch (e) {

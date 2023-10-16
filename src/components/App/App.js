@@ -169,8 +169,8 @@ function App() {
 	}, [token]);
 
 	useEffect(() => {
-		if (location?.pathname === '/movies' && movies.length > 0) {
-			const result = movies.filter((el) => {
+		if (location?.pathname === '/movies') {
+			const result = movies?.filter((el) => {
 				const hasQueryResult = searchQuery ? el.nameRU.toLowerCase().includes(searchQuery.toLowerCase()) : true;
 				if (shortFilm) {
 					return hasQueryResult && el.duration < 40;
@@ -183,8 +183,8 @@ function App() {
 	}, [shortFilm, searchQuery, movies, location.pathname]);
 
 	useEffect(() => {
-		if (location?.pathname !== '/movies' && favorites.length > 0) {
-			const result = favorites.filter((el) => {
+		if (location?.pathname !== '/movies') {
+			const result = favorites?.filter((el) => {
 				const hasQueryResult = searchQueryF ? el.nameRU.toLowerCase().includes(searchQueryF.toLowerCase()) : true;
 				if (shortFilmF) {
 					return hasQueryResult && el.duration < 40;
