@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {Route, Routes, useLocation, Navigate} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
 import './App.css';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -11,15 +11,15 @@ import Error from '../Error/Error';
 import Navigation from '../Navigation/Navigation';
 import MoviesApi from '../../utils/MoviesApi';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import {useCurrentUser} from '../../utils/UseCurrentUserContext';
+import { useCurrentUser } from '../../utils/UseCurrentUserContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Footer from '../Footer/Footer';
 import mainApi from '../../utils/MainApi';
-import {COL, LOCAL_STORAGE_KEYS, SCREEN_SIZE} from "../../utils/constants";
+import { COL, LOCAL_STORAGE_KEYS, SCREEN_SIZE } from "../../utils/constants";
 import Loader from '../Loader/Loader';
 
 function App() {
-	const {currentUser, token} = useCurrentUser();
+	const { currentUser, token } = useCurrentUser();
 	const [favorites, setFavorites] = useState([]);
 	const [allMovies, setAllMovies] = useState([]);
 	const [movies, setMovies] = useState([]);
@@ -197,15 +197,15 @@ function App() {
 	}, [shortFilmF, searchQueryF, favorites, location.pathname]);
 
 	if (isLoading) {
-		return <Loader/>
+		return <Loader />
 	}
 
 	return (
 		<>
 			<div className="page">
-				<Header openMenu={openMenu}/>
+				<Header openMenu={openMenu} />
 				<Routes>
-					<Route path="/" element={<Main/>}/>
+					<Route path="/" element={<Main />} />
 					<Route
 						path="/movies"
 						element={
@@ -233,7 +233,7 @@ function App() {
 											Ещё
 										</button>
 									)}
-									<Footer/>
+									<Footer />
 								</>
 							</ProtectedRoute>
 						}
@@ -260,25 +260,25 @@ function App() {
 										addToFavorites={addToFavorites}
 										removeFromFavorites={removeFromFavorites}
 									/>
-									<Footer/>
+									<Footer />
 								</>
 							</ProtectedRoute>
 						}
 					/>
 
-					<Route path="*" element={<Error/>}/>
+					<Route path="*" element={<Error />} />
 
-					<Route path="/profile" element={<Profile/>}/>
+					<Route path="/profile" element={<Profile />} />
 					<Route
 						path="/signin"
-						element={token ? <Navigate to="/"/> : <Login/>}
+						element={token ? <Navigate to="/" /> : <Login />}
 					/>
 					<Route
 						path="/signup"
-						element={token ? <Navigate to="/"/> : <Register/>}
+						element={token ? <Navigate to="/" /> : <Register />}
 					/>
 				</Routes>
-				<Navigation isOpen={isMenuOpen} closeMenu={closeMenu}/>
+				<Navigation isOpen={isMenuOpen} closeMenu={closeMenu} />
 			</div>
 		</>
 	);

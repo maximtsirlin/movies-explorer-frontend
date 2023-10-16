@@ -17,8 +17,9 @@ function SearchForm({initValues, setSearchQuery, setShortFilm}) {
 	};
 
 	const handleShortFilmChange = (event) => {
+		setSearchQuery(inputValue);
 		setShortFilm(event.target.checked);
-	};
+	  };
 
 	return (
 		<section className='search'>
