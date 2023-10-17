@@ -6,18 +6,17 @@ import AboutMe from './AboutMe/AboutMe';
 import Portfolio from './Portfolio/Portfolio';
 import Footer from '../Footer/Footer';
 
-
 function Main() {
-  return (
-    <main className='main'>
-      <Promo />
-      <AboutProject />
-      <Techs />
-      <AboutMe />
-      <Portfolio />
-      <Footer />
-    </main>
-  )
+	return (
+		<main className='main'>
+			<Promo/>
+			<AboutProject/>
+			<Techs/>
+			<AboutMe/>
+			<Portfolio/>
+			<Footer/>
+		</main>
+	)
 }
 
 export default Main;

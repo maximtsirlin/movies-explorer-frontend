@@ -4,7 +4,7 @@
 }
 
 .header_main {
-  background: #073042;
+  /*background: #073042;*/
 }
 
 .header__container {
@@ -16,12 +16,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #202020;
+  background: #ffffff00;
   position: relative;
 }
 
 .header__container_main {
-  background: #073042;
+  /*background: #073042;*/
 }
 
 .header_movie {
@@ -29,7 +29,7 @@
 }
 
 .header_main {
-  background: #073042;
+  /*background: #073042;*/
 }
 
 .header__logo {
@@ -140,7 +140,8 @@
 
 @media screen and (max-width: 1279px) {
   .header__container {
-    padding: 0 30px;
+    padding: 0 40px;
+    width: 785px;
   }
 
   .header__links {
@@ -172,6 +173,7 @@
 @media screen and (max-width: 767px) {
   .header__container {
     padding: 0 14px;
+    width: 320px;
   }
 
 
@@ -194,6 +196,6 @@
 
 
   .header__links {
-    max-width: 85px;
+    max-width: 31px;
   }
 }

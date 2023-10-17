@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Routes, Route, Link, Outlet } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
@@ -120,3 +121,23 @@ function Movies({ saved }) {
 }
 
 export default Movies;
+=======
+import {Outlet} from 'react-router-dom';
+import React from 'react';
+import SearchForm from '../SearchForm/SearchForm';
+import './Movies.css';
+
+function Movies({initValues, setSearchQuery, setShortFilm}) {
+	return (
+		<main className='movies'>
+			<SearchForm
+				initValues={initValues}
+				setSearchQuery={setSearchQuery}
+				setShortFilm={setShortFilm}/>
+			<Outlet/>
+		</main>
+	);
+}
+
+export default Movies;
+>>>>>>> level-3

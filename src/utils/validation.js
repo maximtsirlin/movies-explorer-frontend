@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 function validation(name, value) {
     let errors = {};
     if(name === 'email') {
@@ -26,3 +27,33 @@ function validation(name, value) {
    }
   
    export default validation;
+=======
+function validation(name, value) {
+	let errors = {};
+	if (name === 'email') {
+		if (!value) {
+			errors = ({[name]: 'Email обязателен'});
+		} else if (!/^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/.test(value)) {
+			errors = ({[name]: 'Некорректный email'});
+		}
+	}
+	if (name === 'password') {
+		if (!value) {
+			errors = ({[name]: 'Введите пароль'});
+		}
+	}
+	if (name === 'name') {
+		if (!value) {
+			errors = ({[name]: 'Укажите имя'})
+		} else if (!/^([А-Я]?[а-яё\s]{1,23}|[A-Z]?[a-z\s]{1,23})$/gm.test(value)) {
+			errors = ({[name]: 'Укажите корректное имя'});
+		} else if (value.length < 1) {
+			errors = ({[name]: "Укажите имя не короче 2 символов"})
+		}
+	}
+
+	return errors;
+}
+
+export default validation;
+>>>>>>> level-3

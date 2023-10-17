@@ -20,12 +20,21 @@
 }
 
 .error__link {
-  text-decoration: none;
-  color: #4285F4;
-  font-size: 14px;
-  line-height: 1.21;
+  margin-bottom: 16px;
+  border: none;
+  color: white;
+  font-size: 13px;
+  line-height: 1.23;
+  background: #202020;
+  cursor: pointer;
+  transition: opacity 0.3s;
+  padding: 0;
 }
 
+
+.error__link:hover {
+  opacity: 0.6;
+}
 
 @media screen and (max-width: 1279px) {
   .error {

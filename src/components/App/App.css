@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .page {
     font-family: "Inter", Arial, sans-serif;
     min-width: 280px;
@@ -17,3 +18,67 @@ body {
     margin: 0;
     background-color: #202020;
   }
+=======
+.page {
+    font-family: "Inter", Arial, sans-serif;
+    min-width: 280px;
+    max-width: 1280px;
+    margin: 0 auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    position: relative;
+    min-height: 100%;
+}
+
+
+body {
+    margin: 0;
+    background-color: #202020;
+}
+
+
+
+
+.page__button {
+    align-content: space-between;
+    align-items: center;
+    background: #2f2f2f;
+    border: 0 solid #424242;
+    border-radius: 6px;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    font-weight: 500;
+    height: 36px;
+    justify-content: space-evenly;
+    line-height: 1.25;
+    margin: 60px auto 0;
+    max-width: 1280px;
+    transition: opacity .3s;
+    width: 90%;
+}
+
+
+.page__button:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+
+@media screen and (max-width: 1279px) {
+    .page__button {
+        margin: 73px auto 76px;
+        max-width: 706px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .page__button {
+        max-width: 300px;
+    }
+}
+>>>>>>> level-3
